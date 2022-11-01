@@ -1,15 +1,10 @@
-import { Prisma } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+import type { Signup } from "../../../library/api";
 import crypto from "../../../library/crypto";
 import database from "../../../library/database";
 
-type Body = Prisma.UserCreateInput & {
-  address: Prisma.AddressCreateInput;
-  households: Prisma.HouseholdCreateInput[];
-};
-
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
-  const body: Body = request.body;
+  const body: Signup = request.body;
   if (request.method !== "POST") {
     return response
       .status(405)
@@ -20,7 +15,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       where: { email: body.email },
     });
     if (existingUser) {
-      return response.status(505).send({ message: "User already exist" });
+      return response.status(403).send({ message: "User already exist" });
     }
     const { password } = body;
     const user = await database.user.create({
@@ -41,10 +36,12 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
     });
     return response
       .status(200)
-      .send({ message: "Authenticated user", userId: user.id });
+      .send({ message: "Created user", userId: user.id });
   } catch (error) {
     console.log(error);
-    response.status(505).send({ message: "Invalid credentials" });
+    response
+      .status(505)
+      .send({ message: "Internal server error | Invalid credentials" });
   }
 };
 
