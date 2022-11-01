@@ -6,15 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:push": "prisma db push",
+    "pscale:dev": "pscale connect victoria-reyes development --port 3309",
+    "prisma:studio": "prisma studio --port 5000"
   },
   "dependencies": {
+    "@prisma/client": "^4.5.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
+    "cryptr": "^6.0.3",
     "next": "13.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "prisma": "^4.5.0"
   }
 }
