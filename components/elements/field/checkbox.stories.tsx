@@ -16,6 +16,8 @@ Default.args = {
   label: "Textbox Label",
   name: "field",
   required: false,
+  defaultChecked: false,
+  disabled: false,
   onChange: () => {},
   className: "",
 };
