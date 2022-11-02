@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { Signup } from "../../../library/api";
+import type { SignupFields } from "../../../library/api";
 import crypto from "../../../library/crypto";
 import database from "../../../library/database";
 
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
-  const body: Signup = request.body;
+  const body: SignupFields = request.body;
   if (request.method !== "POST") {
     return response
       .status(405)

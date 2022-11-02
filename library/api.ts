@@ -1,25 +1,25 @@
 import { Prisma } from "@prisma/client";
 import axios from "axios";
 
-export type Signin = {
+export type SigninFields = {
   email: string;
   password: string;
 };
 
-export type Signup = Prisma.UserCreateInput & {
+export type SignupFields = Prisma.UserCreateInput & {
   address: Prisma.AddressCreateWithoutUserInput;
   households: Prisma.HouseholdCreateWithoutUserInput[];
 };
 
 const api = {
-  signin: async (fields: Signin) => {
+  signin: async (fields: SigninFields) => {
     const { data, status } = await axios
       .post("/api/auth/signin", fields)
       .then((response) => response)
       .catch((error) => error.response);
     return { data, status };
   },
-  signup: async (fields: Signup) => {
+  signup: async (fields: SignupFields) => {
     const { data, status } = await axios
       .post("/api/auth/signup", fields)
       .then((response) => response)
