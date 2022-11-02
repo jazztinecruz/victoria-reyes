@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-type Props = {
+export type Props = {
   children: React.ReactNode;
   size?: "small" | "medium" | "large";
   as?: "div" | "form";
