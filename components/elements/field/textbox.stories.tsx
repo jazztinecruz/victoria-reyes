@@ -1,16 +1,20 @@
-import Textbox, { Props } from "./textbox";
-
-type Story<type> = {
-  (args: type): JSX.Element;
-  args?: type;
-};
+import Textbox from "./textbox";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
   title: "Textbox",
   component: Textbox,
-};
+  argTypes: {
+    type: {
+      options: ["text", "email", "password", "date"],
+      control: { type: "radio" },
+    },
+  },
+} as ComponentMeta<typeof Textbox>;
 
-const Template: Story<Props> = (args) => <Textbox {...args} />;
+const Template: ComponentStory<typeof Textbox> = (args) => (
+  <Textbox {...args} />
+);
 export const Default = Template.bind({});
 Default.args = {
   type: "text",

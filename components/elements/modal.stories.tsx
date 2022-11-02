@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Modal from "./modal";
+import type { ComponentMeta } from "@storybook/react";
 
 export default {
   title: "Modal",
   component: Modal,
-};
+} as ComponentMeta<typeof Modal>;
 
 export const Small = () => {
   let [open, setOpen] = useState(false);

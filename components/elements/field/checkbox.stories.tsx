@@ -1,16 +1,14 @@
-import Checkbox, { Props } from "./checkbox";
-
-type Story<type> = {
-  (args: type): JSX.Element;
-  args?: type;
-};
+import Checkbox from "./checkbox";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 
 export default {
   title: "Checkbox",
   component: Checkbox,
-};
+} as ComponentMeta<typeof Checkbox>;
 
-const Template: Story<Props> = (args) => <Checkbox {...args} />;
+const Template: ComponentStory<typeof Checkbox> = (args) => (
+  <Checkbox {...args} />
+);
 export const Default = Template.bind({});
 Default.args = {
   label: "Textbox Label",

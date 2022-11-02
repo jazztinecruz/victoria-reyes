@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useId, useRef } from "react";
 
-export type Props = {
+type Props = {
   type?: "text" | "email" | "password" | "date";
   label: string;
   name: string;

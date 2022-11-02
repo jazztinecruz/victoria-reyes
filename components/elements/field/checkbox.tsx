@@ -1,6 +1,6 @@
 import { ChangeEvent, useId } from "react";
 
-export type Props = {
+type Props = {
   label: string;
   name: string;
   required?: boolean;
