@@ -9,7 +9,9 @@
     "lint": "next lint",
     "prisma:push": "prisma db push",
     "pscale:dev": "pscale connect victoria-reyes development --port 3309",
-    "prisma:studio": "prisma studio --port 5000"
+    "prisma:studio": "prisma studio --port 5000",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
@@ -22,10 +24,22 @@
     "next": "13.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "storybook-addon-next": "^1.6.9",
     "typescript": "4.8.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/builder-webpack5": "^6.5.13",
+    "@storybook/manager-webpack5": "^6.5.13",
+    "@storybook/react": "^6.5.13",
+    "@storybook/testing-library": "^0.0.13",
     "autoprefixer": "^10.4.13",
+    "babel-loader": "^8.2.5",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
