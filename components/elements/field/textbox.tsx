@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useId, useRef } from "react";
 
-type Props = {
+export type Props = {
   type?: "text" | "email" | "password" | "date";
   label: string;
   name: string;
@@ -57,7 +57,7 @@ const Textbox = ({
         required={required}
         readOnly={readOnly}
         disabled={disabled}
-        className={`${valid ? "X" : "Y"} ${className}`}
+        className={`${valid ? "" : "border-red-600"} ${className} border`}
       />
     </div>
   );
