@@ -57,7 +57,7 @@ const Textbox = ({
         required={required}
         readOnly={readOnly}
         disabled={disabled}
-        className={`${valid ? "X" : "Y"} ${className}`}
+        className={`${valid ? "" : "border-red-600"} ${className} border`}
       />
     </div>
   );
