@@ -6,4 +6,10 @@
   .smooth {
     @apply transition-all duration-75 ease-in;
   }
+  .space-content {
+    @apply space-y-6;
+  }
+  .space-section {
+    @apply space-y-12;
+  }
 }
