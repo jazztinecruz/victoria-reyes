@@ -65,7 +65,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <aside>
         <div className="notebook:space-section smooth flex items-center justify-between p-4 notebook:block desktop:p-6">
           {/* Heading */}
-          <section className="flex items-center gap-4">
+          <section className="relative z-40 flex items-center gap-4">
             <div className="relative aspect-square w-12 flex-none">
               <Image
                 alt="Victoria Reyes Logo"
@@ -96,7 +96,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </aside>
 
-      <div className="ml-0 hidden h-screen w-[1px] bg-slate-200 notebook:block desktop:ml-16" />
+      <div className="ml-0 hidden h-screen w-[1px] bg-slate-200 notebook:block" />
 
       <main className="scrollbar-thumb-rounded-full max-h-screen overflow-hidden overflow-y-auto scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-500">
         <div className="smooth p-4 desktop:p-6">{children}</div>
