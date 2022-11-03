@@ -4,7 +4,7 @@ type Props = {
 
 const Heading = ({ children }: Props) => {
   return (
-    <th scope="row" className="whitespace-nowrap py-4 px-6 pr-24 font-medium">
+    <th scope="row" className="whitespace-nowrap py-4 px-6 font-medium">
       {children}
     </th>
   );
