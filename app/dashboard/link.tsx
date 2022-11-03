@@ -22,8 +22,8 @@ const Link = ({ name, href, Icon }: Props) => {
         className={`${
           activeSegment || atOriginSegment ? "font-bold" : "opacity-fade"
         } smooth flex items-center gap-6 text-sm hover:opacity-100`}>
-        <Icon className="h-6 w-6" />
-        {name}
+        <Icon className="mx-auto h-6 w-6 desktop:mx-0" />
+        <h3 className="hidden desktop:block">{name}</h3>
       </NextLink>
     </li>
   );

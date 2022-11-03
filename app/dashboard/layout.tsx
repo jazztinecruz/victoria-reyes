@@ -9,8 +9,11 @@ import {
   CheckCircleIcon,
   Cog6ToothIcon,
   UserIcon,
+  Bars3Icon,
+  XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Links from "./links";
+import Burger from "./burger";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = {
@@ -58,9 +61,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="mx-auto grid max-w-screen-television grid-cols-[340px,1fr] [&>*]:p-6">
+    <div className="smooth mx-auto grid max-w-screen-television notebook:grid-cols-[auto,auto,1fr]">
       <aside>
-        <div className="space-section">
+        <div className="notebook:space-section smooth flex items-center justify-between p-4 notebook:block desktop:p-6">
           {/* Heading */}
           <section className="flex items-center gap-4">
             <div className="relative aspect-square w-12 flex-none">
@@ -74,7 +77,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 className="object-cover"
               />
             </div>
-            <h1>
+            <h1 className="notebook:hidden desktop:block">
               Barangay{" "}
               <span className="font-bold">
                 <br />
@@ -83,15 +86,20 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </h1>
           </section>
           {/* Navigation */}
-          <nav className="space-section ml-6">
+          <nav className="space-section hidden notebook:block desktop:ml-6">
             <Links name="Resident" list={links.residents} />
             {/* <Links name="Statistic" list={links.statistics} />
             <Links name="Administrator" list={links.administrator} /> */}
           </nav>
+          {/* Burger Menu */}
+          <Burger />
         </div>
       </aside>
+
+      <div className="ml-0 hidden h-screen w-[1px] bg-slate-200 notebook:block desktop:ml-16" />
+
       <main className="scrollbar-thumb-rounded-full max-h-screen overflow-hidden overflow-y-auto scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-500">
-        <div>{children}</div>
+        <div className="smooth p-4 desktop:p-6">{children}</div>
       </main>
     </div>
   );

@@ -39,7 +39,7 @@ const DashboardVerificationsPage = () => {
 
   return (
     <div className="space-section">
-      <Table.Main name="List of Applying for Residency">
+      <Table.Main name="Waiting for Approval">
         <Table.Head>
           <Table.Row heading>
             {fields.map((field) => (
