@@ -66,17 +66,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="notebook:space-section smooth flex items-center justify-between p-4 notebook:block desktop:p-6">
           {/* Heading */}
           <section className="relative z-40 flex items-center gap-4">
-            <div className="relative aspect-square w-12 flex-none">
               <Image
                 alt="Victoria Reyes Logo"
                 src="/images/victoria-reyes-logo.svg"
-                fill={true}
                 blurDataURL="/images/victoria-reyes-logo.svg"
                 placeholder="blur"
                 priority
+                width={48}
+                height={48}
                 className="object-cover"
               />
-            </div>
             <h1 className="notebook:hidden desktop:block">
               Barangay{" "}
               <span className="font-bold">

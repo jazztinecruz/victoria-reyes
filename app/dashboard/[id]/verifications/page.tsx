@@ -1,6 +1,6 @@
 import moment from "moment";
 import { use } from "react";
-import Table from "../../../../components/elements/table";
+import Table from "../../../../components/dashboard/sections/table";
 import database from "../../../../library/database";
 
 const getUsers = async () => {
