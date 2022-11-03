@@ -11,9 +11,16 @@ module.exports = {
       tablet: "640px",
       laptop: "1024px",
       desktop: "1280px",
-      television: "1800px",
+      television: "1920px",
     },
-    extend: {},
+    extend: {
+      opacity: {
+        fade: ".60",
+      },
+      colors: {
+        brand: "#007032",
+      },
+    },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
