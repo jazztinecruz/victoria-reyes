@@ -7,10 +7,8 @@ const HomePage = () => {
       {/* hero section */}
       <section className="grid h-full grid-rows-[auto,1fr]">
         {/* navbar */}
-        <nav className="bg-white">
-          <div className="mx-auto max-w-5xl">
-            <Navbar />
-          </div>
+        <nav className="bg-white laptop:px-10">
+          <Navbar />
         </nav>
 
         {/* hero content */}
@@ -23,13 +21,13 @@ const HomePage = () => {
             <h1 className="text-3xl font-semibold tracking-wider text-white laptop:text-6xl">
               BARANGAY VICTORIA REYES
             </h1>
-            <h3 className="text-lg laptop:text-3xl font-light tracking-wider text-white">
+            <h3 className="text-lg font-light tracking-wider text-white laptop:text-3xl">
               CITY OF DASMARINAS
             </h3>
 
             {/* sign up */}
             <div className="mt-8 grid w-full grid-flow-row items-center laptop:grid-cols-[1fr,auto]">
-              <div className="rounded-tl-md rounded-tr-md bg-white py-4 laptop:py-6 px-12 laptop:rounded-bl-md laptop:rounded-tr-none">
+              <div className="rounded-tl-md rounded-tr-md bg-white py-4 px-12 laptop:rounded-bl-md laptop:rounded-tr-none laptop:py-6">
                 <span className="cursor-pointer text-center text-[#838383]">
                   Dont have an account yet?
                 </span>
