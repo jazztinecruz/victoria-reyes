@@ -18,7 +18,7 @@ const getUsers = async () => {
 const TestPage = () => {
   const users = use(getUsers());
   console.log(users);
-  return <div>TestPage {users[0].email}</div>;
+  return <div>TestPage {users[0]?.email}</div>;
 };
 
 export default TestPage;
