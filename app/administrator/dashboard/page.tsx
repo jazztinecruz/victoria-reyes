@@ -1,12 +1,12 @@
-import moment from "moment";
 import { use } from "react";
-import Table from "../../../../components/dashboard/sections/table";
-import database from "../../../../library/database";
+import database from "../../../library/database";
+import moment from "moment";
+import Table from "../../../components/app/sections/table";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
     where: {
-      verified: false,
+      verified: true,
     },
     include: {
       address: true,
@@ -16,7 +16,7 @@ const getUsers = async () => {
   return users;
 };
 
-const DashboardVerificationsPage = () => {
+const DashboardPage = () => {
   const users = use(getUsers());
 
   const fields = [
@@ -39,7 +39,7 @@ const DashboardVerificationsPage = () => {
 
   return (
     <div className="space-section">
-      <Table.Main name="Waiting for Approval">
+      <Table.Main name="List of Residents">
         <Table.Head>
           <Table.Row heading>
             {fields.map((field) => (
@@ -73,4 +73,4 @@ const DashboardVerificationsPage = () => {
   );
 };
 
-export default DashboardVerificationsPage;
+export default DashboardPage;

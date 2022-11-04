@@ -19,37 +19,37 @@ const Burger = () => {
   const links = [
     {
       name: "Dashboard",
-      href: "/dashboard/123/",
+      href: "/administrator/dashboard",
       Icon: HomeIcon,
     },
     {
       name: "Requests",
-      href: "/dashboard/123/requests",
+      href: "/administrator/dashboard/requests",
       Icon: DocumentDuplicateIcon,
     },
     {
       name: "Verifcations",
-      href: "/dashboard/123/verifications",
+      href: "/administrator/dashboard/verifications",
       Icon: CheckCircleIcon,
     },
     // {
     //   name: "Reports",
-    //   href: "/dashboard/123/reports",
+    //   href: "/administrator/dashboard/reports",
     //   Icon: PresentationChartLineIcon,
     // },
     // {
     //   name: "Account",
-    //   href: "/dashboard/123/account",
+    //   href: "/administrator/dashboard/account",
     //   Icon: UserIcon,
     // },
     // {
     //   name: "Registration",
-    //   href: "/dashboard/123/registration",
+    //   href: "/administrator/dashboard/registration",
     //   Icon: UserPlusIcon,
     // },
     // {
     //   name: "Settings",
-    //   href: "/dashboard/123/settings",
+    //   href: "/administrator/dashboard/settings",
     //   Icon: Cog6ToothIcon,
     // },
   ];
