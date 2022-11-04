@@ -20,41 +20,41 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     residents: [
       {
         name: "Dashboard",
-        href: "/administrator/dashboard",
+        href: "/dashboard",
         Icon: HomeIcon,
       },
       {
         name: "Requests",
-        href: "/administrator/dashboard/requests",
+        href: "/dashboard/requests",
         Icon: DocumentDuplicateIcon,
       },
       {
         name: "Verifcations",
-        href: "/administrator/dashboard/verifications",
+        href: "/dashboard/verifications",
         Icon: CheckCircleIcon,
       },
     ],
     statistics: [
       {
         name: "Reports",
-        href: "/administrator/dashboard/reports",
+        href: "/dashboard/reports",
         Icon: PresentationChartLineIcon,
       },
     ],
     administrator: [
       {
         name: "Account",
-        href: "/administrator/dashboard/account",
+        href: "/dashboard/account",
         Icon: UserIcon,
       },
       {
         name: "Registration",
-        href: "/administrator/dashboard/registration",
+        href: "/dashboard/registration",
         Icon: UserPlusIcon,
       },
       {
         name: "Settings",
-        href: "/administrator/dashboard/settings",
+        href: "/dashboard/settings",
         Icon: Cog6ToothIcon,
       },
     ],
@@ -85,7 +85,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </h1>
           </section>
           {/* Navigation */}
-          <nav className="space-section hidden notebook:block desktop:ml-6">
+          <nav className="space-section hidden notebook:block">
             <Links name="Resident" list={links.residents} />
             {/* <Links name="Statistic" list={links.statistics} />
             <Links name="Administrator" list={links.administrator} /> */}

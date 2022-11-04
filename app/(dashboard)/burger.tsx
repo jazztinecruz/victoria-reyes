@@ -1,35 +1,33 @@
-"use client";
-
 import { Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   CheckCircleIcon,
-  Cog6ToothIcon,
   DocumentDuplicateIcon,
   HomeIcon,
-  PresentationChartLineIcon,
-  UserIcon,
-  UserPlusIcon,
+  // Cog6ToothIcon,
+  // PresentationChartLineIcon,
+  // UserIcon,
+  // UserPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 
 const Burger = () => {
   const links = [
     {
       name: "Dashboard",
-      href: "/administrator/dashboard",
+      href: "/dashboard",
       Icon: HomeIcon,
     },
     {
       name: "Requests",
-      href: "/administrator/dashboard/requests",
+      href: "/dashboard/requests",
       Icon: DocumentDuplicateIcon,
     },
     {
       name: "Verifcations",
-      href: "/administrator/dashboard/verifications",
+      href: "/dashboard/verifications",
       Icon: CheckCircleIcon,
     },
     // {
