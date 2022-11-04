@@ -1,77 +1,76 @@
-import { SignupFields } from "../library/api";
-import crypto from "../library/crypto";
 import database from "../library/database";
+import { faker } from "@faker-js/faker";
+import { Gender, Prisma, Relationship } from "@prisma/client";
 
-const data: SignupFields = {
-  email: "jazztine@gmail.com",
-  password: "NixNonex990922",
-  givenName: "Jazztine",
-  middleName: "Tabugara",
-  familyName: "Abucejo",
-  gender: "MALE",
-  birthdate: "September 12, 1999",
-  birthplace: "Makati City",
-  phone: "+6395193321",
-  occupation: "Programmer",
-  homeowner: false,
-  voter: false,
-  address: {
-    street: "Blk 11 Lot 12, Phase 3",
-  },
-  households: [
-    {
-      givenName: "George",
-      middleName: "The",
-      familyName: "Many",
-      gender: "MALE",
-      birthdate: "September 12, 2004",
-      birthplace: "Tagaytay Zoo",
-      phone: "+6396293710",
-      occupation: "Gamer",
-      relationship: "SON",
-    },
-    {
-      givenName: "Brad",
-      middleName: "Meow",
-      familyName: "Wawaaku",
-      gender: "FEMALE",
-      birthdate: "December 16, 2023",
-      birthplace: "Cavite City",
-      phone: "+6391193310",
-      occupation: "Teacher",
-      relationship: "OTHERS",
-    },
-  ],
+const generateHouseHolds = (
+  count: number
+): Prisma.HouseholdCreateWithoutUserInput[] => {
+  const households: Prisma.HouseholdCreateWithoutUserInput[] = [];
+  for (let i = 0; i < Math.floor(Math.random() * count) + 1; i++) {
+    const household = {
+      givenName: faker.name.firstName(),
+      middleName: faker.name.middleName(),
+      familyName: faker.name.lastName(),
+      gender: faker.name.sexType().toUpperCase() as Gender,
+      birthdate: new Date(faker.date.birthdate()),
+      birthplace: `${faker.address.cityName()} ${faker.address.streetAddress()}`,
+      phone: faker.phone.number("+6391######"),
+      occupation: faker.name.jobTitle(),
+      relationship: "OTHERS" as Relationship,
+    };
+    households.push(household);
+  }
+
+  return households;
 };
 
-const seed = async () => {
-  await database.user.create({
-    data: {
-      ...data,
-      password: crypto.encrypt(data.password),
-      birthdate: new Date(data.birthdate),
-      address: {
-        create: { street: data.address.street },
-      },
-      households: {
-        create: data.households.map((household) => {
-          return { ...household, birthdate: new Date(data.birthdate) };
-        }),
-      },
-    },
-    select: { id: true },
-  });
+const generateUser = (): Prisma.UserCreateInput => {
+  return {
+    verified: faker.datatype.boolean(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+    givenName: faker.name.firstName(),
+    middleName: faker.name.middleName(),
+    familyName: faker.name.lastName(),
+    gender: faker.name.sexType().toUpperCase() as Gender,
+    birthdate: new Date(faker.date.birthdate()),
+    birthplace: `${faker.address.cityName()} ${faker.address.streetAddress()}`,
+    phone: faker.phone.number("+6391######"),
+    occupation: faker.name.jobTitle(),
+    homeowner: faker.datatype.boolean(),
+    voter: faker.datatype.boolean(),
+  };
 };
 
-seed()
+const generateAddress = (): Prisma.AddressCreateWithoutUserInput => {
+  return {
+    street: faker.address.streetAddress(),
+  };
+};
+
+const generate = () => {
+  const data = {
+    ...generateUser(),
+    address: { create: { ...generateAddress() } },
+    households: { create: generateHouseHolds(10) },
+  };
+  return data;
+};
+
+const seed = async (count: number) => {
+  for (let i = 0; i < count; i++) {
+    await database.user.create({
+      data: generate(),
+    });
+  }
+};
+
+seed(200)
   .then(async () => {
     await database.$disconnect();
   })
-
-  .catch(async (e) => {
-    console.error(e);
-
+  .catch(async (error) => {
+    console.error(error);
     await database.$disconnect();
-
     process.exit(1);
   });
