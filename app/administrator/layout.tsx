@@ -9,8 +9,8 @@ import {
   CheckCircleIcon,
   Cog6ToothIcon,
   UserIcon,
-  Bars3Icon,
-  XMarkIcon,
+  // Bars3Icon,
+  // XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
@@ -20,41 +20,41 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     residents: [
       {
         name: "Dashboard",
-        href: "/dashboard/123/",
+        href: "/administrator/dashboard",
         Icon: HomeIcon,
       },
       {
         name: "Requests",
-        href: "/dashboard/123/requests",
+        href: "/administrator/dashboard/requests",
         Icon: DocumentDuplicateIcon,
       },
       {
         name: "Verifcations",
-        href: "/dashboard/123/verifications",
+        href: "/administrator/dashboard/verifications",
         Icon: CheckCircleIcon,
       },
     ],
     statistics: [
       {
         name: "Reports",
-        href: "/dashboard/123/reports",
+        href: "/administrator/dashboard/reports",
         Icon: PresentationChartLineIcon,
       },
     ],
     administrator: [
       {
         name: "Account",
-        href: "/dashboard/123/account",
+        href: "/administrator/dashboard/account",
         Icon: UserIcon,
       },
       {
         name: "Registration",
-        href: "/dashboard/123/registration",
+        href: "/administrator/dashboard/registration",
         Icon: UserPlusIcon,
       },
       {
         name: "Settings",
-        href: "/dashboard/123/settings",
+        href: "/administrator/dashboard/settings",
         Icon: Cog6ToothIcon,
       },
     ],
@@ -66,16 +66,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="notebook:space-section smooth flex items-center justify-between p-4 notebook:block desktop:p-6">
           {/* Heading */}
           <section className="relative z-40 flex items-center gap-4">
-              <Image
-                alt="Victoria Reyes Logo"
-                src="/images/victoria-reyes-logo.svg"
-                blurDataURL="/images/victoria-reyes-logo.svg"
-                placeholder="blur"
-                priority
-                width={48}
-                height={48}
-                className="object-cover"
-              />
+            <Image
+              alt="Victoria Reyes Logo"
+              src="/images/victoria-reyes-logo.svg"
+              blurDataURL="/images/victoria-reyes-logo.svg"
+              placeholder="blur"
+              priority
+              width={48}
+              height={48}
+              className="object-cover"
+            />
             <h1 className="notebook:hidden desktop:block">
               Barangay{" "}
               <span className="font-bold">

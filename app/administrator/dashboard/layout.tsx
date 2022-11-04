@@ -1,9 +1,9 @@
-import Segment from "./segment";
+import Breadcrumbs from "./breadcrumbs";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="notebook:space-section space-content smooth">
-      <Segment />
+      <Breadcrumbs />
       {children}
     </div>
   );

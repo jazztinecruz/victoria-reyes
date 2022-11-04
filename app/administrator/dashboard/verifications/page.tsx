@@ -1,12 +1,12 @@
-import { use } from "react";
-import database from "../../../library/database";
 import moment from "moment";
-import Table from "../../../components/dashboard/sections/table";
+import { use } from "react";
+import Table from "../../../../components/app/sections/table";
+import database from "../../../../library/database";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
     where: {
-      verified: true,
+      verified: false,
     },
     include: {
       address: true,
@@ -16,7 +16,7 @@ const getUsers = async () => {
   return users;
 };
 
-const DashboardPage = () => {
+const DashboardVerificationsPage = () => {
   const users = use(getUsers());
 
   const fields = [
@@ -39,8 +39,7 @@ const DashboardPage = () => {
 
   return (
     <div className="space-section">
-      <div>TestPage {users[0]?.email}</div>
-      <Table.Main name="List of Residents">
+      <Table.Main name="Waiting for Approval">
         <Table.Head>
           <Table.Row heading>
             {fields.map((field) => (
@@ -49,11 +48,7 @@ const DashboardPage = () => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          <Table.Row>
-            <Table.Data value="Hello" />
-            <Table.Data value="World" />
-          </Table.Row>
-          {/* {users.map((user) => (
+          {users.map((user) => (
             <Table.Row key={user.id}>
               <Table.Data value={user.id} />
               <Table.Data value={user.givenName} />
@@ -71,11 +66,11 @@ const DashboardPage = () => {
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
             </Table.Row>
-          ))} */}
+          ))}
         </Table.Body>
       </Table.Main>
     </div>
   );
 };
 
-export default DashboardPage;
+export default DashboardVerificationsPage;
