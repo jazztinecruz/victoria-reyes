@@ -1,5 +1,5 @@
 import { use } from "react";
-import database from "../../library/database";
+import database from "../../../library/database";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
