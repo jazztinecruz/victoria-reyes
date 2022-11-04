@@ -12,7 +12,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const users = await database.user.findMany();
   return {
     props: {
-      users,
+      users: JSON.parse(JSON.stringify(users)),
     },
   };
 };
