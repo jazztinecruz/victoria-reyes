@@ -3,21 +3,21 @@ import database from "../../../library/database";
 import moment from "moment";
 import Table from "../../../components/dashboard/sections/table";
 
-const getUsers = async () => {
-  const users = await database.user.findMany({
-    where: {
-      verified: true,
-    },
-    include: {
-      address: true,
-      households: true,
-    },
-  });
-  return users;
-};
+// const getUsers = async () => {
+//   const users = await database.user.findMany({
+//     where: {
+//       verified: true,
+//     },
+//     include: {
+//       address: true,
+//       households: true,
+//     },
+//   });
+//   return users;
+// };
 
 const DashboardPage = () => {
-  const users = use(getUsers());
+  // const users = use(getUsers());
 
   const fields = [
     "Resident ID",
@@ -48,7 +48,9 @@ const DashboardPage = () => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {users.map((user) => (
+          <Table.Data value="Hello" />
+          <Table.Data value="World" />
+          {/* {users.map((user) => (
             <Table.Row key={user.id}>
               <Table.Data value={user.id} />
               <Table.Data value={user.givenName} />
@@ -66,7 +68,7 @@ const DashboardPage = () => {
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
             </Table.Row>
-          ))}
+          ))} */}
         </Table.Body>
       </Table.Main>
     </div>
