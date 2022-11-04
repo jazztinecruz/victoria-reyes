@@ -3,7 +3,7 @@ import NavLink from "../nav-link/nav-link";
 const NavLinks = () => {
   return (
     <div className="notebook:hidden laptop:block ">
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-10">
         {/* navlinks */}
         <NavLink name="Home" link="#" />
         <NavLink name="About Us" link="#" />
