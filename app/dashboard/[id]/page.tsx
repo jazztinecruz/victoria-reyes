@@ -48,8 +48,10 @@ const DashboardPage = () => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          <Table.Data value="Hello" />
-          <Table.Data value="World" />
+          <Table.Row>
+            <Table.Data value="Hello" />
+            <Table.Data value="World" />
+          </Table.Row>
           {/* {users.map((user) => (
             <Table.Row key={user.id}>
               <Table.Data value={user.id} />
