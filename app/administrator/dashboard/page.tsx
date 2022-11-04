@@ -39,7 +39,6 @@ const DashboardPage = () => {
 
   return (
     <div className="space-section">
-      <div>TestPage {users[0]?.email}</div>
       <Table.Main name="List of Residents">
         <Table.Head>
           <Table.Row heading>
