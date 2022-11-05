@@ -6,7 +6,7 @@ interface NavLinkProps {
 }
 
 const NavLink = ({ link, name }: NavLinkProps) => {
-  return <Link href={link} className="text-md lg:text-lg  font-medium">{name}</Link>;
+  return <Link href={link} className="text-md lg:text-lg hover:text-green font-medium">{name}</Link>;
 };
 
 export default NavLink;
