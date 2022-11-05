@@ -2,8 +2,8 @@ import Feature from "./feature";
 
 const Feautures = () => {
   return (
-    <div className="h-full w-full mt-52 laptop:mt-0">
-      <div className="mx-auto grid gap-20 laptop:gap-48 h-full max-w-5xl items-center justify-center">
+    <div className="h-full w-full mt-52 tablet:mt-28 laptop:mt-0">
+      <div className="mx-auto grid gap-14 tablet:gap-0 laptop:gap-32 h-full max-w-5xl items-center justify-center">
         <Feature
           title="Get your account verified."
           paragraph="Sign up and fill up all necessary information to make an account, and wait for your account to be verified."

@@ -8,13 +8,13 @@ interface FeatureProps {
 }
 const Feature = ({ image, title, paragraph, order }: FeatureProps) => {
   return (
-    <div className="grid grid-flow-row items-center gap-32  px-10 tablet:grid-cols-2">
+    <div className="grid grid-flow-row items-center gap-32 px-10 tablet:grid-cols-2">
       {/* content */}
-      <div className="flex flex-col items-center justify-center gap-3 laptop:items-start">
-        <span className="text-center text-xl font-semibold tablet:text-left">
+      <div className="flex flex-col items-center justify-center gap-3 tablet:items-start">
+        <span className="text-center text-xl laptop:text-2xl font-semibold tablet:text-left">
           {title}
         </span>
-        <p className="text-center leading-relaxed tablet:text-left">
+        <p className="text-center leading-relaxed tablet:text-left laptop:text-lg">
           {paragraph}
         </p>
       </div>

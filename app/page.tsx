@@ -35,7 +35,7 @@ const HomePage = () => {
                 </span>
               </div>
 
-              <button className="grid w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-green py-5 px-6 text-center text-white laptop:w-60  laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 tablet:rounded-tr-md tablet:rounded-bl-none laptop:py-0 laptop:text-left">
+              <button className="grid w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-green py-5 px-6 text-center text-white tablet:rounded-tr-md  tablet:rounded-bl-none laptop:w-60 laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 laptop:py-0 laptop:text-left">
                 <span className="text-lg text-white ">GET STARTED</span>
                 <ChevronRightIcon className="h-6 w-6 text-white" />
               </button>
@@ -45,7 +45,7 @@ const HomePage = () => {
       </section>
 
       {/* about */}
-      <div className="laptop:h-90 z-50 flex w-full flex-col gap-10 rounded-md px-6 py-20 laptop:py-16 text-center text-lg leading-relaxed laptop:absolute laptop:-bottom-52 laptop:left-0 laptop:right-0 laptop:w-[945px] laptop:translate-x-2/4 laptop:transform laptop:bg-white laptop:shadow-md">
+      <div className="laptop:h-90 z-50 flex w-full flex-col gap-10 rounded-md px-6 py-20 text-center text-lg leading-relaxed tablet:mt-20 laptop:absolute laptop:-bottom-52 laptop:left-0 laptop:right-0 laptop:mt-0 laptop:w-[945px] laptop:translate-x-2/4 laptop:transform laptop:bg-white laptop:py-16 laptop:shadow-md">
         <span className="text-xl font-semibold laptop:hidden">About Us</span>
         <p>
           Barangay Victoria Management System is a website that entails to
@@ -60,9 +60,8 @@ const HomePage = () => {
       {/* barangay documents */}
       <Documents />
 
-
       {/* features */}
-      <Feautures/>
+      <Feautures />
 
       {/* footer */}
       {/* <footer>
