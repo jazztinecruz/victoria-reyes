@@ -1,35 +1,33 @@
-"use client";
-
 import { Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   CheckCircleIcon,
-  Cog6ToothIcon,
   DocumentDuplicateIcon,
   HomeIcon,
-  PresentationChartLineIcon,
-  UserIcon,
-  UserPlusIcon,
+  // Cog6ToothIcon,
+  // PresentationChartLineIcon,
+  // UserIcon,
+  // UserPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 
 const Burger = () => {
   const links = [
     {
       name: "Dashboard",
-      href: "/administrator/dashboard",
+      href: "/dashboard",
       Icon: HomeIcon,
     },
     {
       name: "Requests",
-      href: "/administrator/dashboard/requests",
+      href: "/dashboard/requests",
       Icon: DocumentDuplicateIcon,
     },
     {
       name: "Verifcations",
-      href: "/administrator/dashboard/verifications",
+      href: "/dashboard/verifications",
       Icon: CheckCircleIcon,
     },
     // {
@@ -88,7 +86,7 @@ const Burger = () => {
             leave="transition ease-in duration-75"
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95">
-            <Menu.Items className="absolute top-[200%] right-0 z-30 w-[calc(100vw-2rem)] rounded border bg-white p-1 shadow-lg notebook:hidden">
+            <Menu.Items className="space-y-2 absolute top-[200%] right-0 z-30 w-[calc(100vw-2rem)] rounded border bg-white p-2 shadow-lg notebook:hidden">
               {links.map(({ name, href, Icon }) => (
                 <Menu.Item key={name}>
                   {({ active }) => (
@@ -97,7 +95,7 @@ const Burger = () => {
                       className={`${
                         active
                           ? "bg-slate-200 opacity-100 hover:bg-slate-200"
-                          : ""
+                          : "opacity-fade"
                       } smooth flex gap-4 rounded p-2 text-sm `}>
                       <Icon className="h-6 w-6" />
                       <h3>{name}</h3>
