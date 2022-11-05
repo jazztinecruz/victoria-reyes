@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import Navbar from "../components/app/navbar/navbar";
-import Documents from "./homepage-sections/documents/documents";
-import Feautures from "./homepage-sections/features/features";
+import Navbar from "../components/navbar/navbar";
+import Documents from "../components/documents/documents";
+import Feautures from "../components/features/features";
 
 const HomePage = () => {
   return (

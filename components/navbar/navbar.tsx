@@ -4,8 +4,8 @@ import { Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { Fragment } from "react";
-import Button from "../../elements/button/button";
-import Logo from "../../elements/logo/logo";
+import Button from "../elements/button/button";
+import Logo from "../elements/logo/logo";
 import NavLinks from "./nav-links/nav-links";
 
 const Navbar = () => {
