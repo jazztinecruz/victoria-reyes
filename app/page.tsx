@@ -1,18 +1,112 @@
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import Navbar from "../components/navbar/navbar";
-import Documents from "../components/documents/documents";
-import Feautures from "../components/features/features";
+import { Bars3Icon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
+import Button from "../components/elements/button/button";
+import Document from "./document";
+import Feature from "./feature";
+import Link from "./link";
+
+const documents: { title: string; description: string }[] = [
+  {
+    title: "Barangay Clearance",
+    description:
+      "A Barangay Clearance one of the easiest documents you can get as a valid proof of your identity. It is a document that contains a person's name, address, thumb mark, and signature. It also contains the date it was issued and for what specific purpose.",
+  },
+  {
+    title: "Barangay Indigency",
+    description:
+      "A document that are sometimes required by the Philippine government or a private institution as proof of an individual's financial situation.",
+  },
+  {
+    title: "Barangay ID",
+    description:
+      "A Barangay Clearance one of the easiest documents you can get as a valid proof of your identity. It is a document that contains a person's name, address, thumb mark, and signature. It also contains the date it was issued and for what specific purpose.",
+  },
+  {
+    title: "Cedula",
+    description:
+      "one of the basic requirements for most government transactions. It can also serve as valid identification for individuals and corporations residing or located in the same municipality from where it's acquired",
+  },
+];
+
+const features: {
+  title: string;
+  description: string;
+  image: string;
+  order: "left" | "right";
+}[] = [
+  {
+    title: "Get your account verified.",
+    description:
+      "Sign up and fill up all necessary information to make an account, and wait for your account to be verified.",
+    image: "/images/features/feat1.png",
+    order: "right",
+  },
+  {
+    title: "You can request any barangay documents.",
+    description:
+      "You can now request any barangay documents anytime, anywhere effortlessly.",
+    image: "/images/features/feat2.png",
+    order: "left",
+  },
+  {
+    title: "See when you can claim your requested document.",
+    description: "See your requested documents when it would be available.",
+    image: "/images/features/feat3.png",
+    order: "right",
+  },
+  {
+    title: "See how much will cost your requested document.",
+    description:
+      "See how much you will pay to your requested documents when it is ready to claim in barangay victoria reyes.",
+    image: "/images/features/feat4.png",
+    order: "left",
+  },
+  {
+    title: "You can check your request status.",
+    description:
+      "You can always check your request status if its ready to claim onsite..",
+    image: "/images/features/feat5.png",
+    order: "right",
+  },
+];
 
 const HomePage = () => {
   return (
     <div className="grid h-screen grid-rows-[1fr,auto]">
-      {/* hero section */}
       <section className="grid h-full grid-rows-[auto,1fr]">
-        {/* navbar */}
         <nav className="bg-white laptop:px-10">
-          <Navbar />
+          <div className="grid items-center gap-8 py-3 px-4 notebook:grid-cols-[1fr,auto] laptop:grid-cols-[auto,1fr,auto] laptop:px-0">
+            <Image
+              alt="Victoria Reyes Logo"
+              src="/images/victoria-reyes-logo.svg"
+              blurDataURL="/images/victoria-reyes-logo.svg"
+              placeholder="blur"
+              priority
+              width={48}
+              height={48}
+              className="object-cover"
+            />
+            {/* sidebar for mobile*/}
+            <div className="notebook:block laptop:hidden">
+              <Bars3Icon className="h-6 w-6" />
+            </div>
+            {/* navlinks for laptop */}
+            <div className="notebook:hidden laptop:block ">
+              <div className="flex items-center gap-10">
+                {/* navlinks */}
+                <Link name="Home" link="#" />
+                <Link name="About Us" link="#" />
+                <Link name="Barangay Documents" link="#" />
+                <Link name="What's New?" link="#" />
+                <Link name="Contact Us" link="#" />
+              </div>
+            </div>
+            {/* sign in button */}
+            <div className="hidden laptop:block">
+              <Button name="LOGIN YOUR ACCOUNT" />
+            </div>
+          </div>
         </nav>
-
         {/* hero content */}
         <div className="relative grid h-screen items-center justify-center bg-hero-bg bg-cover bg-no-repeat">
           {/* hero black container */}
@@ -44,7 +138,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* about */}
       <div className="laptop:h-90 z-50 flex w-full flex-col gap-10 rounded-md px-6 py-20 text-center text-lg leading-relaxed tablet:mt-20 laptop:absolute laptop:-bottom-52 laptop:left-0 laptop:right-0 laptop:mt-0 laptop:w-[945px] laptop:translate-x-2/4 laptop:transform laptop:bg-white laptop:py-16 laptop:shadow-md">
         <span className="text-xl font-semibold laptop:hidden">About Us</span>
         <p>
@@ -57,11 +150,31 @@ const HomePage = () => {
         </p>
       </div>
 
-      {/* barangay documents */}
-      <Documents />
+      <div className="relative mt-14 h-full laptop:mt-60 laptop:h-screen">
+        <div className="mx-auto grid h-full max-w-5xl grid-flow-row items-start justify-center gap-16 p-4 tablet:grid-cols-2 tablet:py-10 laptop:gap-0">
+          {documents.map((document, index) => (
+            <Document
+              key={index}
+              name={document.title}
+              description={document.description}
+            />
+          ))}
+        </div>
+      </div>
 
-      {/* features */}
-      <Feautures />
+      <div className="mt-52 h-full w-full tablet:mt-28 laptop:mt-0">
+        <div className="mx-auto grid h-full max-w-5xl items-center justify-center gap-14 tablet:gap-0 laptop:gap-32">
+          {features.map((feature, index) => (
+            <Feature
+              key={index}
+              title={feature.title}
+              description={feature.description}
+              image={feature.image}
+              order={feature.order}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* footer */}
       {/* <footer>

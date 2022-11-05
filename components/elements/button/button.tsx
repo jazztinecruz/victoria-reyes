@@ -1,9 +1,9 @@
-interface ButtonProps {
+type Props = {
   name: string;
-}
-const Button = ({ name }: ButtonProps) => {
+};
+const Button = ({ name }: Props) => {
   return (
-    <button className="cursor-pointer text-sm rounded-md bg-green py-3 px-6 text-white transition-all duration-500 hover:scale-105 hover:bg-green/90">
+    <button className="cursor-pointer rounded-md bg-green py-3 px-6 text-sm text-white transition-all duration-500 hover:scale-105 hover:bg-green/90">
       {name}
     </button>
   );
