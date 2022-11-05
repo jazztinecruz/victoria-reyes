@@ -19,7 +19,11 @@ module.exports = {
       },
       colors: {
         brand: "#007032",
+        green: "#027338"
       },
+      backgroundImage: {
+        'hero-bg': "url('/images/hero/hero-bg.jpg')",
+      }
     },
   },
   plugins: [require("tailwind-scrollbar")],
