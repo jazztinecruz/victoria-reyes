@@ -1,7 +1,7 @@
 import Document from "./document";
 const Documents = () => {
   return (
-    <div className="relative h-full laptop:mt-52">
+    <div className="relative h-full laptop:h-screen laptop:mt-52">
       <div className="mx-auto grid h-full max-w-5xl grid-flow-row items-start justify-center gap-20 p-4 tablet:grid-cols-2 tablet:py-10">
         <Document
           name="Barangay Clearance"
