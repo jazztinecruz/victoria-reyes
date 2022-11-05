@@ -17,7 +17,7 @@ const HomePage = () => {
           <div className="absolute top-0 left-0 right-0 bottom-0 bg-black/75"></div>
 
           {/* hero content */}
-          <div className="z-50 flex flex-col items-center justify-center gap-2 text-center">
+          <div className="z-50 flex flex-col items-center justify-center gap-2 text-center px-4">
             <h1 className="text-3xl font-semibold tracking-wider text-white laptop:text-6xl">
               BARANGAY VICTORIA REYES
             </h1>
@@ -26,15 +26,15 @@ const HomePage = () => {
             </h3>
 
             {/* sign up */}
-            <div className="mt-8 grid w-full grid-flow-row items-center laptop:grid-cols-[1fr,auto]">
-              <div className="rounded-tl-md rounded-tr-md bg-white py-4 px-12 laptop:rounded-bl-md laptop:rounded-tr-none laptop:py-6">
-                <span className="cursor-pointer text-center text-[#838383]">
+            <div className="mt-8 grid grid-flow-row justify-center w-full laptop:grid-cols-[1fr,auto]">
+              <div className="w-96 laptop:w-full py-5 pl-6 text-center laptop:text-left rounded-tl-md rounded-tr-md bg-white laptop:rounded-bl-md laptop:rounded-tr-none">
+                <span className="cursor-pointertext-[#838383]">
                   Dont have an account yet?
                 </span>
               </div>
 
-              <button className="flex h-full items-center justify-center gap-5 rounded-br-md rounded-bl-md bg-green  py-4 px-14 text-center text-white laptop:justify-start laptop:rounded-tr-md laptop:rounded-bl-none laptop:py-0 laptop:text-left">
-                <span className="text-lg text-white">GET STARTED</span>
+              <button className="w-full laptop:w-60 grid grid-flow-col laptop:grid-cols-[1fr,auto] py-5  px-6 items-center justify-center gap-10 laptop:gap-0 rounded-br-md rounded-bl-md bg-green  text-center text-white laptop:justify-start laptop:rounded-tr-md laptop:rounded-bl-none laptop:py-0 laptop:text-left">
+                <span className="text-lg text-white ">GET STARTED</span>
                 <ChevronRightIcon className="h-6 w-6 text-white" />
               </button>
             </div>
