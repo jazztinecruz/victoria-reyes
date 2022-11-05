@@ -1,6 +1,7 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Navbar from "../components/app/navbar/navbar";
 import Documents from "./homepage-sections/documents/documents";
+import Feautures from "./homepage-sections/features/features";
 
 const HomePage = () => {
   return (
@@ -58,6 +59,10 @@ const HomePage = () => {
 
       {/* barangay documents */}
       <Documents />
+
+
+      {/* features */}
+      <Feautures/>
 
       {/* footer */}
       {/* <footer>
