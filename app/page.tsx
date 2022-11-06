@@ -1,5 +1,11 @@
-import { Bars3Icon, ChevronRightIcon } from "@heroicons/react/24/solid";
+"use client";
+import {
+  Bars3Icon,
+  ChevronDoubleUpIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { useRef } from "react";
 import Button from "../components/elements/button/button";
 import Document from "./document";
 import Feature from "./feature";
@@ -70,10 +76,21 @@ const features: {
 ];
 
 const HomePage = () => {
+  const backToTopSection = useRef<any>(null);
+  const handleBackToTop = () => {
+    if (backToTopSection.current !== null) {
+      window.scrollTo({
+        top: backToTopSection.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <div className="grid h-screen grid-rows-[1fr,auto] gap-20">
       {/* hero section */}
-      <section className="grid h-full grid-rows-[auto,1fr]">
+      <section
+        ref={backToTopSection}
+        className="grid h-full grid-rows-[auto,1fr]">
         {/* navbar */}
         <nav className="bg-white laptop:px-10">
           <div className="grid items-center gap-8 py-3 px-4 notebook:grid-cols-[1fr,auto] laptop:grid-cols-[auto,1fr,auto] laptop:px-0">
@@ -142,7 +159,7 @@ const HomePage = () => {
       {/* about section */}
       <div
         id="about"
-        className="z-50 mx-auto grid max-w-5xl items-center justify-center gap-10 rounded-md px-6 py-20 text-center laptop:-mt-28 laptop:bg-white laptop:shadow-md">
+        className="z-50 mx-auto grid max-w-5xl items-center justify-center gap-10 rounded-md px-6 py-20 text-center laptop:-mt-32 laptop:bg-white laptop:shadow-md">
         <span className="text-xl font-semibold laptop:hidden">About Us</span>
         <p>
           Barangay Victoria Management System is a website that entails to
@@ -185,7 +202,7 @@ const HomePage = () => {
       </div>
 
       {/* footer */}
-      <footer id="contact" className="bg-green py-10 px-6 text-white">
+      <footer id="contact" className="relative bg-green py-10 px-6 text-white">
         <div className="mx-auto grid max-w-5xl items-center justify-center gap-3 text-center">
           <Image
             alt="Victoria Reyes Logo"
@@ -205,6 +222,12 @@ const HomePage = () => {
             Cavite{" "}
           </span>
         </div>
+        {/* back to top button */}
+        <button
+          className="group absolute bottom-10 laptop:bottom-4 right-4 grid grid-flow-col gap-4 place-items-center rounded-full bg-white p-4 transition-all duration-300"
+          onClick={handleBackToTop}>
+          <ChevronDoubleUpIcon className="h-5 w-5 text-green animate-bounce " />
+        </button>
       </footer>
     </div>
   );
