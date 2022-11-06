@@ -72,8 +72,10 @@ const features: {
 
 const HomePage = () => {
   return (
-    <div className="grid h-screen grid-rows-[1fr,auto]">
+    <div className="grid h-screen grid-rows-[1fr,auto] gap-20">
+      {/* hero section */}
       <section className="grid h-full grid-rows-[auto,1fr]">
+        {/* navbar */}
         <nav className="bg-white laptop:px-10">
           <div className="grid items-center gap-8 py-3 px-4 notebook:grid-cols-[1fr,auto] laptop:grid-cols-[auto,1fr,auto] laptop:px-0">
             <Image
@@ -94,10 +96,10 @@ const HomePage = () => {
             <div className="notebook:hidden laptop:block ">
               <div className="flex items-center gap-10">
                 {/* navlinks */}
-                <Link name="Home" link="#" />
-                <Link name="About Us" link="#" />
-                <Link name="Barangay Documents" link="#" />
-                <Link name="What's New?" link="#" />
+                <Link name="Home" link="/" />
+                <Link name="About Us" link="#about" />
+                <Link name="Barangay Documents" link="#documents" />
+                <Link name="Features" link="#features" />
                 <Link name="Contact Us" link="#" />
               </div>
             </div>
@@ -139,7 +141,9 @@ const HomePage = () => {
       </section>
 
       {/* about section */}
-      <div className="mx-auto grid max-w-5xl items-center justify-center gap-10 rounded-md px-6 py-20 text-center laptop:bg-white laptop:shadow-md laptop:-mt-20 z-50">
+      <div
+        id="about"
+        className="z-50 mx-auto grid max-w-5xl items-center justify-center gap-10 rounded-md px-6 py-20 text-center laptop:-mt-28 laptop:bg-white laptop:shadow-md">
         <span className="text-xl font-semibold laptop:hidden">About Us</span>
         <p>
           Barangay Victoria Management System is a website that entails to
@@ -152,7 +156,9 @@ const HomePage = () => {
       </div>
 
       {/* documents section */}
-      <div className="relative mt-14 h-full laptop:mt-60 laptop:h-screen">
+      <div
+        id="documents"
+        className=" relative h-full laptop:mt-14 laptop:h-screen">
         <div className="mx-auto grid h-full max-w-5xl grid-flow-row items-start justify-center gap-16 p-4 tablet:grid-cols-2 tablet:py-10 laptop:gap-0">
           {documents.map((document, index) => (
             <Document
@@ -165,7 +171,7 @@ const HomePage = () => {
       </div>
 
       {/* features */}
-      <div className="mt-52 h-full w-full tablet:mt-28 laptop:mt-0">
+      <div id="features" className="h-full w-full mt-14 laptop:mt-0">
         <div className="mx-auto grid h-full max-w-5xl items-center justify-center gap-14 tablet:gap-0 laptop:gap-32">
           {features.map((feature, index) => (
             <Feature
@@ -180,9 +186,27 @@ const HomePage = () => {
       </div>
 
       {/* footer */}
-      {/* <footer>
-        <div className="mx-auto max-w-5xl border-2">footer</div>
-      </footer> */}
+      <footer className="bg-green py-10 px-6 text-white">
+        <div className="mx-auto grid max-w-5xl items-center justify-center gap-3 text-center">
+          <Image
+            alt="Victoria Reyes Logo"
+            src="/images/victoria-reyes-logo.svg"
+            blurDataURL="/images/victoria-reyes-logo.svg"
+            placeholder="blur"
+            priority
+            width={48}
+            height={48}
+            className="mx-auto object-cover"
+          />
+          <span className="cursor-pointer text-sm font-semibold">
+            Barangay Victoria Reyes Dasmariñas{" "}
+          </span>
+          <span className="text-sm">
+            Visit Us: 8X9F+8P2, Fatima Rd, Victoria Reves, Dasmariñas, 4114
+            Cavite{" "}
+          </span>
+        </div>
+      </footer>
     </div>
   );
 };
