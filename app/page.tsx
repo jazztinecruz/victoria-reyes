@@ -138,7 +138,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      <div className="laptop:h-90 z-50 flex w-full flex-col gap-10 rounded-md px-6 py-20 text-center text-lg leading-relaxed tablet:mt-20 laptop:absolute laptop:-bottom-52 laptop:left-0 laptop:right-0 laptop:mt-0 laptop:w-[945px] laptop:translate-x-2/4 laptop:transform laptop:bg-white laptop:py-16 laptop:shadow-md">
+      {/* about section */}
+      <div className="mx-auto grid max-w-5xl items-center justify-center gap-10 rounded-md px-6 py-20 text-center laptop:bg-white laptop:shadow-md laptop:-mt-20 z-50">
         <span className="text-xl font-semibold laptop:hidden">About Us</span>
         <p>
           Barangay Victoria Management System is a website that entails to
@@ -150,6 +151,7 @@ const HomePage = () => {
         </p>
       </div>
 
+      {/* documents section */}
       <div className="relative mt-14 h-full laptop:mt-60 laptop:h-screen">
         <div className="mx-auto grid h-full max-w-5xl grid-flow-row items-start justify-center gap-16 p-4 tablet:grid-cols-2 tablet:py-10 laptop:gap-0">
           {documents.map((document, index) => (
@@ -162,6 +164,7 @@ const HomePage = () => {
         </div>
       </div>
 
+      {/* features */}
       <div className="mt-52 h-full w-full tablet:mt-28 laptop:mt-0">
         <div className="mx-auto grid h-full max-w-5xl items-center justify-center gap-14 tablet:gap-0 laptop:gap-32">
           {features.map((feature, index) => (
