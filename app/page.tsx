@@ -1,11 +1,18 @@
 "use client";
+import { Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   ChevronDoubleUpIcon,
   ChevronRightIcon,
+  DocumentTextIcon,
+  HomeIcon,
+  PhoneIcon,
+  QuestionMarkCircleIcon,
+  UserGroupIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import Button from "../components/elements/button/button";
 import Document from "./document";
 import Feature from "./feature";
@@ -75,6 +82,34 @@ const features: {
   },
 ];
 
+const links = [
+  {
+    name: "Home",
+    href: "/",
+    Icon: HomeIcon,
+  },
+  {
+    name: "About Us",
+    href: "#about",
+    Icon: UserGroupIcon,
+  },
+  {
+    name: "Barangay Documents",
+    href: "#documents",
+    Icon: DocumentTextIcon,
+  },
+  {
+    name: "Features",
+    href: "#features",
+    Icon: QuestionMarkCircleIcon,
+  },
+  {
+    name: "Contact Us",
+    href: "#contact",
+    Icon: PhoneIcon,
+  },
+];
+
 const HomePage = () => {
   const backToTopSection = useRef<any>(null);
   const handleBackToTop = () => {
@@ -88,11 +123,85 @@ const HomePage = () => {
   return (
     <div className="grid h-screen grid-rows-[1fr,auto] gap-20">
       {/* hero section */}
+
       <section
         ref={backToTopSection}
         className="grid h-full grid-rows-[auto,1fr]">
         {/* navbar */}
-        <nav className="bg-white laptop:px-10">
+
+        <nav className="bg-white tablet:px-10 laptop:hidden">
+          <div className="grid grid-cols-[1fr,auto] items-center gap-8 py-3 px-4">
+            <Image
+              alt="Victoria Reyes Logo"
+              src="/images/victoria-reyes-logo.svg"
+              blurDataURL="/images/victoria-reyes-logo.svg"
+              placeholder="blur"
+              priority
+              width={48}
+              height={48}
+              className="object-cover"
+            />
+            {/* mobile */}
+            <Menu as="div" className="relative flex items-center">
+              {({ open }) => (
+                <>
+                  <Transition
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0">
+                    <div className="smooth fixed inset-0 z-20 bg-black/25 backdrop-blur-sm laptop:hidden" />
+                  </Transition>
+                  <Menu.Button className="relative z-30 h-6 w-6 laptop:hidden">
+                    <Bars3Icon
+                      className={`${
+                        open ? "opacity-0" : "opacity-100"
+                      } smooth absolute top-0 h-full w-full`}
+                    />
+                    <XMarkIcon
+                      className={`${
+                        open ? "opacity-100" : "opacity-0"
+                      } smooth absolute top-0 h-full w-full`}
+                    />
+                  </Menu.Button>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95">
+                    <Menu.Items className="absolute top-[200%] right-0 z-30 mx-auto ml-10 w-[calc(100vw-2rem)] space-y-2 rounded border bg-white p-2 shadow-lg laptop:hidden">
+                      {links.map(({ name, href, Icon }) => (
+                        <Menu.Item key={name}>
+                          {({ active }) => (
+                            <a
+                              href={href}
+                              className={`${
+                                active
+                                  ? "bg-slate-200 opacity-100 hover:bg-slate-200"
+                                  : "opacity-fade"
+                              } smooth flex gap-4 rounded p-2 text-sm `}>
+                              <Icon className="h-6 w-6" />
+                              <h3>{name}</h3>
+                            </a>
+                          )}
+                        </Menu.Item>
+                      ))}
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
+          </div>
+        </nav>
+
+        {/* laptop */}
+        <nav className="hidden bg-white laptop:block laptop:px-10">
           <div className="grid items-center gap-8 py-3 px-4 notebook:grid-cols-[1fr,auto] laptop:grid-cols-[auto,1fr,auto] laptop:px-0">
             <Image
               alt="Victoria Reyes Logo"
@@ -224,9 +333,9 @@ const HomePage = () => {
         </div>
         {/* back to top button */}
         <button
-          className="group absolute bottom-10 laptop:bottom-4 right-4 grid grid-flow-col gap-4 place-items-center rounded-full bg-white p-4 transition-all duration-300"
+          className="group absolute bottom-10 right-4 grid grid-flow-col place-items-center gap-4 rounded-full bg-white p-4 transition-all duration-300 laptop:bottom-4"
           onClick={handleBackToTop}>
-          <ChevronDoubleUpIcon className="h-5 w-5 text-green animate-bounce " />
+          <ChevronDoubleUpIcon className="h-5 w-5 animate-bounce text-green " />
         </button>
       </footer>
     </div>
