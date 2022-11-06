@@ -221,11 +221,11 @@ const HomePage = () => {
             <div className="notebook:hidden laptop:block ">
               <div className="flex items-center gap-10">
                 {/* navlinks */}
-                <a href="/">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#documents">Barangay Documents</a>
-                <a href="#features">Features</a>
-                <a href="#contact">Contact Us</a>
+                <a href="/" className="hover:text-green">Home</a>
+                <a href="#about" className="hover:text-green">About Us</a>
+                <a href="#documents" className="hover:text-green">Barangay Documents</a>
+                <a href="#features" className="hover:text-green">Features</a>
+                <a href="#contact" className="hover:text-green">Contact Us</a>
               </div>
             </div>
             {/* sign in button */}
