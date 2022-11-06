@@ -3,7 +3,6 @@ import Image from "next/image";
 import Button from "../components/elements/button/button";
 import Document from "./document";
 import Feature from "./feature";
-import Link from "./link";
 
 const documents: { title: string; description: string }[] = [
   {
@@ -96,11 +95,11 @@ const HomePage = () => {
             <div className="notebook:hidden laptop:block ">
               <div className="flex items-center gap-10">
                 {/* navlinks */}
-                <Link name="Home" link="/" />
-                <Link name="About Us" link="#about" />
-                <Link name="Barangay Documents" link="#documents" />
-                <Link name="Features" link="#features" />
-                <Link name="Contact Us" link="#" />
+                <a href="/">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#documents">Barangay Documents</a>
+                <a href="#features">Features</a>
+                <a href="#contact">Contact Us</a>
               </div>
             </div>
             {/* sign in button */}
@@ -171,7 +170,7 @@ const HomePage = () => {
       </div>
 
       {/* features */}
-      <div id="features" className="h-full w-full mt-14 laptop:mt-0">
+      <div id="features" className="mt-14 h-full w-full laptop:mt-0">
         <div className="mx-auto grid h-full max-w-5xl items-center justify-center gap-14 tablet:gap-0 laptop:gap-32">
           {features.map((feature, index) => (
             <Feature
@@ -186,7 +185,7 @@ const HomePage = () => {
       </div>
 
       {/* footer */}
-      <footer className="bg-green py-10 px-6 text-white">
+      <footer id="contact" className="bg-green py-10 px-6 text-white">
         <div className="mx-auto grid max-w-5xl items-center justify-center gap-3 text-center">
           <Image
             alt="Victoria Reyes Logo"
