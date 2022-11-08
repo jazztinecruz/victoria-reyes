@@ -1,8 +1,9 @@
 "use client";
 
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Gender } from "@prisma/client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import Field from "../../components/elements/field";
 import { SignupFields } from "../../library/api";
@@ -28,7 +29,12 @@ const SignUp = () => {
   });
 
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="relative bg-white dark:bg-gray-900">
+      {/* close button */}
+      <Link href="/">
+        <XMarkIcon className="absolute right-10 top-4 h-6 w-6 cursor-pointer hover:animate-spin" />
+      </Link>
+      
       <div className="flex min-h-screen justify-center gap-10">
         <div className="m-auto hidden laptop:block laptop:w-2/5">
           <div className="relative mx-auto h-[500px] w-full laptop:w-[530px]">
@@ -112,24 +118,27 @@ const SignUp = () => {
 
               {/* gender */}
               <div className="flex flex-col gap-4">
-                <span className='block text-sm text-gray-600 dark:text-gray-200'>Choose your Gender</span>
+                <span className="block text-sm text-gray-600 dark:text-gray-200">
+                  Choose your Gender
+                </span>
                 <div className="flex items-center gap-10">
-                <div className="flex items-center gap-4">
-                  <span>Male</span>
-                  <input
-                    type="radio"
-                    name="gender"
-                    className="radio-success radio"
-                  />
+                  <div className="flex items-center gap-4">
+                    <span>Male</span>
+                    <input
+                      type="radio"
+                      name="gender"
+                      className="radio-success radio"
+                    />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span>Female</span>
+                    <input
+                      type="radio"
+                      name="gender"
+                      className="radio-success radio"
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-4">
-                  <span>Female</span>
-                  <input
-                    type="radio"
-                    name="gender"
-                    className="radio-success radio"
-                  />
-                </div></div>
               </div>
 
               <div className="flex items-center gap-10">
