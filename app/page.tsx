@@ -223,19 +223,19 @@ const HomePage = () => {
             <div className="notebook:hidden laptop:block ">
               <div className="flex items-center gap-10">
                 {/* navlinks */}
-                <a href="/" className="hover:text-green">
+                <a href="/" className="hover:text-brand">
                   Home
                 </a>
-                <a href="#about" className="hover:text-green">
+                <a href="#about" className="hover:text-brand">
                   About Us
                 </a>
-                <a href="#documents" className="hover:text-green">
+                <a href="#documents" className="hover:text-brand">
                   Barangay Documents
                 </a>
-                <a href="#features" className="hover:text-green">
+                <a href="#features" className="hover:text-brand">
                   Features
                 </a>
-                <a href="#contact" className="hover:text-green">
+                <a href="#contact" className="hover:text-brand">
                   Contact Us
                 </a>
               </div>
@@ -269,7 +269,7 @@ const HomePage = () => {
                 </span>
               </div>
 
-              <Link href='/signin'><button className="grid h-full w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-green py-5 px-6 text-center text-white tablet:rounded-tr-md  tablet:rounded-bl-none laptop:w-60 laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 laptop:py-0 laptop:text-left">
+              <Link href='/signin'><button className="grid h-full w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-brand py-5 px-6 text-center text-white tablet:rounded-tr-md  tablet:rounded-bl-none laptop:w-60 laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 laptop:py-0 laptop:text-left">
                 <span className="text-lg text-white ">GET STARTED</span>
                 <ChevronRightIcon className="h-6 w-6 text-white" />
               </button></Link>
@@ -325,7 +325,7 @@ const HomePage = () => {
 
 
       {/* footer */}
-      <footer id="contact" className="relative bg-green py-10 px-6 text-white">
+      <footer id="contact" className="relative bg-brand py-10 px-6 text-white">
         <div className="mx-auto grid max-w-5xl items-center justify-center gap-3 text-center">
           <Image
             alt="Victoria Reyes Logo"
@@ -349,7 +349,7 @@ const HomePage = () => {
         <button
           className="group absolute bottom-10 right-4 grid grid-flow-col place-items-center gap-4 rounded-full bg-white p-4 transition-all duration-300 laptop:bottom-4"
           onClick={handleBackToTop}>
-          <ChevronDoubleUpIcon className="h-5 w-5 animate-bounce text-green " />
+          <ChevronDoubleUpIcon className="h-5 w-5 animate-bounce text-brand " />
         </button>
       </footer>
     </div>
