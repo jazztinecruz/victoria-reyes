@@ -5,7 +5,9 @@ import { Gender } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
+import Modal from "../../components/elements/modal";
 import { SignupFields } from "../../library/api";
 
 const SignUp = () => {
@@ -28,13 +30,15 @@ const SignUp = () => {
     households: [],
   });
 
+  const [sucessfulModal, setSuccessfulModal] = useState(false);
+
   return (
     <section className="relative bg-white dark:bg-gray-900">
       {/* close button */}
       <Link href="/">
         <XMarkIcon className="absolute right-10 top-4 h-6 w-6 cursor-pointer hover:animate-spin" />
       </Link>
-      
+
       <div className="flex min-h-screen justify-center gap-10">
         <div className="m-auto hidden laptop:block laptop:w-2/5">
           <div className="relative mx-auto h-[500px] w-full laptop:w-[530px]">
@@ -157,11 +161,40 @@ const SignUp = () => {
                 />
               </div>
 
-              <button className="rounded-tablet mt-10 flex w-full transform items-center justify-between bg-brand px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
+              <button
+                onClick={() => setSuccessfulModal(!sucessfulModal)}
+                className="rounded-tablet mt-10 flex w-full transform items-center justify-between bg-brand px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
                 <span>Sign Up </span>
 
                 <ChevronRightIcon className="h-5 w-5 text-white" />
               </button>
+
+              {sucessfulModal && (
+                <Modal
+                  size="medium"
+                  as="div"
+                  open
+                  onClose={() => setSuccessfulModal(!sucessfulModal)}>
+                  <div className="flex flex-col items-center justify-center gap-5 text-center">
+                    <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full z-50">
+                      <Image
+                        alt="login secure illustration"
+                        src="/images/confetti.webp"
+                        fill={true}
+                        className="h-auto w-full object-cover -z-50"
+                      />
+                    </div>
+                    <span className="mt-5 text-xl font-semibold text-brand">
+                      You've succesfully created your account!
+                    </span>
+                    <span className="text-gray mb-4">
+                      Ready to login your account for the first time?
+                    </span>
+
+                    <Button name="Login my account" />
+                  </div>
+                </Modal>
+              )}
             </form>
           </div>
         </div>
