@@ -17,7 +17,7 @@ import { Fragment, useRef } from "react";
 import Button from "../components/elements/button/button";
 import Document from "./document";
 import Feature from "./feature";
-import SignUp from "./signin/page";
+import SignUp from "./signup/page";
 
 const documents: { title: string; description: string }[] = [
   {
@@ -269,10 +269,12 @@ const HomePage = () => {
                 </span>
               </div>
 
-              <Link href='/signin'><button className="grid h-full w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-brand py-5 px-6 text-center text-white tablet:rounded-tr-md  tablet:rounded-bl-none laptop:w-60 laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 laptop:py-0 laptop:text-left">
-                <span className="text-lg text-white ">GET STARTED</span>
-                <ChevronRightIcon className="h-6 w-6 text-white" />
-              </button></Link>
+              <Link href="/signup">
+                <button className="grid h-full w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-brand py-5 px-6 text-center text-white tablet:rounded-tr-md  tablet:rounded-bl-none laptop:w-60 laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 laptop:py-0 laptop:text-left">
+                  <span className="text-lg text-white ">GET STARTED</span>
+                  <ChevronRightIcon className="h-6 w-6 text-white" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -322,7 +324,6 @@ const HomePage = () => {
           ))}
         </div>
       </div>
-
 
       {/* footer */}
       <footer id="contact" className="relative bg-brand py-10 px-6 text-white">

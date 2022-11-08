@@ -64,7 +64,7 @@ const UserLogin = () => {
                   </div>
                 </button>
 
-                <Link href="/signin">
+                <Link href="/signup">
                   <span className="w-full text-center font-medium text-gray-500">
                     {" "}
                     Don't have an account yet?

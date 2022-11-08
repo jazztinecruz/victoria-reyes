@@ -176,12 +176,12 @@ const SignUp = () => {
                   open
                   onClose={() => setSuccessfulModal(!sucessfulModal)}>
                   <div className="flex flex-col items-center justify-center gap-5 text-center">
-                    <div className="absolute top-0 bottom-0 left-0 right-0 w-full h-full z-50">
+                    <div className="absolute top-0 bottom-0 left-0 right-0 z-50 h-full w-full">
                       <Image
                         alt="login secure illustration"
                         src="/images/confetti.webp"
                         fill={true}
-                        className="h-auto w-full object-cover -z-50"
+                        className="-z-50 h-auto w-full object-cover"
                       />
                     </div>
                     <span className="mt-5 text-xl font-semibold text-brand">
@@ -191,7 +191,9 @@ const SignUp = () => {
                       Ready to login your account for the first time?
                     </span>
 
-                    <Button name="Login my account" />
+                    <Link href="/signin">
+                      <Button name="Login my account" />
+                    </Link>
                   </div>
                 </Modal>
               )}
