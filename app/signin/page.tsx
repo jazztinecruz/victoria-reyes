@@ -2,6 +2,7 @@
 
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Gender } from "@prisma/client";
+import Image from "next/image";
 import { useState } from "react";
 import Field from "../../components/elements/field";
 import { SignupFields } from "../../library/api";
@@ -27,23 +28,31 @@ const SignUp = () => {
   });
 
   return (
-    <>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="flex min-h-screen justify-center">
-          <div className="lg:block lg:w-2/5 hidden bg-cover"></div>
+    <section className="bg-white dark:bg-gray-900">
+      <div className="flex min-h-screen justify-center gap-10">
+        <div className="m-auto hidden laptop:block laptop:w-2/5">
+          <div className="relative mx-auto h-[500px] w-full laptop:w-[530px]">
+            <Image
+              alt="login secure illustration"
+              src="/images/features/feat1.png"
+              fill={true}
+              className="h-auto w-full object-contain"
+            />
+          </div>
+        </div>
 
-          <div className="lg:px-12 lg:w-3/5 mx-auto flex w-full max-w-3xl items-center p-8">
-            <div className="w-full">
-              <h1 className="text-2xl font-semibold capitalize tracking-wider text-gray-800 dark:text-white">
-                Get your free account now.
-              </h1>
+        <div className="mx-auto flex w-full max-w-5xl items-center p-8 laptop:px-12">
+          <div className="w-full">
+            <h1 className="text-2xl font-semibold capitalize tracking-wider text-gray-800 dark:text-white laptop:text-3xl">
+              Get your free account now.
+            </h1>
 
-              <p className="mt-4 text-gray-500 dark:text-gray-400">
-                Lets get you all set up so you can verify your personal account
-                and begin requesting a barangay document.
-              </p>
+            <p className="mt-4 text-gray-500 dark:text-gray-400">
+              Let’s get you all set up so you can verify your account and begin
+              requesting your barangay documents.
+            </p>
 
-              {/* fields */}
+            <form className="mt-10 grid grid-cols-1 gap-6 tablet:grid-cols-2">
               <Field.Textbox
                 label="First Name"
                 name="givenName"
@@ -74,57 +83,81 @@ const SignUp = () => {
               />
 
               <Field.Textbox
-                label="birthplace"
+                label="Birthplace"
                 name="birthplace"
                 required={true}
                 onChange={setFields}
               />
 
               <Field.Textbox
-                label="phone"
+                label="Phone Number"
                 name="phone"
                 required={true}
                 onChange={setFields}
               />
 
               <Field.Textbox
-                label="email"
+                label="Email Address"
                 name="email"
                 required={true}
                 onChange={setFields}
               />
 
               <Field.Textbox
-                label="occupation"
+                label="Occupation"
                 name="occupation"
                 required={true}
                 onChange={setFields}
               />
 
-              <Field.Checkbox
-                label="voter"
-                name="voter"
-                required={true}
-                onChange={setFields}
-              />
+              {/* gender */}
+              <div className="flex flex-col gap-4">
+                <span className='block text-sm text-gray-600 dark:text-gray-200'>Choose your Gender</span>
+                <div className="flex items-center gap-10">
+                <div className="flex items-center gap-4">
+                  <span>Male</span>
+                  <input
+                    type="radio"
+                    name="gender"
+                    className="radio-success radio"
+                  />
+                </div>
+                <div className="flex items-center gap-4">
+                  <span>Female</span>
+                  <input
+                    type="radio"
+                    name="gender"
+                    className="radio-success radio"
+                  />
+                </div></div>
+              </div>
 
-              <Field.Checkbox
-                label="homeowner"
-                name="homeowner"
-                required={true}
-                onChange={setFields}
-              />
+              <div className="flex items-center gap-10">
+                <Field.Checkbox
+                  label="Are you a voter?"
+                  name="voter"
+                  required={true}
+                  onChange={setFields}
+                />
 
-              <button className="focus:ring-green-300 hover:bg-green-400 flex w-full transform items-center justify-between rounded-md bg-green px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-opacity-50 hover:opacity-fade">
+                <Field.Checkbox
+                  label="Are you a homeowner?"
+                  name="homeowner"
+                  required={true}
+                  onChange={setFields}
+                />
+              </div>
+
+              <button className="rounded-tablet mt-10 flex w-full transform items-center justify-between bg-brand px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
                 <span>Sign Up </span>
 
                 <ChevronRightIcon className="h-5 w-5 text-white" />
               </button>
-            </div>
+            </form>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
