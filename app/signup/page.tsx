@@ -85,6 +85,13 @@ const SignUp = () => {
               />
 
               <Field.Textbox
+                label="Full Address"
+                name="adress"
+                required={true}
+                onChange={setFields}
+              />
+
+              <Field.Textbox
                 type="date"
                 label="Birthdate"
                 name="birthdate"
@@ -160,44 +167,44 @@ const SignUp = () => {
                   onChange={setFields}
                 />
               </div>
-
-              <button
-                onClick={() => setSuccessfulModal(!sucessfulModal)}
-                className="rounded-tablet mt-10 flex w-full transform items-center justify-between bg-brand px-6 py-3 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
-                <span>Sign Up </span>
-
-                <ChevronRightIcon className="h-5 w-5 text-white" />
-              </button>
-
-              {sucessfulModal && (
-                <Modal
-                  size="medium"
-                  as="div"
-                  open
-                  onClose={() => setSuccessfulModal(!sucessfulModal)}>
-                  <div className="flex flex-col items-center justify-center gap-5 text-center">
-                    <div className="absolute top-0 bottom-0 left-0 right-0 z-50 h-full w-full">
-                      <Image
-                        alt="login secure illustration"
-                        src="/images/confetti.webp"
-                        fill={true}
-                        className="-z-50 h-auto w-full object-cover"
-                      />
-                    </div>
-                    <span className="mt-5 text-xl font-semibold text-brand">
-                      You've succesfully created your account!
-                    </span>
-                    <span className="text-gray mb-4">
-                      Ready to login your account for the first time?
-                    </span>
-
-                    <Link href="/signin">
-                      <Button name="Login my account" />
-                    </Link>
-                  </div>
-                </Modal>
-              )}
             </form>
+
+            <button
+              onClick={() => setSuccessfulModal(!sucessfulModal)}
+              className="rounded-tablet mt-10 flex w-full transform items-center justify-between bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
+              <span className="text-md">Create my Account</span>
+
+              <ChevronRightIcon className="h-5 w-5 text-white" />
+            </button>
+
+            {sucessfulModal && (
+              <Modal
+                size="medium"
+                as="div"
+                open
+                onClose={() => setSuccessfulModal(!sucessfulModal)}>
+                <div className="flex flex-col items-center justify-center gap-5 text-center">
+                  <div className="absolute top-0 bottom-0 left-0 right-0 z-50 h-full w-full">
+                    <Image
+                      alt="login secure illustration"
+                      src="/images/confetti.webp"
+                      fill={true}
+                      className="-z-50 h-auto w-full object-cover"
+                    />
+                  </div>
+                  <span className="mt-5 text-xl font-semibold text-brand">
+                    You've succesfully created your account!
+                  </span>
+                  <span className="text-gray mb-4">
+                    Ready to login your account for the first time?
+                  </span>
+
+                  <Link href="/signin">
+                    <Button name="Login my account" />
+                  </Link>
+                </div>
+              </Modal>
+            )}
           </div>
         </div>
       </div>
