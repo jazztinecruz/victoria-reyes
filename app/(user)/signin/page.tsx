@@ -2,11 +2,8 @@
 
 import {
   ArrowLeftOnRectangleIcon,
-  ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
-import { Gender } from "@prisma/client";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import Field from "../../../components/elements/field";
@@ -50,7 +47,7 @@ const UserLogin = () => {
               <div id="button" className="my-5 flex w-full flex-col">
                 <button
                   type="button"
-                  className="rounded-laptop w-full bg-brand py-4 text-green-100 transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
+                  className="rounded-md w-full bg-brand py-4 text-green-100 transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
                   <div className="flex flex-row items-center justify-center gap-3">
                     <ArrowLeftOnRectangleIcon className="h-6 w-6 text-white" />
                     <div className="font-bold">Sign In</div>
