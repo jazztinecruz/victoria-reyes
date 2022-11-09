@@ -171,7 +171,7 @@ const SignUp = () => {
 
             <button
               onClick={() => setSuccessfulModal(!sucessfulModal)}
-              className="rounded-tablet mt-10 flex w-full transform items-center justify-between bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
+              className="rounded-md mt-10 flex w-full transform items-center justify-between bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
               <span className="text-md">Create my Account</span>
 
               <ChevronRightIcon className="h-5 w-5 text-white" />
