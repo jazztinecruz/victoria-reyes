@@ -40,7 +40,8 @@ const UserLogin = () => {
 
               <Field.Textbox
                 label="Password"
-                name="middleName"
+                name="password"
+                type="password"
                 required={true}
                 onChange={setFields}
               />
