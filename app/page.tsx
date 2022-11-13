@@ -1,9 +1,23 @@
-import { Bars3Icon, ChevronRightIcon } from "@heroicons/react/24/solid";
+"use client";
+import { Menu, Transition } from "@headlessui/react";
+import {
+  Bars3Icon,
+  ChevronDoubleUpIcon,
+  ChevronRightIcon,
+  DocumentTextIcon,
+  HomeIcon,
+  PhoneIcon,
+  QuestionMarkCircleIcon,
+  UserGroupIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
+import { Fragment, useRef } from "react";
 import Button from "../components/elements/button/button";
 import Document from "./document";
 import Feature from "./feature";
-import Link from "./link";
+import SignUp from "./signup/page";
 
 const documents: { title: string; description: string }[] = [
   {
@@ -70,11 +84,126 @@ const features: {
   },
 ];
 
+const links = [
+  {
+    name: "Home",
+    href: "/",
+    Icon: HomeIcon,
+  },
+  {
+    name: "About Us",
+    href: "#about",
+    Icon: UserGroupIcon,
+  },
+  {
+    name: "Barangay Documents",
+    href: "#documents",
+    Icon: DocumentTextIcon,
+  },
+  {
+    name: "Features",
+    href: "#features",
+    Icon: QuestionMarkCircleIcon,
+  },
+  {
+    name: "Contact Us",
+    href: "#contact",
+    Icon: PhoneIcon,
+  },
+];
+
 const HomePage = () => {
+  const backToTopSection = useRef<any>(null);
+  const handleBackToTop = () => {
+    if (backToTopSection.current !== null) {
+      window.scrollTo({
+        top: backToTopSection.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
-    <div className="grid h-screen grid-rows-[1fr,auto]">
-      <section className="grid h-full grid-rows-[auto,1fr]">
-        <nav className="bg-white laptop:px-10">
+    <div className="grid h-screen grid-rows-[1fr,auto] gap-20">
+      {/* hero section */}
+
+      <section
+        ref={backToTopSection}
+        className="grid h-full grid-rows-[auto,1fr]">
+        {/* navbar */}
+
+        <nav className="bg-white tablet:px-10 laptop:hidden">
+          <div className="grid grid-cols-[1fr,auto] items-center gap-8 py-3 px-4">
+            <Image
+              alt="Victoria Reyes Logo"
+              src="/images/victoria-reyes-logo.svg"
+              blurDataURL="/images/victoria-reyes-logo.svg"
+              placeholder="blur"
+              priority
+              width={48}
+              height={48}
+              className="object-cover"
+            />
+            {/* mobile */}
+            <Menu as="div" className="relative flex items-center">
+              {({ open }) => (
+                <>
+                  <Transition
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0">
+                    <div className="smooth fixed inset-0 z-20 bg-black/25 backdrop-blur-sm laptop:hidden" />
+                  </Transition>
+                  <Menu.Button className="relative z-30 h-6 w-6 laptop:hidden">
+                    <Bars3Icon
+                      className={`${
+                        open ? "opacity-0" : "opacity-100"
+                      } smooth absolute top-0 h-full w-full`}
+                    />
+                    <XMarkIcon
+                      className={`${
+                        open ? "opacity-100" : "opacity-0"
+                      } smooth absolute top-0 h-full w-full`}
+                    />
+                  </Menu.Button>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95">
+                    <Menu.Items className="absolute top-[200%] right-0 z-30 mx-auto ml-10 w-[calc(100vw-2rem)] space-y-2 rounded border bg-white p-2 shadow-lg laptop:hidden">
+                      {links.map(({ name, href, Icon }) => (
+                        <Menu.Item key={name}>
+                          {({ active }) => (
+                            <a
+                              href={href}
+                              className={`${
+                                active
+                                  ? "bg-slate-200 opacity-100 hover:bg-slate-200"
+                                  : "opacity-fade"
+                              } smooth flex gap-4 rounded p-2 text-sm `}>
+                              <Icon className="h-6 w-6" />
+                              <h3>{name}</h3>
+                            </a>
+                          )}
+                        </Menu.Item>
+                      ))}
+                    </Menu.Items>
+                  </Transition>
+                </>
+              )}
+            </Menu>
+          </div>
+        </nav>
+
+        {/* laptop */}
+        <nav className="hidden bg-white laptop:block laptop:px-10">
           <div className="grid items-center gap-8 py-3 px-4 notebook:grid-cols-[1fr,auto] laptop:grid-cols-[auto,1fr,auto] laptop:px-0">
             <Image
               alt="Victoria Reyes Logo"
@@ -94,11 +223,21 @@ const HomePage = () => {
             <div className="notebook:hidden laptop:block ">
               <div className="flex items-center gap-10">
                 {/* navlinks */}
-                <Link name="Home" link="#" />
-                <Link name="About Us" link="#" />
-                <Link name="Barangay Documents" link="#" />
-                <Link name="What's New?" link="#" />
-                <Link name="Contact Us" link="#" />
+                <a href="/" className="hover:text-brand">
+                  Home
+                </a>
+                <a href="#about" className="hover:text-brand">
+                  About Us
+                </a>
+                <a href="#documents" className="hover:text-brand">
+                  Barangay Documents
+                </a>
+                <a href="#features" className="hover:text-brand">
+                  Features
+                </a>
+                <a href="#contact" className="hover:text-brand">
+                  Contact Us
+                </a>
               </div>
             </div>
             {/* sign in button */}
@@ -107,6 +246,7 @@ const HomePage = () => {
             </div>
           </div>
         </nav>
+
         {/* hero content */}
         <div className="relative grid h-screen items-center justify-center bg-hero-bg bg-cover bg-no-repeat">
           {/* hero black container */}
@@ -129,16 +269,21 @@ const HomePage = () => {
                 </span>
               </div>
 
-              <button className="grid w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-green py-5 px-6 text-center text-white tablet:rounded-tr-md  tablet:rounded-bl-none laptop:w-60 laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 laptop:py-0 laptop:text-left">
-                <span className="text-lg text-white ">GET STARTED</span>
-                <ChevronRightIcon className="h-6 w-6 text-white" />
-              </button>
+              <Link href="/signup">
+                <button className="grid h-full w-full grid-flow-col items-center justify-center gap-10  rounded-br-md rounded-bl-md bg-brand py-5 px-6 text-center text-white tablet:rounded-tr-md  tablet:rounded-bl-none laptop:w-60 laptop:grid-cols-[1fr,auto] laptop:justify-start laptop:gap-0 laptop:py-0 laptop:text-left">
+                  <span className="text-lg text-white ">GET STARTED</span>
+                  <ChevronRightIcon className="h-6 w-6 text-white" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="laptop:h-90 z-50 flex w-full flex-col gap-10 rounded-md px-6 py-20 text-center text-lg leading-relaxed tablet:mt-20 laptop:absolute laptop:-bottom-52 laptop:left-0 laptop:right-0 laptop:mt-0 laptop:w-[945px] laptop:translate-x-2/4 laptop:transform laptop:bg-white laptop:py-16 laptop:shadow-md">
+      {/* about section */}
+      <div
+        id="about"
+        className="z-50 mx-auto grid max-w-5xl items-center justify-center gap-10 rounded-md px-6 py-20 text-center laptop:-mt-32 laptop:bg-white laptop:shadow-md">
         <span className="text-xl font-semibold laptop:hidden">About Us</span>
         <p>
           Barangay Victoria Management System is a website that entails to
@@ -150,7 +295,10 @@ const HomePage = () => {
         </p>
       </div>
 
-      <div className="relative mt-14 h-full laptop:mt-60 laptop:h-screen">
+      {/* documents section */}
+      <div
+        id="documents"
+        className=" relative h-full laptop:mt-14 laptop:h-screen">
         <div className="mx-auto grid h-full max-w-5xl grid-flow-row items-start justify-center gap-16 p-4 tablet:grid-cols-2 tablet:py-10 laptop:gap-0">
           {documents.map((document, index) => (
             <Document
@@ -162,7 +310,8 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="mt-52 h-full w-full tablet:mt-28 laptop:mt-0">
+      {/* features */}
+      <div id="features" className="mt-14 h-full w-full laptop:mt-0">
         <div className="mx-auto grid h-full max-w-5xl items-center justify-center gap-14 tablet:gap-0 laptop:gap-32">
           {features.map((feature, index) => (
             <Feature
@@ -177,9 +326,33 @@ const HomePage = () => {
       </div>
 
       {/* footer */}
-      {/* <footer>
-        <div className="mx-auto max-w-5xl border-2">footer</div>
-      </footer> */}
+      <footer id="contact" className="relative bg-brand py-10 px-6 text-white">
+        <div className="mx-auto grid max-w-5xl items-center justify-center gap-3 text-center">
+          <Image
+            alt="Victoria Reyes Logo"
+            src="/images/victoria-reyes-logo.svg"
+            blurDataURL="/images/victoria-reyes-logo.svg"
+            placeholder="blur"
+            priority
+            width={48}
+            height={48}
+            className="mx-auto object-cover"
+          />
+          <span className="cursor-pointer text-sm font-semibold">
+            Barangay Victoria Reyes Dasmariñas{" "}
+          </span>
+          <span className="text-sm">
+            Visit Us: 8X9F+8P2, Fatima Rd, Victoria Reves, Dasmariñas, 4114
+            Cavite{" "}
+          </span>
+        </div>
+        {/* back to top button */}
+        <button
+          className="group absolute bottom-10 right-4 grid grid-flow-col place-items-center gap-4 rounded-full bg-white p-4 transition-all duration-300 laptop:bottom-4"
+          onClick={handleBackToTop}>
+          <ChevronDoubleUpIcon className="h-5 w-5 animate-bounce text-brand " />
+        </button>
+      </footer>
     </div>
   );
 };

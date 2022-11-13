@@ -26,7 +26,7 @@ const Checkbox = ({
   };
 
   return (
-    <div>
+    <div className="flex items-center gap-3">
       <label htmlFor={fieldId}>{label}</label>
       <input
         id={fieldId}
@@ -35,7 +35,7 @@ const Checkbox = ({
         defaultChecked={defaultChecked}
         disabled={disabled}
         onChange={handleOnChange}
-        className={`${className}`}
+        className="checkbox checkbox-success "
       />
     </div>
   );

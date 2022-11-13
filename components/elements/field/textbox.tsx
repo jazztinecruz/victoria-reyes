@@ -45,7 +45,7 @@ const Textbox = ({
 
   return (
     <div>
-      <label htmlFor={fieldId}>{label}</label>
+      <label htmlFor={fieldId} className='block mb-2 text-sm text-gray-600 dark:text-gray-200'>{label}</label>
       <input
         id={fieldId}
         ref={ref}
@@ -57,7 +57,7 @@ const Textbox = ({
         required={required}
         readOnly={readOnly}
         disabled={disabled}
-        className={`${valid ? "" : "border-red-600"} ${className} border`}
+        className={`${valid ? "" : "border-red-600"} ${className} block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-brand/75  focus:ring-brand/75 focus:outline-none focus:ring focus:ring-opacity-40"`}
       />
     </div>
   );

@@ -23,8 +23,8 @@ const Feature = ({ image, title, description, order }: Props) => {
       <div
         className={`${
           order === "left" ? "tablet:-order-1" : "tablet:order-1"
-        } relative h-[450px] w-full laptop:w-[550px]`}>
-        <Image alt={title} src={image} fill={true} className="object-contain" />
+        } relative w-full laptop:w-[500px] h-[350px]`}>
+        <Image alt={title} src={image} fill={true} className="object-contain h-auto w-full" />
       </div>
     </div>
   );
