@@ -26,7 +26,7 @@ const Modal = ({
       sizeStyle = "max-w-xl";
       break;
     case "large":
-      sizeStyle = "max-w-3xl";
+      sizeStyle = "max-w-6xl";
       break;
   }
 
