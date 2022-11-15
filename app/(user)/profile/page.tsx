@@ -40,7 +40,7 @@ const Profile = () => {
               {/* resident id */}
               <span className="text-sm">203148755-9374</span>
             </div>
-            <Link href="/edit-profile">
+            <Link href="/profile/edit">
               <Button name="Edit Profile" />
             </Link>
           </div>
