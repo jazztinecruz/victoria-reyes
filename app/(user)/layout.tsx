@@ -22,7 +22,7 @@ const DocumentsLayout = ({ children }: Props) => {
       },
       {
         name: "My Profile",
-        href: "#",
+        href: "/profile",
       },
     ],
   };
