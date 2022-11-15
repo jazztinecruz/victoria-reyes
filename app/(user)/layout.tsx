@@ -14,11 +14,11 @@ const DocumentsLayout = ({ children }: Props) => {
     user: [
       {
         name: "Documents",
-        href: "#",
+        href: "/documents",
       },
       {
         name: "Document Status",
-        href: "#",
+        href: "/document-status",
       },
       {
         name: "My Profile",
