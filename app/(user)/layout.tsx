@@ -48,9 +48,7 @@ const DocumentsLayout = ({ children }: Props) => {
                 ))}
               </ul>
             </div>
-          </div>
-          <div className="navbar-center">
-            <section className="relative z-40 flex items-center gap-4">
+            <div className="relative ml-10 flex items-center gap-4">
               <Image
                 alt="Victoria Reyes Logo"
                 src="/images/victoria-reyes-logo.svg"
@@ -64,7 +62,7 @@ const DocumentsLayout = ({ children }: Props) => {
               <h1 className="notebook:hidden desktop:block">
                 Barangay <span className="font-bold">Victoria Reyes</span>
               </h1>
-            </section>
+            </div>
           </div>
           <div className="navbar-end">
             <button className="btn-ghost btn-circle btn">
