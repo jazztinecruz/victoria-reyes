@@ -18,7 +18,7 @@ const DocumentsLayout = ({ children }: Props) => {
       },
       {
         name: "Document Status",
-        href: "/document-status",
+        href: "/documents-status",
       },
       {
         name: "My Profile",
