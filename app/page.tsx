@@ -241,9 +241,11 @@ const HomePage = () => {
               </div>
             </div>
             {/* sign in button */}
-            <div className="hidden laptop:block">
-              <Button name="LOGIN YOUR ACCOUNT" />
-            </div>
+            <Link href="/signin">
+              <div className="hidden laptop:block">
+                <Button name="LOGIN YOUR ACCOUNT" />
+              </div>
+            </Link>
           </div>
         </nav>
 
