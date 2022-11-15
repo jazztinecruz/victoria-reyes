@@ -28,7 +28,7 @@ const DocumentsLayout = ({ children }: Props) => {
   };
 
   return (
-    <div className="grid h-screen grid-rows-[auto,1fr] gap-10">
+    <div className="grid h-screen grid-rows-[auto,1fr] gap-4  tablet:gap-10">
       <nav>
         <div className="navbar bg-base-100 py-4">
           <div className="navbar-start">
@@ -59,8 +59,8 @@ const DocumentsLayout = ({ children }: Props) => {
                 height={48}
                 className="object-cover"
               />
-              <h1 className="notebook:hidden desktop:block">
-                Barangay <span className="font-bold">Victoria Reyes</span>
+              <h1 className="whitespace-nowrap">
+                Barangay <span className="font-bold whitespace-nowrap">Victoria Reyes</span>
               </h1>
             </div>
           </div>
