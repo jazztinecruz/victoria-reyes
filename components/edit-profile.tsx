@@ -4,13 +4,16 @@ import { Gender } from "@prisma/client";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import Modal from "./elements/modal";
 import Field from "./elements/field";
+import Image from "next/image";
+import Link from "next/link";
+import Button from "./elements/button/button";
 
 type Props = {
   handler: any
 }
 
 const EditProfile = ({handler}:Props) => {
-
+  const [sucessfulModal, setSuccessfulModal] = useState(false);
   const [fields, setFields] = useState<SignupFields>({
     givenName: "",
     middleName: "",
@@ -152,12 +155,34 @@ const EditProfile = ({handler}:Props) => {
             <div></div>
 
             <button
-              onClick={handler}
+              onClick={() => setSuccessfulModal(!sucessfulModal)}
               className="mt-10 flex w-full transform items-center justify-between rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
               <span className="text-md">Update my Account</span>
 
               <ChevronRightIcon className="h-5 w-5 text-white" />
             </button>
+            {sucessfulModal && (
+              <Modal
+                size="medium"
+                as="div"
+                open
+                onClose={() => setSuccessfulModal(!sucessfulModal)}>
+                <div className="flex flex-col items-center justify-center gap-5 text-center">
+                  <div className="absolute top-0 bottom-0 left-0 right-0 z-50 h-full w-full">
+                    <Image
+                      alt="login secure illustration"
+                      src="/images/confetti.webp"
+                      fill={true}
+                      className="-z-50 h-auto w-full object-cover"
+                    />
+                  </div>
+                  <span className="mt-5 text-xl font-semibold text-brand">
+                    You've succesfully updated your account!
+                  </span>
+                  <Button name="Go Back" handler={handler}/>
+                </div>
+              </Modal>
+            )}
           </form>
         </div>
       </div>
