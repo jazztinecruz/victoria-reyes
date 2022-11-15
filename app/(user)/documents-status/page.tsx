@@ -12,7 +12,7 @@ const DocumentStatus = () => {
   ];
 
   return (
-    <div className="space-section grid justify-center items-center">
+    <div className="space-section grid justify-center items-center px-6">
       <Table.Main name="MY DOCUMENT STATUS">
         <Table.Head>
           <Table.Row heading>
