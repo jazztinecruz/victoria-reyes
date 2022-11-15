@@ -28,7 +28,7 @@ const DocumentsLayout = ({ children }: Props) => {
   };
 
   return (
-    <div className="grid h-screen grid-rows-[auto,1fr]">
+    <div className="grid h-screen grid-rows-[auto,1fr] gap-10">
       <nav>
         <div className="navbar bg-base-100 py-4">
           <div className="navbar-start">
