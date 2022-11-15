@@ -41,7 +41,7 @@ const Documents = () => {
               <div className="card-actions justify-center">
                 <button
                   onClick={() => setopenRequestModal(!openRequestModal)}
-                  className="btn-primary btn bg-brand hover:btn-ghost">
+                  className="btn-primary btn bg-brand hover:btn-ghost border-none">
                   Request
                 </button>
               </div>
