@@ -54,7 +54,7 @@ const Notification = ({ handler }: Props) => {
         </span>
         <XMarkIcon
           onClick={handler}
-          className="absolute right-6 top-0 h-5 w-5 cursor-pointer"
+          className="absolute right-0 top-0 h-5 w-5 cursor-pointer"
         />
         <span className="text-sm">
           All <span className="font-semibold">({lists.length})</span>
