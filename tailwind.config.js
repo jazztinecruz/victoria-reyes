@@ -26,11 +26,11 @@ module.exports = {
       keyframes: {
         appear: {
           '0%': { transform: 'translateX(300px)' },
-          '100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(0)' },
         }
       },
       animation: {
-        appear: 'appear 0.5s ease-out',
+        appear: 'appear 1s ease-out',
       }
     },
   },
