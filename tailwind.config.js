@@ -22,6 +22,15 @@ module.exports = {
       },
       backgroundImage: {
         'hero-bg': "url('/images/hero/hero-bg.jpg')",
+      },
+      keyframes: {
+        appear: {
+          '0%': { transform: 'translateX(300px)' },
+          '100%': { transform: 'translateX(0)' },
+        }
+      },
+      animation: {
+        appear: 'appear 0.5s ease-out',
       }
     },
   },
