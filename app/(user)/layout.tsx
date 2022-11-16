@@ -29,6 +29,10 @@ const DocumentsLayout = ({ children }: Props) => {
         name: "My Profile",
         href: "/profile",
       },
+      {
+        name: "Logout Account",
+        href: "/",
+      },
     ],
   };
 
@@ -73,21 +77,25 @@ const DocumentsLayout = ({ children }: Props) => {
             </div>
           </div>
           <div className="navbar-end flex cursor-pointer items-center gap-6">
-            <div className="flex items-center gap-2 group">
+            <div className="group flex items-center gap-2">
               <BellIcon
                 onClick={() => setOpenNotification(!openNotification)}
                 className="h-5 w-5 group-hover:text-brand"
               />
               <span
                 onClick={() => setOpenNotification(!openNotification)}
-                className="text-sm hover:text-brand">
+                className="hidden laptop:block text-sm hover:text-brand">
                 Notifications
               </span>
             </div>
 
-            <div className="flex items-center gap-2 group">
-              <UserCircleIcon className="w-5 h-5 group-hover:text-brand"/>
-              <span className="text-sm hover:text-brand">Logout my Account</span>
+            <div className="hidden laptop:block">
+              <div className="group flex items-center gap-2">
+                <UserCircleIcon className="h-5 w-5 group-hover:text-brand" />
+                <span className="text-sm hover:text-brand">
+                  Logout my Account
+                </span>
+              </div>
             </div>
           </div>
 
@@ -99,7 +107,9 @@ const DocumentsLayout = ({ children }: Props) => {
         </div>
       </nav>
 
-      <main>{children}</main>
+      <main className="scrollbar-thumb-rounded-full scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-500 max-h-screen overflow-hidden overflow-y-auto">
+        <div className="smooth p-4 desktop:p-6">{children}</div>
+      </main>
     </div>
   );
 };
