@@ -47,17 +47,15 @@ const lists = [
 
 const Notification = ({ handler }: Props) => {
   return (
-    <div className="2xl:w-4/12 absolute right-0 top-0 bottom-0 z-50 h-full animate-appear overflow-y-auto bg-white p-8">
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-semibold leading-6 text-gray-800 focus:outline-none">
-            Notifications
-          </span>
-          <XMarkIcon
-            onClick={handler}
-            className="h-5 w-5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-          />
-        </div>
+    <div className="2xl:w-4/12 absolute right-0 top-0 bottom-0 z-50 flex h-full animate-appear flex-col items-start justify-start gap-2 overflow-y-auto bg-white p-8">
+      <div className="relative flex w-full flex-col gap-6">
+        <span className="text-2xl font-semibold leading-6 text-gray-800">
+          Notifications
+        </span>
+        <XMarkIcon
+          onClick={handler}
+          className="absolute right-6 top-0 h-5 w-5 cursor-pointer"
+        />
         <span className="text-sm">
           All <span className="font-semibold">({lists.length})</span>
         </span>
