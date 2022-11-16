@@ -12,8 +12,8 @@ const DocumentStatus = () => {
   ];
 
   return (
-    <div className="space-section">
-      <Table.Main name="MY DOCUMENT STATUS">
+    <div className="space-section laptop:grid laptop:place-items-center">
+      <Table.Main name="ALL DOCUMENT STATUS">
         <Table.Head>
           <Table.Row heading>
             {fields.map((field) => (
