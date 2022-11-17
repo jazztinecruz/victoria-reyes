@@ -5,6 +5,7 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import Notification from "../../components/notification";
 
@@ -84,18 +85,20 @@ const DocumentsLayout = ({ children }: Props) => {
               />
               <span
                 onClick={() => setOpenNotification(!openNotification)}
-                className="hidden laptop:block text-sm hover:text-brand">
+                className="hidden text-sm hover:text-brand laptop:block">
                 Notifications
               </span>
             </div>
 
             <div className="hidden laptop:block">
-              <div className="group flex items-center gap-2">
-                <UserCircleIcon className="h-5 w-5 group-hover:text-brand" />
-                <span className="text-sm hover:text-brand">
-                  Logout my Account
-                </span>
-              </div>
+              <Link href="/">
+                <div className="group flex items-center gap-2">
+                  <UserCircleIcon className="h-5 w-5 group-hover:text-brand" />
+                  <span className="text-sm hover:text-brand">
+                    Logout my Account
+                  </span>
+                </div>
+              </Link>
             </div>
           </div>
 
