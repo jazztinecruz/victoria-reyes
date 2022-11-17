@@ -87,8 +87,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           {/* Navigation */}
           <nav className="space-section hidden notebook:block">
             <Links name="Resident" list={links.residents} />
-            {/* <Links name="Statistic" list={links.statistics} />
-            <Links name="Administrator" list={links.administrator} /> */}
+            <Links name="Statistic" list={links.statistics} />
+            <Links name="Administrator" list={links.administrator} />
           </nav>
           {/* Burger Menu */}
           <Burger />
