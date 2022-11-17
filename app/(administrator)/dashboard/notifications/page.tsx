@@ -5,21 +5,21 @@ import React from "react";
 
 const lists = [
   {
-    description: "Resident request a new document",
+    description: "Someone request a new document",
     emphasize: "Barangay Indigency",
     time: "2 hours ago",
     Icon: <ClipboardDocumentCheckIcon />,
   },
 
   {
-    description: "Resident request a new document",
+    description: "Someone requested a new document",
     emphasize: "Barangay Cedula",
     time: "30 minutes ago",
     Icon: <ClipboardDocumentCheckIcon />,
   },
 
   {
-    description: "Resident request a new document",
+    description: "Someone requested a new document",
     emphasize: "Barangay ID",
     time: "1 hour ago",
     Icon: <ClipboardDocumentCheckIcon />,
@@ -33,7 +33,7 @@ const lists = [
   },
 
   {
-    description: "Resident request a new document",
+    description: "Someone requested a new document",
     emphasize: "Barangay Cedula",
     time: "5 minutes ago",
     Icon: <ClipboardDocumentCheckIcon />,
