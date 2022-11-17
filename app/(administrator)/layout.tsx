@@ -7,14 +7,10 @@ import {
   UserPlusIcon,
   PresentationChartLineIcon,
   CheckCircleIcon,
-  Cog6ToothIcon,
-  UserIcon,
-  // Bars3Icon,
-  // XMarkIcon,
+  BellIcon 
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
-import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = {
@@ -43,6 +39,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       },
     ],
     administrator: [
+      {
+        name: "Notifications",
+        href: "/dashboard/notifications",
+        Icon: BellIcon,
+      },
       {
         name: "Registration",
         href: "/dashboard/registration",
