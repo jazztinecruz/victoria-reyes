@@ -153,10 +153,11 @@ const EditProfile = ({handler}:Props) => {
             </div>
 
             <div></div>
+            <div></div>
 
             <button
               onClick={() => setSuccessfulModal(!sucessfulModal)}
-              className="mt-10 flex w-full transform items-center justify-between rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
+              className="mt-10  flex w-full transform items-center justify-between rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
               <span className="text-md">Update my Account</span>
 
               <ChevronRightIcon className="h-5 w-5 text-white" />
