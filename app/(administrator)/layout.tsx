@@ -14,6 +14,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = {
@@ -51,12 +52,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         name: "Registration",
         href: "/dashboard/registration",
         Icon: UserPlusIcon,
-      },
-      {
-        name: "Settings",
-        href: "/dashboard/settings",
-        Icon: Cog6ToothIcon,
-      },
+      }
     ],
   };
 
