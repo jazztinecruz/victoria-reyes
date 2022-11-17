@@ -31,10 +31,10 @@ const Profile = () => {
   });
 
   return (
-    <div className="flex w-full flex-col gap-10">
+    <div className="flex w-full flex-col">
       <div className="card rounded-box flex h-full w-full flex-col">
         {/* profile info */}
-        <div className="flex items-center gap-6 py-4 px-10 laptop:ml-[470px]">
+        <div className="flex items-center gap-6 px-10 laptop:ml-[470px]">
           <div className="h-32 w-32 rounded-full bg-slate-400"></div>
           <div className="flex flex-col items-start gap-6 text-left tablet:flex-row">
             <div className="flex flex-col gap-2">
