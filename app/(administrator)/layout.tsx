@@ -44,11 +44,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     ],
     administrator: [
       {
-        name: "Account",
-        href: "/dashboard/account",
-        Icon: UserIcon,
-      },
-      {
         name: "Registration",
         href: "/dashboard/registration",
         Icon: UserPlusIcon,
