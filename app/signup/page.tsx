@@ -152,6 +152,8 @@ const SignUp = () => {
                 </div>
               </div>
 
+              <Field.File/>
+
               <div className="flex items-center gap-10">
                 <Field.Checkbox
                   label="Are you a voter?"
@@ -167,8 +169,6 @@ const SignUp = () => {
                   onChange={setFields}
                 />
               </div>
-
-              <div></div>
 
               <button
                 onClick={() => setSuccessfulModal(!sucessfulModal)}
