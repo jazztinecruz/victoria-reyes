@@ -1,7 +1,8 @@
-import { use } from "react";
 import moment from "moment";
 import database from "../../../../library/database";
 import Table from "../../../../components/dashboard/sections/table";
+import { use } from "react";
+import Status from "../../../../components/dashboard/sections/status";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
@@ -40,6 +41,8 @@ const DashboardRequestPage = () => {
     "Account Verified",
   ];
 
+  const statuses = ["APPROVED", "PENDING", "DECLINED"];
+
   return (
     <div className="space-section">
       <Table.Main name="List of Requests">
@@ -56,7 +59,7 @@ const DashboardRequestPage = () => {
               <Table.Data value={user.id} />
               <Table.Data value="Barangay Indigency" />
               <Table.Data value="September 22, 2022" />
-              <Table.Data value="PENDING" />
+              <Status/>
               <Table.Data value={user.givenName} />
               <Table.Data value={user.middleName} />
               <Table.Data value={user.familyName} />
