@@ -31,17 +31,17 @@ const Documents = () => {
   ];
 
   return (
-    <div className="mt-20 grid h-full place-items-center laptop:mt-64">
-      <div className="grid grid-flow-row items-start justify-start gap-6 tablet:grid-cols-2 laptop:grid-flow-col">
+    <div className="grid h-full place-items-center">
+      <div className="grid grid-flow-row items-start justify-start gap-6 tablet:grid-cols-2">
         {documents.map((document) => (
-          <div className="card glass w-96 cursor-pointer bg-brand/50 text-center">
+          <div className="card w-96 cursor-pointer bg-white border-2 border-gray-100 text-center">
             <div className="card-body gap-6">
               <h2 className="card-title justify-center">{document.name}</h2>
               <p>{document.description}</p>
               <div className="card-actions justify-center">
                 <button
                   onClick={() => setopenRequestModal(!openRequestModal)}
-                  className="btn-ghost btn">
+                  className="btn-primary btn bg-brand hover:btn-ghost border-none">
                   Request
                 </button>
               </div>

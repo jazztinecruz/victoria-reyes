@@ -7,10 +7,7 @@ import {
   UserPlusIcon,
   PresentationChartLineIcon,
   CheckCircleIcon,
-  Cog6ToothIcon,
-  UserIcon,
-  // Bars3Icon,
-  // XMarkIcon,
+  BellIcon 
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
@@ -43,20 +40,15 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     ],
     administrator: [
       {
-        name: "Account",
-        href: "/dashboard/account",
-        Icon: UserIcon,
+        name: "Notifications",
+        href: "/dashboard/notifications",
+        Icon: BellIcon,
       },
       {
         name: "Registration",
         href: "/dashboard/registration",
         Icon: UserPlusIcon,
-      },
-      {
-        name: "Settings",
-        href: "/dashboard/settings",
-        Icon: Cog6ToothIcon,
-      },
+      }
     ],
   };
 
@@ -87,8 +79,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           {/* Navigation */}
           <nav className="space-section hidden notebook:block">
             <Links name="Resident" list={links.residents} />
-            {/* <Links name="Statistic" list={links.statistics} />
-            <Links name="Administrator" list={links.administrator} /> */}
+            <Links name="Statistic" list={links.statistics} />
+            <Links name="Administrator" list={links.administrator} />
           </nav>
           {/* Burger Menu */}
           <Burger />
