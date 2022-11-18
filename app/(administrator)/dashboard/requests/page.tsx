@@ -24,7 +24,7 @@ const DashboardRequestsPage = () => {
     "Resident ID",
     "Document Name",
     "Request Date",
-    "Document Status",
+    // "Document Status",
     "First Name",
     "Middle Name",
     "Last Name",
@@ -59,7 +59,7 @@ const DashboardRequestsPage = () => {
               <Table.Data value={user.id} />
               <Table.Data value="Barangay Indigency" />
               <Table.Data value="September 22, 2022" />
-              <Status />
+              {/* <Status /> */}
               <Table.Data value={user.givenName} />
               <Table.Data value={user.middleName} />
               <Table.Data value={user.familyName} />
