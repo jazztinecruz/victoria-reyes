@@ -178,7 +178,7 @@ const EditProfile = ({handler}:Props) => {
                     />
                   </div>
                   <span className="mt-5 text-xl font-semibold text-brand">
-                    You've succesfully updated your account!
+                    You have succesfully updated your account!
                   </span>
                   <Button name="Go Back" handler={handler}/>
                 </div>
