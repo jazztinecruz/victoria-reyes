@@ -82,13 +82,7 @@ const ReportsPage = () => {
         <div className="grid items-center gap-10 tablet:grid-flow-col">
           <div className="flex flex-col items-center justify-center gap-2 text-center">
             {/* @ts-ignore */}
-            <div
-              className="radial-progress"
-              style={{
-                "--value": "40",
-                "--size": "12rem",
-                "--thickness": "2rem",
-              }}>
+            <div className="radial-progress" style={{"--value": "40", "--size":"12rem"}}>
               40%
             </div>
             <span className="text-sm font-medium">Pending Requests</span>
@@ -96,13 +90,7 @@ const ReportsPage = () => {
 
           <div className="flex flex-col items-center justify-center gap-2 text-center">
             {/* @ts-ignore */}
-            <div
-              className="radial-progress"
-              style={{
-                "--value": "60",
-                "--size": "12rem",
-                "--thickness": "2rem",
-              }}>
+            <div className="radial-progress" style={{"--value": "60", "--size":"12rem"}}>
               60%
             </div>
             <span className="text-sm font-medium">Complete Requests</span>
