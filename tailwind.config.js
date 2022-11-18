@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -21,19 +22,18 @@ module.exports = {
         brand: "#007032",
       },
       backgroundImage: {
-        'hero-bg': "url('/images/hero/hero-bg.jpg')",
+        "hero-bg": "url('/images/hero/hero-bg.jpg')",
       },
       keyframes: {
         appear: {
-          '0%': { transform: 'translateX(300px)' },
-          '50%': { transform: 'translateX(0)' },
-        }
+          "0%": { transform: "translateX(300px)" },
+          "50%": { transform: "translateX(0)" },
+        },
       },
       animation: {
-        appear: 'appear 1s ease-out',
-      }
+        appear: "appear 1s ease-out",
+      },
     },
   },
-  plugins: [require("tailwind-scrollbar")],
-  plugins: [require("daisyui")],
+  plugins: [require("tailwind-scrollbar"), require("daisyui")],
 };
