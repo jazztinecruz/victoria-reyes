@@ -17,14 +17,14 @@ const getUsers = async () => {
   return users;
 };
 
-const DashboardRequestPage = () => {
+const DashboardRequestsPage = () => {
   const users = use(getUsers());
 
   const fields = [
     "Resident ID",
     "Document Name",
     "Request Date",
-    "Document Status",
+    // "Document Status",
     "First Name",
     "Middle Name",
     "Last Name",
@@ -41,7 +41,7 @@ const DashboardRequestPage = () => {
     "Account Verified",
   ];
 
-  const statuses = ["APPROVED", "PENDING", "DECLINED"];
+  // const statuses = ["APPROVED", "PENDING", "DECLINED"];
 
   return (
     <div className="space-section">
@@ -59,7 +59,7 @@ const DashboardRequestPage = () => {
               <Table.Data value={user.id} />
               <Table.Data value="Barangay Indigency" />
               <Table.Data value="September 22, 2022" />
-              <Status/>
+              {/* <Status /> */}
               <Table.Data value={user.givenName} />
               <Table.Data value={user.middleName} />
               <Table.Data value={user.familyName} />
@@ -82,4 +82,4 @@ const DashboardRequestPage = () => {
   );
 };
 
-export default DashboardRequestPage;
+export default DashboardRequestsPage;
