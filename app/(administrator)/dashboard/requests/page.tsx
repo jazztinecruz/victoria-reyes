@@ -42,7 +42,7 @@ const DashboardRequestPage = () => {
 
   return (
     <div className="space-section">
-      <Table.Main name="List of ">
+      <Table.Main name="List of Requests">
         <Table.Head>
           <Table.Row heading>
             {fields.map((field) => (
