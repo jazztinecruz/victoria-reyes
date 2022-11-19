@@ -3,6 +3,7 @@ import database from "../../../../library/database";
 import Table from "../../../../components/dashboard/sections/table";
 import { use } from "react";
 import Status from "../../../../components/dashboard/sections/dropdowns/status";
+import Households from "../../../../components/dashboard/sections/dropdowns/households";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
@@ -69,7 +70,8 @@ const DashboardRequestsPage = () => {
               <Table.Data value={user.birthplace} />
               <Table.Data value={user.phone} />
               <Table.Data value={user.occupation} />
-              <Table.Data value={user.households.length} />
+              {/* <Table.Data value={user.households.length} /> */}
+              <Households/>
               <Table.Data value={user.homeowner} />
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
