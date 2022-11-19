@@ -70,8 +70,8 @@ const DashboardRequestsPage = () => {
               <Table.Data value={user.birthplace} />
               <Table.Data value={user.phone} />
               <Table.Data value={user.occupation} />
-              {/* <Table.Data value={user.households.length} /> */}
-              <Households/>
+              <Table.Data value={user.households.length} />
+              {/* <Households/> */}
               <Table.Data value={user.homeowner} />
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
