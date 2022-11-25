@@ -1,5 +1,6 @@
 const validatePhone = (phone: string) => {
-  return  phone.startsWith("+63") ? phone.length === 11 : false
-}
+  return true;
+  // return phone.startsWith("+63") ? phone.length === 13 : false;
+};
 
-export default validatePhone
+export default validatePhone;
