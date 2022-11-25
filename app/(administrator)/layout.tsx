@@ -7,7 +7,8 @@ import {
   UserPlusIcon,
   PresentationChartLineIcon,
   CheckCircleIcon,
-  BellIcon 
+  BellIcon, 
+  ArrowLeftOnRectangleIcon
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
@@ -48,6 +49,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         name: "Registration",
         href: "/dashboard/registration",
         Icon: UserPlusIcon,
+      },
+      {
+        name: "Logout",
+        href: "/",
+        Icon: ArrowLeftOnRectangleIcon,
       }
     ],
   };

@@ -2,7 +2,8 @@ import moment from "moment";
 import database from "../../../../library/database";
 import Table from "../../../../components/dashboard/sections/table";
 import { use } from "react";
-import Status from "../../../../components/dashboard/sections/status";
+import Status from "../../../../components/dashboard/sections/dropdowns/status";
+import Households from "../../../../components/dashboard/sections/dropdowns/households";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
@@ -24,7 +25,7 @@ const DashboardRequestsPage = () => {
     "Resident ID",
     "Document Name",
     "Request Date",
-    // "Document Status",
+    "Document Status",
     "First Name",
     "Middle Name",
     "Last Name",
@@ -41,7 +42,6 @@ const DashboardRequestsPage = () => {
     "Account Verified",
   ];
 
-  // const statuses = ["APPROVED", "PENDING", "DECLINED"];
 
   return (
     <div className="space-section">
@@ -59,7 +59,7 @@ const DashboardRequestsPage = () => {
               <Table.Data value={user.id} />
               <Table.Data value="Barangay Indigency" />
               <Table.Data value="September 22, 2022" />
-              {/* <Status /> */}
+              <Status />
               <Table.Data value={user.givenName} />
               <Table.Data value={user.middleName} />
               <Table.Data value={user.familyName} />
@@ -71,6 +71,7 @@ const DashboardRequestsPage = () => {
               <Table.Data value={user.phone} />
               <Table.Data value={user.occupation} />
               <Table.Data value={user.households.length} />
+              {/* <Households/> */}
               <Table.Data value={user.homeowner} />
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
