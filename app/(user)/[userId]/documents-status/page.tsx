@@ -1,6 +1,16 @@
-import Table from "../../../components/dashboard/sections/table";
+import moment from "moment";
+import { use } from "react";
+import Table from "../../../../components/dashboard/sections/table";
+import database from "../../../../library/database";
 
-const DocumentStatus = () => {
+const getUser = async (id: string) => {
+  const user = await database.user.findUnique({ where: { id } });
+  return user!;
+};
+
+const DocumentStatus = async ({params}:any) => {
+  const user = await getUser(params.userId);
+
   const fields = [
     "Count",
     "Resident ID",
@@ -23,11 +33,11 @@ const DocumentStatus = () => {
         </Table.Head>
         <Table.Body>
           <Table.Row key="1">
-            <Table.Data value="1" />
-            <Table.Data value="201934095-394" />
-            <Table.Data value="Jazztine Hernandez Cruz" />
+            <Table.Data value={user.id}/>
+            <Table.Data value={user.id} />
+            <Table.Data value={user.givenName + " " + user.familyName}/>
             <Table.Data value="Barangay Clearance" />
-            <Table.Data value="September 14 2022" />
+            <Table.Data value={moment(user.birthdate).format("LL")} />
             <Table.Data value="50.00" />
             <Table.Data value="PENDING" />
           </Table.Row>

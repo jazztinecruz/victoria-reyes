@@ -7,28 +7,29 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Notification from "../../components/notification";
+import Notification from "../../../components/notification";
 
 type Props = {
   children: React.ReactNode;
+  params: any;
 };
 
-const DocumentsLayout = ({ children }: Props) => {
+const DocumentsLayout = ({ children, params }: Props) => {
   const [openNotification, setOpenNotification] = useState(false);
 
   const links = {
     user: [
       {
         name: "Documents",
-        href: "/documents",
+        href: `${params.userId}/documents`,
       },
       {
         name: "Document Status",
-        href: "/documents-status",
+        href: `${params.userId}/documents-status`,
       },
       {
         name: "My Profile",
-        href: "/profile",
+        href: `${params.userId}/profile`,
       },
       {
         name: "Logout Account",
@@ -51,9 +52,9 @@ const DocumentsLayout = ({ children }: Props) => {
                 className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow">
                 {links.user.map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="text-black">
+                    <Link href={link.href} className="text-black">
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -110,7 +111,7 @@ const DocumentsLayout = ({ children }: Props) => {
         </div>
       </nav>
 
-      <main className="scrollbar-thumb-rounded-full scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-500 max-h-screen overflow-hidden overflow-y-auto">
+      <main className="scrollbar-thumb-rounded-full max-h-screen overflow-hidden overflow-y-auto scrollbar-thin scrollbar-track-slate-200 scrollbar-thumb-slate-500">
         <div className="smooth p-4 desktop:p-6">{children}</div>
       </main>
     </div>

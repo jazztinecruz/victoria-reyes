@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import Button from "../../../components/elements/button/button";
-import Modal from "../../../components/elements/modal";
+import Button from "../../../../components/elements/button/button";
+import Modal from "../../../../components/elements/modal";
 
 const Documents = () => {
   const [openRequestModal, setopenRequestModal] = useState(false);

@@ -128,13 +128,6 @@ const SignUp = () => {
               />
 
               <Field.Textbox
-                label="Birthplace"
-                name="birthplace"
-                required={true}
-                onChange={setFields}
-              />
-
-              <Field.Textbox
                 label="Phone Number"
                 name="phone"
                 required={true}
@@ -240,9 +233,8 @@ const SignUp = () => {
                     Ready to login your account for the first time?
                   </span>
 
-                  <Link href="/signin">
-                    Login my account
-                    {/* <Button name="Login my account" /> */}
+                  <Link href="/signin" className="z-50">
+                    <Button name="Login my Account" />
                   </Link>
                 </div>
               </Modal>

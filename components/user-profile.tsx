@@ -1,15 +1,18 @@
 "use client";
 
-import { Gender } from "@prisma/client";
+import { Gender, User } from "@prisma/client";
 import { useState } from "react";
-import EditProfile from "../../../components/edit-profile";
-import Button from "../../../components/elements/button/button";
-import Field from "../../../components/elements/field";
-import { SignupFields } from "../../../library/api";
+import { SignupFields } from "../library/api";
+import EditProfile from "./edit-profile";
+import Button from "./elements/button/button";
+import Field from "./elements/field";
 
-const Profile = () => {
+type Props = {
+  user: User;
+};
+
+const Profile = ({ user }: Props) => {
   const [openEditModal, setopenEditModal] = useState(false);
-
   // should be initial values
   const [fields, setFields] = useState<SignupFields>({
     givenName: "",
@@ -38,22 +41,29 @@ const Profile = () => {
           <div className="h-32 w-32 rounded-full bg-slate-400"></div>
           <div className="flex flex-col items-start gap-6 text-left tablet:flex-row">
             <div className="flex flex-col gap-2">
-              <span className="text-lg tracking-wide">Jazztine Cruz</span>
+              <span className="text-lg tracking-wide">
+                {user.givenName} {user.familyName}
+              </span>
               {/* resident id */}
-              <span className="text-sm">203148755-9374</span>
+              <span className="text-sm">{user.email}</span>
             </div>
-              <Button name="Edit Profile" handler={() => setopenEditModal(!openEditModal)}/>
+            <Button
+              name="Edit Profile"
+              handler={() => setopenEditModal(!openEditModal)}
+            />
           </div>
         </div>
       </div>
 
-      <div className="card rounded-box grid h-full flex-grow place-items-center">
-        <form className="mt-10 grid grid-flow-row gap-6 tablet:grid-cols-2">
+      <div className="card rounded-box grid  h-full flex-grow place-items-center">
+        <form className="mt-10 grid grid-flow-row w-full laptop:w-[900px]  gap-6 tablet:grid-cols-2 border-black">
           <Field.Textbox
             label="First Name"
             name="givenName"
             required={true}
             onChange={setFields}
+            defaultValue={user.givenName}
+            readOnly
           />
 
           <Field.Textbox
@@ -61,6 +71,8 @@ const Profile = () => {
             name="middleName"
             required={true}
             onChange={setFields}
+            defaultValue={`${user.middleName ? user.middleName : null}`}
+            readOnly
           />
 
           <Field.Textbox
@@ -68,6 +80,8 @@ const Profile = () => {
             name="middleName"
             required={true}
             onChange={setFields}
+            defaultValue={user.givenName}
+            readOnly
           />
 
           <Field.Textbox
@@ -75,6 +89,8 @@ const Profile = () => {
             name="adress"
             required={true}
             onChange={setFields}
+            defaultValue="Sample Full Address"
+            readOnly
           />
 
           <Field.Textbox
@@ -83,6 +99,8 @@ const Profile = () => {
             name="birthdate"
             required={true}
             onChange={setFields}
+            defaultValue={`${user.birthdate ? user.birthdate : null}`}
+            readOnly
           />
 
           <Field.Textbox
@@ -90,6 +108,8 @@ const Profile = () => {
             name="birthplace"
             required={true}
             onChange={setFields}
+            defaultValue={`${user.birthplace ? user.birthplace : null}`}
+            readOnly
           />
 
           <Field.Textbox
@@ -97,6 +117,8 @@ const Profile = () => {
             name="phone"
             required={true}
             onChange={setFields}
+            defaultValue={user.phone}
+            readOnly
           />
 
           <Field.Textbox
@@ -104,6 +126,8 @@ const Profile = () => {
             name="email"
             required={true}
             onChange={setFields}
+            defaultValue={user.email}
+            readOnly
           />
 
           <Field.Textbox
@@ -111,53 +135,43 @@ const Profile = () => {
             name="occupation"
             required={true}
             onChange={setFields}
+            defaultValue={user.occupation}
+            readOnly
           />
 
-          {/* gender */}
-          <div className="flex flex-col gap-4">
-            <span className="block text-sm text-gray-600 dark:text-gray-200">
-              Choose your Gender
-            </span>
-            <div className="flex items-center gap-10">
-              <div className="flex items-center gap-4">
-                <span>Male</span>
-                <input
-                  type="radio"
-                  name="gender"
-                  className="radio-success radio"
-                />
-              </div>
-              <div className="flex items-center gap-4">
-                <span>Female</span>
-                <input
-                  type="radio"
-                  name="gender"
-                  className="radio-success radio"
-                />
-              </div>
-            </div>
-          </div>
+          <Field.Textbox
+            label="Gender"
+            name="gender"
+            required={true}
+            onChange={setFields}
+            defaultValue={user.gender}
+            readOnly
+          />
 
           <div className="flex items-center gap-10">
             <Field.Checkbox
-              label="Are you a voter?"
+              label="Voter"
               name="voter"
               required={true}
               onChange={setFields}
+              defaultChecked={user.voter}
+              disabled
             />
 
             <Field.Checkbox
-              label="Are you a homeowner?"
+              label="Homeowner"
               name="homeowner"
               required={true}
               onChange={setFields}
+              defaultChecked={user.homeowner}
+              disabled
             />
           </div>
         </form>
       </div>
 
       {openEditModal && (
-       <EditProfile handler={() => setopenEditModal(!openEditModal)}/>
+        <EditProfile user={user} handler={() => setopenEditModal(!openEditModal)} />
       )}
     </div>
   );
