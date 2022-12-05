@@ -7,7 +7,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Notification from "../../components/notification";
+import Notification from "../../../components/notification";
 
 type Props = {
   children: React.ReactNode;

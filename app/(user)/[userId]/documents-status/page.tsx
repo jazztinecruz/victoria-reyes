@@ -1,4 +1,4 @@
-import Table from "../../../components/dashboard/sections/table";
+import Table from "../../../../components/dashboard/sections/table";
 
 const DocumentStatus = () => {
   const fields = [
