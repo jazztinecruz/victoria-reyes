@@ -126,7 +126,7 @@ const SignUp = () => {
                 required={true}
                 onChange={setFields}
               />
-              
+
               <Field.Textbox
                 label="Phone Number"
                 name="phone"
@@ -233,9 +233,10 @@ const SignUp = () => {
                     Ready to login your account for the first time?
                   </span>
 
-                  <Link href="/signin">
-                    Login my account
-                    {/* <Button name="Login my account" /> */}
+                  <Link href="/signin" className="z-50">
+                    <button className="cursor-pointer rounded-md bg-brand py-4 px-6 text-white">
+                      Login my account
+                    </button>
                   </Link>
                 </div>
               </Modal>
