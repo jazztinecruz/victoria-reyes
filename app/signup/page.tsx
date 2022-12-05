@@ -234,9 +234,7 @@ const SignUp = () => {
                   </span>
 
                   <Link href="/signin" className="z-50">
-                    <button className="cursor-pointer rounded-md bg-brand py-4 px-6 text-white">
-                      Login my account
-                    </button>
+                    <Button name="Login my Account" />
                   </Link>
                 </div>
               </Modal>
