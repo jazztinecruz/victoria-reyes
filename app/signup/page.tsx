@@ -8,7 +8,7 @@ import { useState } from "react";
 import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
 import Modal from "../../components/elements/modal";
-import { SignupFields } from "../../library/api";
+import api, { SignupFields } from "../../library/api";
 
 const SignUp = () => {
   const [fields, setFields] = useState<SignupFields>({
@@ -16,21 +16,49 @@ const SignUp = () => {
     middleName: "",
     familyName: "",
     address: {
-      street: "",
+      street: "Sample Street",
     },
     gender: Gender.MALE,
-    birthdate: "",
+    birthdate: "September 22, 1999",
     birthplace: "",
-    phone: "",
+    phone: "+639951935710",
     email: "",
     password: "",
     voter: false,
     homeowner: false,
     occupation: "",
-    households: [],
+    households: [
+      {
+        givenName: "Jazztine",
+        middleName: "Hernandez",
+        familyName: "Cruz",
+        gender: "FEMALE",
+        birthdate: "September 16, 2021",
+        birthplace: "Makati City",
+        phone: "+639951935710",
+        occupation: "PROGRAMMER",
+        relationship: "GIRLFRIEND",
+      },
+      {
+        givenName: "George",
+        middleName: "",
+        familyName: "Abucejo",
+        gender: "FEMALE",
+        birthdate: "September 16, 2021",
+        birthplace: "Makati City",
+        phone: "+639951935710",
+        occupation: "PROGRAMMER",
+        relationship: "SON",
+      },
+    ],
   });
 
   const [sucessfulModal, setSuccessfulModal] = useState(false);
+
+  const handleSubmit = async () => {
+    const response = await api.signup(fields);
+    console.log(response);
+  };
 
   return (
     <section className="relative bg-white dark:bg-gray-900">
@@ -79,14 +107,14 @@ const SignUp = () => {
 
               <Field.Textbox
                 label="Last Name"
-                name="middleName"
+                name="familyName"
                 required={true}
                 onChange={setFields}
               />
 
               <Field.Textbox
-                label="Full Address"
-                name="adress"
+                label="Birthplace"
+                name="birthplace"
                 required={true}
                 onChange={setFields}
               />
@@ -116,6 +144,13 @@ const SignUp = () => {
               <Field.Textbox
                 label="Email Address"
                 name="email"
+                required={true}
+                onChange={setFields}
+              />
+
+              <Field.Textbox
+                label="Password"
+                name="password"
                 required={true}
                 onChange={setFields}
               />
@@ -152,7 +187,7 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <Field.File/>
+              <Field.File />
 
               <div className="flex items-center gap-10">
                 <Field.Checkbox
@@ -171,8 +206,12 @@ const SignUp = () => {
               </div>
 
               <button
-                onClick={() => setSuccessfulModal(!sucessfulModal)}
-                className="mt-10 flex w-full transform items-center justify-between rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 hover:bg-brand hover:opacity-fade focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50">
+                onClick={(event) => {
+                  event.preventDefault();
+                  setSuccessfulModal(!sucessfulModal);
+                  handleSubmit();
+                }}
+                className="mt-10 flex w-full transform items-center justify-between rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
                 <span className="text-md">Create my Account</span>
 
                 <ChevronRightIcon className="h-5 w-5 text-white" />
@@ -202,7 +241,8 @@ const SignUp = () => {
                   </span>
 
                   <Link href="/signin">
-                    <Button name="Login my account" />
+                    Login my account
+                    {/* <Button name="Login my account" /> */}
                   </Link>
                 </div>
               </Modal>

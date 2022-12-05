@@ -48,7 +48,7 @@ const DashboardVerificationsPage = () => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {users.map((user) => (
+          {users.reverse().map((user) => (
             <Table.Row key={user.id}>
               <Table.Data value={user.id} />
               <Table.Data value={user.givenName} />
