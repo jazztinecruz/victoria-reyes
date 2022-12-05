@@ -126,14 +126,7 @@ const SignUp = () => {
                 required={true}
                 onChange={setFields}
               />
-
-              <Field.Textbox
-                label="Birthplace"
-                name="birthplace"
-                required={true}
-                onChange={setFields}
-              />
-
+              
               <Field.Textbox
                 label="Phone Number"
                 name="phone"
