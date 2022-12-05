@@ -20,7 +20,7 @@ const UserLogin = () => {
   const handleSubmit = async () => {
     const response = await api.signin(fields);
     if (response.status === 200) {
-      router.push("/profile");
+      router.push(`/${response.data.userId}/profile`);
     }
   };
 
