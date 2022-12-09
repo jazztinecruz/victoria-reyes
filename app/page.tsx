@@ -109,6 +109,11 @@ const links = [
     href: "#contact",
     Icon: PhoneIcon,
   },
+  {
+    name: "Login your Account",
+    href: "/signin",
+    Icon: PhoneIcon,
+  },
 ];
 
 const HomePage = () => {
@@ -128,8 +133,8 @@ const HomePage = () => {
       <section
         ref={backToTopSection}
         className="grid h-full grid-rows-[auto,1fr]">
-        {/* navbar */}
 
+        {/* navbar */}
         <nav className="bg-white tablet:px-10 laptop:hidden">
           <div className="grid grid-cols-[1fr,auto] items-center gap-8 py-3 px-4">
             <Image
@@ -237,9 +242,6 @@ const HomePage = () => {
                 <a href="#contact" className="hover:text-brand">
                   Contact Us
                 </a>
-                <Link href="/signin" className="hover:text-brand">
-                  Login your Account
-                </Link>
               </div>
             </div>
             {/* sign in button */}
