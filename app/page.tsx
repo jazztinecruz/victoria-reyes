@@ -9,6 +9,7 @@ import {
   PhoneIcon,
   QuestionMarkCircleIcon,
   UserGroupIcon,
+  UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
@@ -112,7 +113,7 @@ const links = [
   {
     name: "Login your Account",
     href: "/signin",
-    Icon: PhoneIcon,
+    Icon: UserIcon,
   },
 ];
 
