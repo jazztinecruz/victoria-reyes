@@ -17,7 +17,6 @@ import { Fragment, useRef } from "react";
 import Button from "../components/elements/button/button";
 import Document from "./document";
 import Feature from "./feature";
-import SignUp from "./signup/page";
 
 const documents: { title: string; description: string }[] = [
   {
@@ -238,6 +237,9 @@ const HomePage = () => {
                 <a href="#contact" className="hover:text-brand">
                   Contact Us
                 </a>
+                <Link href="/signin" className="hover:text-brand">
+                  Login your Account
+                </Link>
               </div>
             </div>
             {/* sign in button */}
