@@ -9,6 +9,7 @@ import {
   PhoneIcon,
   QuestionMarkCircleIcon,
   UserGroupIcon,
+  UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
@@ -17,7 +18,6 @@ import { Fragment, useRef } from "react";
 import Button from "../components/elements/button/button";
 import Document from "./document";
 import Feature from "./feature";
-import SignUp from "./signup/page";
 
 const documents: { title: string; description: string }[] = [
   {
@@ -110,6 +110,11 @@ const links = [
     href: "#contact",
     Icon: PhoneIcon,
   },
+  {
+    name: "Login your Account",
+    href: "/signin",
+    Icon: UserIcon,
+  },
 ];
 
 const HomePage = () => {
@@ -129,8 +134,8 @@ const HomePage = () => {
       <section
         ref={backToTopSection}
         className="grid h-full grid-rows-[auto,1fr]">
-        {/* navbar */}
 
+        {/* navbar */}
         <nav className="bg-white tablet:px-10 laptop:hidden">
           <div className="grid grid-cols-[1fr,auto] items-center gap-8 py-3 px-4">
             <Image

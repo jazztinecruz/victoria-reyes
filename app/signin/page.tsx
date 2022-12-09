@@ -15,8 +15,6 @@ const UserLogin = () => {
 
   const router = useRouter();
 
-  const [sucessfulModal, setSuccessfulModal] = useState(false);
-
   const handleSubmit = async () => {
     const response = await api.signin(fields);
     if (response.status === 200) {
