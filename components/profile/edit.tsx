@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { SignupFields } from "../library/api";
+import { SignupFields } from "../../library/api";
 import { Gender, User } from "@prisma/client";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import Modal from "./elements/modal";
-import Field from "./elements/field";
+import Modal from "../elements/modal";
+import Field from "../elements/field";
 import Image from "next/image";
-import Link from "next/link";
-import Button from "./elements/button/button";
+import Button from "../elements/button/button";
 
 type Props = {
   user: User;
