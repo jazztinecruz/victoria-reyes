@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { Gender, Household, Relationship } from "@prisma/client";
 import { useState } from "react";
 import Field from "../field";
@@ -34,7 +33,7 @@ const Households = () => {
           <Field.Textbox
             label="First Name"
             name="givenName"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.givenName}
           />
@@ -42,7 +41,7 @@ const Households = () => {
           <Field.Textbox
             label="Middle Name"
             name="middleName"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.middleName}
           />
@@ -50,7 +49,7 @@ const Households = () => {
           <Field.Textbox
             label="Last Name"
             name="familyName"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.familyName}
           />
@@ -58,7 +57,7 @@ const Households = () => {
           <Field.Textbox
             label="Birthplace"
             name="birthplace"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.birthplace}
           />
@@ -67,7 +66,7 @@ const Households = () => {
             type="date"
             label="Birthdate"
             name="birthdate"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.birthdate}
           />
@@ -107,7 +106,7 @@ const Households = () => {
           <Field.Textbox
             label="Phone Number"
             name="phone"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.phone}
           />
@@ -115,7 +114,7 @@ const Households = () => {
           <Field.Textbox
             label="Occupation"
             name="occupation"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.occupation}
           />
@@ -123,7 +122,7 @@ const Households = () => {
           <Field.Textbox
             label="Relationship"
             name="relationship"
-            required={true}
+            required
             onChange={setHousehold}
             value={household.relationship}
           />
@@ -133,9 +132,8 @@ const Households = () => {
           <button
             onClick={(event: any) => {
               event.preventDefault();
-              console.log(households);
               setHouseholds([...households, household]);
-              // setHousehold(initialHouseholdValues);
+              setHousehold(initialHouseholdValues);
             }}
             className="mt-10 flex w-full transform items-center justify-between gap-4 rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
             Add Household
