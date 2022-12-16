@@ -57,10 +57,10 @@ const Documents = () => {
             open
             onClose={() => setOpenRequestModal(!openRequestModal)}>
             <div className="flex flex-col items-center justify-center gap-5 text-center">
-              <span className="mt-5 text-xl font-semibold text-brand">
+              <span className="mt-5 text-lg font-medium">
                 Are you sure you want to request this document?
               </span>
-              <div className="mt-6 flex items-center gap-4">
+              <div className="mt-4 flex items-center gap-4">
                 <Button
                   handler={() => setOpenRequestModal(!openRequestModal)}
                   name="Go Back"
