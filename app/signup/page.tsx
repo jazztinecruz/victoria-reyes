@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
+import Households from "../../components/elements/households";
 import Modal from "../../components/elements/modal";
 import api, { SignupFields } from "../../library/api";
 
@@ -79,7 +80,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        <div className="mx-auto flex w-full max-w-5xl items-center p-8 laptop:px-12">
+        <div className="mx-auto pt-96 flex w-full max-w-5xl items-center p-8 laptop:px-12 h-screen overflow-y-scroll">
           <div className="w-full">
             <h1 className="text-2xl font-semibold capitalize tracking-wider text-gray-800 dark:text-white laptop:text-3xl">
               Get your free account now.
@@ -123,6 +124,14 @@ const SignUp = () => {
                 type="date"
                 label="Birthdate"
                 name="birthdate"
+                required={true}
+                onChange={setFields}
+              />
+
+              <Field.Textbox
+                type="text"
+                label="Street Adress"
+                name="address"
                 required={true}
                 onChange={setFields}
               />
@@ -181,7 +190,6 @@ const SignUp = () => {
               </div>
 
               <Field.File />
-
               <div className="flex items-center gap-10">
                 <Field.Checkbox
                   label="Are you a voter?"
@@ -197,7 +205,9 @@ const SignUp = () => {
                   onChange={setFields}
                 />
               </div>
-
+              <div className="col-start-1 col-end-3">
+                <Households />
+              </div>
               <button
                 onClick={(event) => {
                   event.preventDefault();
