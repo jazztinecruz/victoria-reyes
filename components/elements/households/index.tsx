@@ -28,7 +28,13 @@ const Households = () => {
   return (
     <div className="mt-4">
       <span className="font-semibold">Add your Households</span>
-      <div className="grid">
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          setHouseholds([...households, household]);
+          setHousehold(initialHouseholdValues);
+        }}
+        className="grid">
         <div className="mt-10 grid grid-cols-1 gap-6 rounded-md border-2 p-4 tablet:grid-cols-2">
           <Field.Textbox
             label="First Name"
@@ -129,24 +135,20 @@ const Households = () => {
         </div>
 
         <div className="ml-auto">
-          <button
-            onClick={(event: any) => {
-              event.preventDefault();
-              setHouseholds([...households, household]);
-              setHousehold(initialHouseholdValues);
-            }}
-            className="mt-10 flex w-full transform items-center justify-between gap-4 rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
+          <button className="mt-10 flex w-full transform items-center justify-between gap-4 rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
             Add Household
           </button>
         </div>
-      </div>
+      </form>
 
       <div className="flex flex-col gap-4">
         <span>
           All Households{" "}
           <span className="font-semibold">({households.length}) </span>
-          <br/>
-          <span className="text-black/50 text-sm">(Please check (✓) the head of the family)</span>
+          <br />
+          <span className="text-sm text-black/50">
+            (Please check (✓) the head of the family)
+          </span>
         </span>
         {households.map((household) => (
           <UniqueHousehold
