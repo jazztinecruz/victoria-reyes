@@ -19,6 +19,7 @@ const DocumentStatus = async ({params}:any) => {
     "Request Date",
     "Amount",
     "Status",
+    "Processing Days"
   ];
 
   return (
@@ -40,6 +41,7 @@ const DocumentStatus = async ({params}:any) => {
             <Table.Data value={moment(user.birthdate).format("LL")} />
             <Table.Data value="50.00" />
             <Table.Data value="PENDING" />
+            <Table.Data value="1-2 Days" />
           </Table.Row>
         </Table.Body>
       </Table.Main>
