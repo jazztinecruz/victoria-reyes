@@ -4,6 +4,7 @@ type Props = {
   type?: "text" | "email" | "password" | "date";
   label: string;
   name: string;
+  value?: any;
   defaultValue?: string;
   placeholder?: string;
   valid?: boolean;
@@ -19,6 +20,7 @@ const Textbox = ({
   type = "text",
   label,
   name,
+  value,
   defaultValue,
   placeholder,
   valid = true,
@@ -45,19 +47,26 @@ const Textbox = ({
 
   return (
     <div>
-      <label htmlFor={fieldId} className='block mb-2 text-sm text-gray-600 dark:text-gray-200'>{label}</label>
+      <label
+        htmlFor={fieldId}
+        className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
+        {label}
+      </label>
       <input
         id={fieldId}
         ref={ref}
         name={name}
         type={type}
+        value={value}
         defaultValue={defaultValue}
         placeholder={placeholder}
         onChange={handleOnChange}
         required={required}
         readOnly={readOnly}
         disabled={disabled}
-        className={`${valid ? "" : "border-red-600"} ${className} block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-brand/75  focus:ring-brand/75 focus:outline-none focus:ring focus:ring-opacity-40"`}
+        className={`${
+          valid ? "" : "border-red-600"
+        } ${className} focus:ring-opacity-40" mt-2 block w-full rounded-md border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-brand/75 focus:outline-none focus:ring focus:ring-brand/75  dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600`}
       />
     </div>
   );
