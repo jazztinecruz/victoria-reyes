@@ -26,11 +26,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         href: "/dashboard/requests",
         Icon: DocumentDuplicateIcon,
       },
-      {
-        name: "Verifcations",
-        href: "/dashboard/verifications",
-        Icon: CheckCircleIcon,
-      },
     ],
     statistics: [
       {
@@ -49,6 +44,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         name: "Registration",
         href: "/dashboard/registration",
         Icon: UserPlusIcon,
+      },
+      {
+        name: "Verifications",
+        href: "/dashboard/verifications",
+        Icon: CheckCircleIcon,
       },
       {
         name: "Logout",
