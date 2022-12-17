@@ -28,18 +28,11 @@ const Households = () => {
   return (
     <div className="mt-4">
       <span className="font-semibold">Add your Households</span>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          setHouseholds([...households, household]);
-          setHousehold(initialHouseholdValues);
-        }}
-        className="grid">
+      <div className="grid">
         <div className="mt-10 grid grid-cols-1 gap-6 rounded-md border-2 p-4 tablet:grid-cols-2">
           <Field.Textbox
             label="First Name"
             name="givenName"
-            required
             onChange={setHousehold}
             value={household.givenName}
           />
@@ -47,7 +40,6 @@ const Households = () => {
           <Field.Textbox
             label="Middle Name"
             name="middleName"
-            required
             onChange={setHousehold}
             value={household.middleName}
           />
@@ -55,7 +47,6 @@ const Households = () => {
           <Field.Textbox
             label="Last Name"
             name="familyName"
-            required
             onChange={setHousehold}
             value={household.familyName}
           />
@@ -63,7 +54,6 @@ const Households = () => {
           <Field.Textbox
             label="Birthplace"
             name="birthplace"
-            required
             onChange={setHousehold}
             value={household.birthplace}
           />
@@ -72,7 +62,6 @@ const Households = () => {
             type="date"
             label="Birthdate"
             name="birthdate"
-            required
             onChange={setHousehold}
             value={household.birthdate}
           />
@@ -112,7 +101,6 @@ const Households = () => {
           <Field.Textbox
             label="Phone Number"
             name="phone"
-            required
             onChange={setHousehold}
             value={household.phone}
           />
@@ -120,7 +108,6 @@ const Households = () => {
           <Field.Textbox
             label="Occupation"
             name="occupation"
-            required
             onChange={setHousehold}
             value={household.occupation}
           />
@@ -135,11 +122,17 @@ const Households = () => {
         </div>
 
         <div className="ml-auto">
-          <button className="mt-10 flex w-full transform items-center justify-between gap-4 rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              setHouseholds([...households, household]);
+              setHousehold(initialHouseholdValues);
+            }}
+            className="mt-10 flex w-full transform items-center justify-between gap-4 rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
             Add Household
           </button>
         </div>
-      </form>
+      </div>
 
       <div className="flex flex-col gap-4">
         <span>
