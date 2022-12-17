@@ -50,7 +50,7 @@ const ForgotPassword = ({
         </span>
       </div>
 
-      <form className="flex flex-col gap-10">
+      <form className="flex flex-col gap-6">
         <Field.Textbox
           label="Email Address"
           name="email"
