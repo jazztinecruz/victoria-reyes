@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Button from "../../../../components/elements/button/button";
-import Modal from "../../../../components/elements/modal";
+import ConfirmedDocumentrequest from "../../../../components/elements/modal/confirmed-request";
+import RequestDocument from "../../../../components/elements/modal/request-document";
 
 const Documents = () => {
   const [openRequestModal, setOpenRequestModal] = useState(false);
@@ -50,72 +50,23 @@ const Documents = () => {
         ))}
 
         {openRequestModal && (
-          <Modal
-            size="medium"
-            as="div"
-            open
-            onClose={() => setOpenRequestModal(!openRequestModal)}>
-            <div className="flex flex-col items-center justify-center gap-5 text-center">
-              <span className="mt-5 text-lg font-medium">
-                Are you sure you want to request this document?
-              </span>
-              <div className="mt-4 flex items-center gap-4">
-                <Button
-                  handler={() => setOpenRequestModal(!openRequestModal)}
-                  name="Go Back"
-                />
-                <Button
-                  handler={() =>
-                    setOpenConfirmationModal(!openConfirmationModal)
-                  }
-                  fill
-                  name="Continue"
-                />
-              </div>
-            </div>
-          </Modal>
+          <RequestDocument
+            onClose={() => setOpenRequestModal(!openRequestModal)}
+            backHandler={() => setOpenRequestModal(!openRequestModal)}
+            continueHandler={() =>
+              setOpenConfirmationModal(!openConfirmationModal)
+            }
+          />
         )}
 
         {openConfirmationModal && (
-          <Modal
-            size="medium"
-            as="div"
-            open
-            onClose={() => setOpenConfirmationModal(!openConfirmationModal)}>
-            <div className="flex flex-col items-center justify-center gap-5 text-center">
-              <span className="mt-5 text-xl font-semibold text-brand">
-                You've succesfully requested!
-              </span>
-              <span className="text-gray mb-4 text-sm">
-                <span>
-                  Please prepare <span className="font-semibold">50.00</span>{" "}
-                  upon claiming.
-                </span>
-                <br></br>
-                <br></br>
-                <span className="font-semibold">Note:</span> You can only
-                request a document from{" "}
-                <span className="font-semibold">8:00 am</span> to{" "}
-                <span className="font-semibold">11:00 am</span>. All documents
-                that are requested after the desginated time will be process
-                tomorrow.
-                <br></br> <br></br>
-                <span>
-                  You can check your request's status on the{" "}
-                  <span className="font-semibold">Documents Status Page</span>{" "}
-                  and claim your document to our office.
-                </span>
-              </span>
-              <Button
-                handler={() => {
-                  setOpenConfirmationModal(!openConfirmationModal);
-                  setOpenRequestModal(false);
-                }}
-                name="I Got it!"
-                fill
-              />
-            </div>
-          </Modal>
+          <ConfirmedDocumentrequest
+            onClose={() => setOpenConfirmationModal(!openConfirmationModal)}
+            handler={() => {
+              setOpenConfirmationModal(!openConfirmationModal);
+              setOpenRequestModal(false);
+            }}
+          />
         )}
       </div>
     </div>
