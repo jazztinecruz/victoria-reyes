@@ -248,7 +248,7 @@ const HomePage = () => {
             {/* sign in button */}
             <Link href="/signin">
               <div className="hidden laptop:block">
-                <Button name="LOGIN YOUR ACCOUNT" />
+                <Button name="LOGIN YOUR ACCOUNT" fill/>
               </div>
             </Link>
           </div>
