@@ -12,7 +12,7 @@ const ConfirmedDocumentrequest = ({ onClose, handler }: Props) => {
     <Modal size="medium" as="div" open onClose={onClose}>
       <div className="flex flex-col items-center justify-center gap-5 text-center">
         <span className="mt-5 text-xl font-semibold text-brand">
-          You've succesfully requested!
+          You&apos;ve succesfully requested!
         </span>
         <span className="text-gray mb-4 text-sm">
           <span>
@@ -27,7 +27,7 @@ const ConfirmedDocumentrequest = ({ onClose, handler }: Props) => {
           are requested after the desginated time will be process tomorrow.
           <br></br> <br></br>
           <span>
-            You can check your request's status on the{" "}
+            You can check your request`&apos;`s status on the{" "}
             <span className="font-semibold">Documents Status Page</span> and
             claim your document to our office.
           </span>

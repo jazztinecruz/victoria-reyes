@@ -43,7 +43,7 @@ const AddSignatory = ({
             Add the newest elected Kapitan/Kapitana
           </span>
           <span className="text-sm font-light opacity-50">
-            Provide necessary details to add new Barangay's Kapitan
+            Provide necessary details to add new Barangay &apos;s Kapitan
           </span>
         </div>
 
