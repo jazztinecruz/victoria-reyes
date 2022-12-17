@@ -1,9 +1,10 @@
 import moment from "moment";
 import database from "../../../../library/database";
-import Table from "../../../../components/dashboard/sections/table";
+import Table from "../../../../components/table";
 import { use } from "react";
-import Status from "../../../../components/dashboard/sections/dropdowns/status";
-import Households from "../../../../components/dashboard/sections/dropdowns/households";
+import Status from "../../../../components/dropdowns/status";
+import Households from "../../../../components/dropdowns/households";
+import Button from "../../../../components/elements/button/button";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
@@ -42,9 +43,12 @@ const DashboardRequestsPage = () => {
     "Account Verified",
   ];
 
-
   return (
     <div className="space-section">
+      {/* button */}
+      <div className="mr-auto">
+        <Button name="Batch Process" fill />
+      </div>
       <Table.Main name="List of Requests">
         <Table.Head>
           <Table.Row heading>

@@ -2,8 +2,8 @@
 
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { Dispatch, SetStateAction, useState } from "react";
-import Button from "../../elements/button/button";
-import Modal from "../../elements/modal";
+import Button from "../elements/button/button";
+import Modal from "../elements/modal";
 
 interface Props {
   document: {

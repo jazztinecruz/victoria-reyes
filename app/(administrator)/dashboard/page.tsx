@@ -1,7 +1,7 @@
 import { use } from "react";
 import database from "../../../library/database";
 import moment from "moment";
-import Table from "../../../components/dashboard/sections/table";
+import Table from "../../../components/table";
 
 const getUsers = async () => {
   const users = await database.user.findMany({

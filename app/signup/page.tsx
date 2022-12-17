@@ -75,7 +75,7 @@ const SignUp = () => {
         </div>
       </div>
 
-      <div className="flex flex-col w-full max-w-5xl overflow-y-scroll p-8 laptop:px-12 ">
+      <div className="flex w-full max-w-5xl flex-col overflow-y-scroll p-8 laptop:px-12 ">
         <h1 className="text-2xl font-semibold capitalize tracking-wider text-gray-800 dark:text-white laptop:text-3xl">
           Get your free account now.
         </h1>

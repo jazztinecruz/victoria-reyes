@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import DeleteDocument from "../../../../components/dashboard/documents/delete-document";
-import EditDocument from "../../../../components/dashboard/documents/edit-document";
+import DeleteDocument from "../../../../components/documents/delete-document";
+import EditDocument from "../../../../components/documents/edit-document";
 import Button from "../../../../components/elements/button/button";
 import Field from "../../../../components/elements/field";
 import Modal from "../../../../components/elements/modal";

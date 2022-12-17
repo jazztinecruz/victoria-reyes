@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useId, useRef } from "react";
 
 type Props = {
-  type?: "text" | "email" | "password" | "date";
+  type?: "text" | "email" | "password" | "date" | "number";
   label: string;
   name: string;
   value?: any;
