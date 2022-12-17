@@ -9,6 +9,7 @@ import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
 import Households from "../../components/elements/households";
 import Modal from "../../components/elements/modal";
+import ErrorModal from "../../components/elements/modal/error";
 import api, { SignupFields } from "../../library/api";
 
 const SignUp = () => {
@@ -243,22 +244,11 @@ const SignUp = () => {
           </Modal>
         )}
         {errorModal && (
-          <Modal
-            size="medium"
-            as="div"
-            open
-            onClose={() => setErrorModal(!errorModal)}>
-            <div className="flex flex-col items-center justify-center gap-5 text-center">
-              <span className="mt-5 text-xl font-semibold text-brand">
-                Oops.. {errorMessage} Please Try Again
-              </span>
-              <Button
-                handler={() => setErrorModal(!errorModal)}
-                fill
-                name="Go Back"
-              />
-            </div>
-          </Modal>
+          <ErrorModal
+            onClose={() => setErrorModal(!errorModal)}
+            handler={() => setErrorModal(!errorModal)}
+            errorMessage={errorMessage}
+          />
         )}
       </div>
     </div>
