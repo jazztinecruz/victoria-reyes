@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import Modal from ".";
-import Button from "../button/button";
-import Field from "../field";
+import Button from "../elements/button/button";
+import Field from "../elements/field";
 
 interface Props {
   onClose: any;
@@ -20,14 +20,14 @@ interface Props {
     middleName: string;
     familyName: string;
   }[];
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AddSignatory = ({
   onClose,
   signatories,
   setSignatories,
-  setOpenModal
+  setOpenModal,
 }: Props) => {
   const [newSignatory, setNewSignatory] = useState({
     givenName: "",
@@ -72,10 +72,10 @@ const AddSignatory = ({
           <Button
             name="Update Kapitan"
             fill
-            handler={(event:any) => {
-              event.preventDefault()
+            handler={(event: any) => {
+              event.preventDefault();
               setSignatories([...signatories, newSignatory]);
-              setOpenModal(false)
+              setOpenModal(false);
             }}
           />
         </form>

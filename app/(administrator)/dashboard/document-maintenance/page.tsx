@@ -3,7 +3,7 @@ import { useState } from "react";
 import DeleteDocument from "../../../../components/documents/delete-document";
 import EditDocument from "../../../../components/documents/edit-document";
 import Button from "../../../../components/elements/button/button";
-import AddDocumentModal from "../../../../components/elements/modal/add-document";
+import AddDocumentModal from "../../../../components/modals/add-document";
 import Document from "../../../document";
 
 const DocumentMaintenance = () => {

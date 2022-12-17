@@ -5,7 +5,7 @@ import { Gender } from "@prisma/client";
 import { useState } from "react";
 import Button from "../../../../components/elements/button/button";
 import Field from "../../../../components/elements/field";
-import SuccessfulModal from "../../../../components/elements/modal/sucessful";
+import SuccessfulModal from "../../../../components/modals/sucessful";
 import { SignupFields } from "../../../../library/api";
 
 const Form = () => {

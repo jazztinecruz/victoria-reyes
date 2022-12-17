@@ -1,8 +1,8 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Modal from ".";
-import Button from "../button/button";
-import Field from "../field";
+import Button from "../elements/button/button";
+import Field from "../elements/field";
 
 interface Props {
   openModal: boolean;

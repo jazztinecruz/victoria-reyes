@@ -2,9 +2,9 @@
 
 import React, { Dispatch, SetStateAction, useState } from "react";
 import Modal from ".";
-import { SigninFields } from "../../../library/api";
-import Button from "../button/button";
-import Field from "../field";
+import { SigninFields } from "../../library/api";
+import Button from "../elements/button/button";
+import Field from "../elements/field";
 
 interface Props {
   forgotPasswordModal: boolean;

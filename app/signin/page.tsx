@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
-import ErrorModal from "../../components/elements/modal/error";
-import ForgotPassword from "../../components/elements/modal/forgot-password";
-import SuccessfulModal from "../../components/elements/modal/sucessful";
+import ErrorModal from "../../components/modals/error";
+import ForgotPassword from "../../components/modals/forgot-password";
+import SuccessfulModal from "../../components/modals/sucessful";
 import api, { SigninFields } from "../../library/api";
 
 const UserLogin = () => {
@@ -145,7 +145,7 @@ const UserLogin = () => {
               fill
               handler={() => {
                 setOpenSuccessfulModal(!openSuccessfulModal);
-                setForgotPasswordModal(!forgotPasswordModal)
+                setForgotPasswordModal(!forgotPasswordModal);
               }}
             />
           </div>

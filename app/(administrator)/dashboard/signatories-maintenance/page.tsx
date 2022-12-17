@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Button from "../../../../components/elements/button/button";
-import AddSignatory from "../../../../components/elements/modal/add-signatory";
+import AddSignatory from "../../../../components/modals/add-signatory";
 import Table from "../../../../components/table";
 
 const SignatoriesMaintenance = () => {

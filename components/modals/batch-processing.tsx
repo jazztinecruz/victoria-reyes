@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Modal from ".";
-import Button from "../button/button";
+import Button from "../elements/button/button";
 
 const BatchProcessingModal = () => {
   const [openModal, setOpenModal] = useState(false);

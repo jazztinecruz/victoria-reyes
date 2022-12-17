@@ -3,7 +3,7 @@ import database from "../../../../library/database";
 import Table from "../../../../components/table";
 import { use } from "react";
 import Status from "../../../../components/dropdowns/status";
-import BatchProcessingModal from "../../../../components/elements/modal/batch-processing";
+import BatchProcessingModal from "../../../../components/modals/batch-processing";
 
 const getUsers = async () => {
   const users = await database.user.findMany({

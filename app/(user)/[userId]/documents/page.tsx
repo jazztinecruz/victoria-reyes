@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import ConfirmedDocumentrequest from "../../../../components/elements/modal/confirmed-request";
-import RequestDocument from "../../../../components/elements/modal/request-document";
+import ConfirmedDocumentrequest from "../../../../components/modals/confirmed-request";
+import RequestDocument from "../../../../components/modals/request-document";
 
 const Documents = () => {
   const [openRequestModal, setOpenRequestModal] = useState(false);

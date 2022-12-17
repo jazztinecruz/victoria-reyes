@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import Modal from ".";
-import Button from "../button/button";
-import Field from "../field";
+import Button from "../elements/button/button";
+import Field from "../elements/field";
 
 interface Props {
   openAddModal: boolean;

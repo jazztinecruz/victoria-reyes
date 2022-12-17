@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Table from "../../../../components/table";
 import Button from "../../../../components/elements/button/button";
-import AddTransaction from "../../../../components/elements/modal/add-transaction";
+import AddTransaction from "../../../../components/modals/add-transaction";
 
 const PaymentMaintenance = () => {
   const [openModal, setOpenModal] = useState(false);

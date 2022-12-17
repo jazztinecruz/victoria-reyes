@@ -1,5 +1,5 @@
 import Modal from ".";
-import Button from "../button/button";
+import Button from "../elements/button/button";
 
 interface Props {
   onClose: any;

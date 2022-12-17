@@ -8,9 +8,9 @@ import { useState } from "react";
 import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
 import Households from "../../components/elements/households";
-import Modal from "../../components/elements/modal";
-import ErrorModal from "../../components/elements/modal/error";
-import SuccessfulModal from "../../components/elements/modal/sucessful";
+import Modal from "../../components/modals";
+import ErrorModal from "../../components/modals/error";
+import SuccessfulModal from "../../components/modals/sucessful";
 import api, { SignupFields } from "../../library/api";
 
 const SignUp = () => {

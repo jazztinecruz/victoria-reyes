@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SignupFields } from "../../library/api";
 import { Gender, User } from "@prisma/client";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
-import Modal from "../elements/modal";
+import Modal from "../modals";
 import Field from "../elements/field";
 import Image from "next/image";
 import Button from "../elements/button/button";
