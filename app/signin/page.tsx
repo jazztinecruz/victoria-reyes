@@ -4,14 +4,20 @@ import { ArrowLeftOnRectangleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
-import Modal from "../../components/elements/modal";
+import ErrorModal from "../../components/elements/modal/error";
+import ForgotPassword from "../../components/elements/modal/forgot-password";
+import SuccessfulModal from "../../components/elements/modal/sucessful";
 import api, { SigninFields } from "../../library/api";
 
 const UserLogin = () => {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState({
+    signin: "",
+    forgotPassword: "",
+  });
   const [errorModal, setErrorModal] = useState(false);
+  const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
+  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
   const [fields, setFields] = useState<SigninFields>({
     email: "",
     password: "",
@@ -25,7 +31,7 @@ const UserLogin = () => {
       router.push(`/${response.data.userId}/profile`);
     }
     if (response.status !== 200) {
-      setErrorMessage(response.data.message);
+      setErrorMessage({ ...errorMessage, signin: response.data.message });
       setErrorModal(!errorModal);
     }
   };
@@ -47,7 +53,7 @@ const UserLogin = () => {
               <Field.Textbox
                 label="Email Address"
                 name="email"
-                required={true}
+                required
                 onChange={setFields}
               />
 
@@ -55,14 +61,16 @@ const UserLogin = () => {
                 label="Password"
                 name="password"
                 type="password"
-                required={true}
+                required
                 onChange={setFields}
               />
               <div id="button" className="my-5 flex w-full flex-col">
                 <button
                   type="button"
-                  onClick={(event) => {
-                    handleSubmit();
+                  onClick={() => {
+                    if (fields.email !== "" && fields.password !== "") {
+                      handleSubmit();
+                    }
                   }}
                   className="w-full rounded-md bg-brand py-4 text-green-100 transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
                   <div className="flex flex-row items-center justify-center gap-3">
@@ -71,15 +79,25 @@ const UserLogin = () => {
                   </div>
                 </button>
 
-                <Link href="/signup">
-                  <div className="relative mt-10 h-px bg-gray-300">
-                    <div className="absolute left-0 top-0 -mt-2 flex w-full justify-center">
-                      <span className="bg-white px-4 text-xs uppercase text-gray-400">
+                <div className="relative mt-10 h-px bg-gray-300">
+                  <div className="absolute left-0 top-0 -mt-3 flex w-full items-center justify-center">
+                    <Link href="/signup">
+                      <span className="-mr-4 bg-white px-4 text-xs uppercase text-gray-400 hover:text-brand">
                         Don't have an account yet?
                       </span>
-                    </div>
+                    </Link>
+                    <span className="bg-white px-4 text-xs uppercase text-gray-400">
+                      OR
+                    </span>
+                    <button
+                      onClick={() =>
+                        setForgotPasswordModal(!forgotPasswordModal)
+                      }
+                      className="-ml-4 cursor-pointer bg-white px-4 text-xs uppercase text-gray-400 hover:text-brand">
+                      Forgot Password
+                    </button>
                   </div>
-                </Link>
+                </div>
               </div>
             </form>
           </div>
@@ -87,22 +105,40 @@ const UserLogin = () => {
       </div>
 
       {errorModal && (
-        <Modal
-          size="medium"
-          as="div"
-          open
-          onClose={() => setErrorModal(!errorModal)}>
-          <div className="flex flex-col items-center justify-center gap-5 text-center">
-            <span className="mt-5 text-xl font-semibold text-brand">
-              Oops.. {errorMessage} Please Try Again
-            </span>
-            <Button
-              handler={() => setErrorModal(!errorModal)}
-              fill
-              name="Go Back"
-            />
-          </div>
-        </Modal>
+        <ErrorModal
+          onClose={() => setErrorModal(!errorModal)}
+          handler={() => setErrorModal(!errorModal)}
+          errorMessage={errorMessage.signin}
+        />
+      )}
+
+      {forgotPasswordModal && (
+        <ForgotPassword
+          fields={fields}
+          setFields={setFields}
+          forgotPasswordModal={forgotPasswordModal}
+          setForgotPasswordModal={setForgotPasswordModal}
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+          setSuccessfulModal={setOpenSuccessfulModal}
+        />
+      )}
+
+      {openSuccessfulModal && (
+        <SuccessfulModal
+          onClose={() => setOpenSuccessfulModal(!openSuccessfulModal)}
+          handler={() => {
+            setOpenSuccessfulModal(false);
+            setForgotPasswordModal(false);
+          }}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You've succesfully exchanged you password!
+          </span>
+          <span className="text-gray mb-4">
+            You can now re-login your forgotPasswordFields with your new
+            password
+          </span>
+        </SuccessfulModal>
       )}
     </section>
   );
