@@ -4,6 +4,7 @@ import { ArrowLeftOnRectangleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
 import ErrorModal from "../../components/elements/modal/error";
 import ForgotPassword from "../../components/elements/modal/forgot-password";
@@ -138,6 +139,12 @@ const UserLogin = () => {
             You can now re-login your forgotPasswordFields with your new
             password
           </span>
+          <div className="z-50 cursor-pointer">
+            <Button
+              name="Go Back"
+              handler={() => setOpenSuccessfulModal(!openSuccessfulModal)}
+            />
+          </div>
         </SuccessfulModal>
       )}
     </section>

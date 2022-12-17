@@ -3,6 +3,7 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Gender } from "@prisma/client";
 import { useState } from "react";
+import Button from "../../../../components/elements/button/button";
 import Field from "../../../../components/elements/field";
 import SuccessfulModal from "../../../../components/elements/modal/sucessful";
 import { SignupFields } from "../../../../library/api";
@@ -158,6 +159,12 @@ const Form = () => {
           <span className="text-gray mb-4">
             You can now provide their account credentials
           </span>
+          <div className="z-50 cursor-pointer">
+            <Button
+              name="Go Back"
+              handler={() => setSuccessfulModal(!sucessfulModal)}
+            />
+          </div>
         </SuccessfulModal>
       )}
     </>

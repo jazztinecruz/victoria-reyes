@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import Modal from ".";
-import Button from "../button/button";
 
 interface Props {
   onClose: any;
@@ -21,12 +20,7 @@ const SuccessfulModal = ({ onClose, handler, children }: Props) => {
             className="-z-50 h-auto w-full object-cover"
           />
         </div>
-
         {children}
-
-        <div className="z-50 cursor-pointer">
-          <Button name="Go Back" fill handler={handler} />
-        </div>
       </div>
     </Modal>
   );

@@ -228,6 +228,10 @@ const SignUp = () => {
             <span className="text-gray mb-4">
               Ready to login your account for the first time?
             </span>
+            <div className="flex items-center gap-4 z-50 cursor-pointer">
+              <Button name="Go Back" handler={() => setSuccessfulModal(!sucessfulModal)} />
+              <Button name="Login my Account" fill/>
+            </div>
           </SuccessfulModal>
         )}
 
