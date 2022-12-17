@@ -12,7 +12,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
-import { CircleStackIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
+import { CircleStackIcon, DocumentTextIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = {
@@ -67,6 +67,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         name: "Payments",
         href: "/dashboard/payment-maintenance",
         Icon: CircleStackIcon,
+      },
+      {
+        name: "Signatories",
+        href: "/dashboard/signatories-maintenance",
+        Icon: UserCircleIcon,
       },
     ],
   };
