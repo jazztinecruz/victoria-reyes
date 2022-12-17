@@ -142,7 +142,11 @@ const UserLogin = () => {
           <div className="z-50 cursor-pointer">
             <Button
               name="Go Back"
-              handler={() => setOpenSuccessfulModal(!openSuccessfulModal)}
+              fill
+              handler={() => {
+                setOpenSuccessfulModal(!openSuccessfulModal);
+                setForgotPasswordModal(!forgotPasswordModal)
+              }}
             />
           </div>
         </SuccessfulModal>
