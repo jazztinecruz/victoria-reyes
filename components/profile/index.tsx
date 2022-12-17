@@ -38,7 +38,7 @@ const Profile = ({ user }: Props) => {
     <div className="grid gap-10">
       {/* profile quick info */}
       <div className="flex flex-col items-start gap-6 text-left tablet:flex-row">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col">
           <span className="text-lg tracking-wide">
             {user.givenName} {user.familyName}
           </span>
