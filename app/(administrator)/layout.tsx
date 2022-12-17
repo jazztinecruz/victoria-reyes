@@ -7,11 +7,16 @@ import {
   UserPlusIcon,
   PresentationChartLineIcon,
   CheckCircleIcon,
-  BellIcon, 
-  ArrowLeftOnRectangleIcon
+  BellIcon,
+  ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
+import {
+  CircleStackIcon,
+  DocumentTextIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = {
@@ -25,11 +30,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         name: "Requests",
         href: "/dashboard/requests",
         Icon: DocumentDuplicateIcon,
-      },
-      {
-        name: "Verifcations",
-        href: "/dashboard/verifications",
-        Icon: CheckCircleIcon,
       },
     ],
     statistics: [
@@ -51,10 +51,32 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         Icon: UserPlusIcon,
       },
       {
+        name: "Verifications",
+        href: "/dashboard/verifications",
+        Icon: CheckCircleIcon,
+      },
+    ],
+    maintenance: [
+      {
+        name: "Documents",
+        href: "/dashboard/document-maintenance",
+        Icon: DocumentTextIcon,
+      },
+      {
+        name: "Payments",
+        href: "/dashboard/payment-maintenance",
+        Icon: CircleStackIcon,
+      },
+      {
+        name: "Signatories",
+        href: "/dashboard/signatories-maintenance",
+        Icon: UserCircleIcon,
+      },
+      {
         name: "Logout",
         href: "/",
         Icon: ArrowLeftOnRectangleIcon,
-      }
+      },
     ],
   };
 
@@ -87,6 +109,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             <Links name="Resident" list={links.residents} />
             <Links name="Statistic" list={links.statistics} />
             <Links name="Administrator" list={links.administrator} />
+            <Links name="Maintenance" list={links.maintenance} />
           </nav>
           {/* Burger Menu */}
           <Burger />

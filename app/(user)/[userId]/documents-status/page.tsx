@@ -1,6 +1,5 @@
 import moment from "moment";
-import { use } from "react";
-import Table from "../../../../components/dashboard/sections/table";
+import Table from "../../../../components/table";
 import database from "../../../../library/database";
 
 const getUser = async (id: string) => {
@@ -8,7 +7,7 @@ const getUser = async (id: string) => {
   return user!;
 };
 
-const DocumentStatus = async ({params}:any) => {
+const DocumentStatus = async ({ params }: any) => {
   const user = await getUser(params.userId);
 
   const fields = [
@@ -19,6 +18,7 @@ const DocumentStatus = async ({params}:any) => {
     "Request Date",
     "Amount",
     "Status",
+    "Processing Days",
   ];
 
   return (
@@ -32,14 +32,15 @@ const DocumentStatus = async ({params}:any) => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          <Table.Row key="1">
-            <Table.Data value={user.id}/>
+          <Table.Row>
+            <Table.Data value={1} />
             <Table.Data value={user.id} />
-            <Table.Data value={user.givenName + " " + user.familyName}/>
+            <Table.Data value={user.givenName + " " + user.familyName} />
             <Table.Data value="Barangay Clearance" />
             <Table.Data value={moment(user.birthdate).format("LL")} />
             <Table.Data value="50.00" />
             <Table.Data value="PENDING" />
+            <Table.Data value="1-2 Days" />
           </Table.Row>
         </Table.Body>
       </Table.Main>

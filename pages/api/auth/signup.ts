@@ -39,7 +39,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         password: crypto.encrypt(password),
         birthdate: new Date(body.birthdate),
         address: {
-          create: { street: body.address.street },
+          create: { street: 'street one' },
         },
         households: {
           create: body.households.map((household) => {

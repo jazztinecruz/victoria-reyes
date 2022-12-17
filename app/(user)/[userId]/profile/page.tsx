@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../../../../components/user-profile";
+import Profile from "../../../../components/profile";
 import database from "../../../../library/database";
 
 const getUser = async (id: string) => {
@@ -9,9 +9,9 @@ const getUser = async (id: string) => {
 
 const UserProfile = async ({ params }: any) => {
   const user = await getUser(params.userId);
-  console.log(user)
+  console.log(user);
 
-  return <Profile user={user}/>;
+  return <Profile user={user} />;
 };
 
-export default UserProfile
+export default UserProfile;

@@ -52,7 +52,7 @@ const DocumentsLayout = ({ children, params }: Props) => {
                 className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow">
                 {links.user.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-black">
+                    <Link href={link.href} className="text-black hover:text-brand">
                       {link.name}
                     </Link>
                   </li>
