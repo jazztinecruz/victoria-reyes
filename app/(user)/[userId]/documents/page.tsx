@@ -38,6 +38,9 @@ const Documents = () => {
             <div className="card-body gap-6">
               <h2 className="card-title justify-center">{document.name}</h2>
               <p>{document.description}</p>
+              <span className="text-xs text-gray-500">
+                Approved by Kapitan Lorem
+              </span>
               <div className="card-actions justify-center">
                 <button
                   onClick={() => setOpenRequestModal(!openRequestModal)}
