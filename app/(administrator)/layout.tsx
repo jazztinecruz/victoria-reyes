@@ -12,7 +12,11 @@ import {
 } from "@heroicons/react/24/solid";
 import Links from "./links";
 import Burger from "./burger";
-import { CircleStackIcon, DocumentTextIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+import {
+  CircleStackIcon,
+  DocumentTextIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = {
@@ -51,11 +55,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         href: "/dashboard/verifications",
         Icon: CheckCircleIcon,
       },
-      {
-        name: "Logout",
-        href: "/",
-        Icon: ArrowLeftOnRectangleIcon,
-      },
     ],
     maintenance: [
       {
@@ -72,6 +71,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         name: "Signatories",
         href: "/dashboard/signatories-maintenance",
         Icon: UserCircleIcon,
+      },
+      {
+        name: "Logout",
+        href: "/",
+        Icon: ArrowLeftOnRectangleIcon,
       },
     ],
   };
