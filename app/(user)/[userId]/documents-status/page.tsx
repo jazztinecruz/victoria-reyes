@@ -32,8 +32,8 @@ const DocumentStatus = async ({ params }: any) => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          <Table.Row key="1">
-            <Table.Data value={user.id} />
+          <Table.Row>
+            <Table.Data value={1} />
             <Table.Data value={user.id} />
             <Table.Data value={user.givenName + " " + user.familyName} />
             <Table.Data value="Barangay Clearance" />
