@@ -223,13 +223,14 @@ const SignUp = () => {
               setSuccessfulModal(false);
             }}>
             <span className="mt-5 text-xl font-semibold text-brand">
-              You've succesfully exchanged you password!
+              You've succesfully created your account!
             </span>
             <span className="text-gray mb-4">
               Ready to login your account for the first time?
             </span>
           </SuccessfulModal>
         )}
+
         {errorModal && (
           <ErrorModal
             onClose={() => setErrorModal(!errorModal)}

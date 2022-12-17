@@ -2,12 +2,9 @@
 
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Gender } from "@prisma/client";
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
-import Button from "../../../../components/elements/button/button";
 import Field from "../../../../components/elements/field";
-import Modal from "../../../../components/elements/modal";
+import SuccessfulModal from "../../../../components/elements/modal/sucessful";
 import { SignupFields } from "../../../../library/api";
 
 const Form = () => {
@@ -150,32 +147,18 @@ const Form = () => {
       </form>
 
       {sucessfulModal && (
-        <Modal
-          size="medium"
-          as="div"
-          open
-          onClose={() => setSuccessfulModal(!sucessfulModal)}>
-          <div className="flex flex-col items-center justify-center gap-5 text-center">
-            <div className="absolute top-0 bottom-0 left-0 right-0 z-50 h-full w-full">
-              <Image
-                alt="login secure illustration"
-                src="/images/confetti.webp"
-                fill={true}
-                className="-z-50 h-auto w-full object-cover"
-              />
-            </div>
-            <span className="mt-5 text-xl font-semibold text-brand">
-              You've succesfully created your account!
-            </span>
-            <span className="text-gray mb-4">
-              Ready to login your account for the first time?
-            </span>
-
-            <Link href="/signin">
-              <Button name="Login my account" />
-            </Link>
-          </div>
-        </Modal>
+        <SuccessfulModal
+          onClose={() => setSuccessfulModal(!sucessfulModal)}
+          handler={() => {
+            setSuccessfulModal(false);
+          }}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You've succesfully created an account!
+          </span>
+          <span className="text-gray mb-4">
+            You can now provide their account credentials
+          </span>
+        </SuccessfulModal>
       )}
     </>
   );
