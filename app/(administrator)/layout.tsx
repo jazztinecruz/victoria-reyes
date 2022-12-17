@@ -60,12 +60,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     maintenance: [
       {
         name: "Documents",
-        href: "/dashboard/documents-maintenance",
+        href: "/dashboard/document-maintenance",
         Icon: DocumentTextIcon,
       },
       {
         name: "Payments",
-        href: "/dashboard/payments-maintenance",
+        href: "/dashboard/payment-maintenance",
         Icon: CircleStackIcon,
       },
     ],

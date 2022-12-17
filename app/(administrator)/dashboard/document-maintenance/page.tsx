@@ -7,7 +7,7 @@ import Field from "../../../../components/elements/field";
 import Modal from "../../../../components/elements/modal";
 import Document from "../../../document";
 
-const DocumentsMaintenance = () => {
+const DocumentMaintenance = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
   const initialValue = {
     id: 0,
@@ -131,4 +131,4 @@ const DocumentsMaintenance = () => {
   );
 };
 
-export default DocumentsMaintenance;
+export default DocumentMaintenance;
