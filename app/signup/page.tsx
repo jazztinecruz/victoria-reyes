@@ -87,12 +87,7 @@ const SignUp = () => {
           requesting your barangay documents.
         </p>
 
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            handleSubmit();
-          }}
-          className="mt-10 flex flex-col gap-6 tablet:grid tablet:grid-cols-2">
+        <form className="mt-10 flex flex-col gap-6 tablet:grid tablet:grid-cols-2">
           <Field.Textbox
             label="First Name"
             name="givenName"
@@ -209,7 +204,12 @@ const SignUp = () => {
             <Households />
           </div>
 
-          <button className="mt-10 flex w-full transform items-center justify-between rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              handleSubmit();
+            }}
+            className="mt-10 flex w-full transform items-center justify-between rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
             <span className="text-md">Create my Account</span>
 
             <ChevronRightIcon className="h-5 w-5 text-white" />
@@ -228,9 +228,14 @@ const SignUp = () => {
             <span className="text-gray mb-4">
               Ready to login your account for the first time?
             </span>
-            <div className="flex items-center gap-4 z-50 cursor-pointer">
-              <Button name="Go Back" handler={() => setSuccessfulModal(!sucessfulModal)} />
-              <Button name="Login my Account" fill/>
+            <div className="z-50 flex cursor-pointer items-center gap-4">
+              <Button
+                name="Go Back"
+                handler={() => setSuccessfulModal(!sucessfulModal)}
+              />
+              <Link href="/signin">
+                <Button name="Login my Account" fill />
+              </Link>
             </div>
           </SuccessfulModal>
         )}
