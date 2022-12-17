@@ -4,10 +4,14 @@ import { ArrowLeftOnRectangleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
+import Modal from "../../components/elements/modal";
 import api, { SigninFields } from "../../library/api";
 
 const UserLogin = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errorModal, setErrorModal] = useState(false);
   const [fields, setFields] = useState<SigninFields>({
     email: "",
     password: "",
@@ -19,6 +23,10 @@ const UserLogin = () => {
     const response = await api.signin(fields);
     if (response.status === 200) {
       router.push(`/${response.data.userId}/profile`);
+    }
+    if (response.status !== 200) {
+      setErrorMessage(response.data.message);
+      setErrorModal(!errorModal);
     }
   };
 
@@ -77,6 +85,25 @@ const UserLogin = () => {
           </div>
         </div>
       </div>
+
+      {errorModal && (
+        <Modal
+          size="medium"
+          as="div"
+          open
+          onClose={() => setErrorModal(!errorModal)}>
+          <div className="flex flex-col items-center justify-center gap-5 text-center">
+            <span className="mt-5 text-xl font-semibold text-brand">
+              Oops.. {errorMessage} Please Try Again
+            </span>
+            <Button
+              handler={() => setErrorModal(!errorModal)}
+              fill
+              name="Go Back"
+            />
+          </div>
+        </Modal>
+      )}
     </section>
   );
 };
