@@ -10,6 +10,7 @@ import Field from "../../components/elements/field";
 import Households from "../../components/elements/households";
 import Modal from "../../components/elements/modal";
 import ErrorModal from "../../components/elements/modal/error";
+import SuccessfulModal from "../../components/elements/modal/sucessful";
 import api, { SignupFields } from "../../library/api";
 
 const SignUp = () => {
@@ -216,32 +217,18 @@ const SignUp = () => {
         </form>
 
         {sucessfulModal && (
-          <Modal
-            size="medium"
-            as="div"
-            open
-            onClose={() => setSuccessfulModal(!sucessfulModal)}>
-            <div className="flex flex-col items-center justify-center gap-5 text-center">
-              <div className="absolute top-0 bottom-0 left-0 right-0 z-50 h-full w-full">
-                <Image
-                  alt="login secure illustration"
-                  src="/images/confetti.webp"
-                  fill
-                  className="-z-50 h-auto w-full object-cover"
-                />
-              </div>
-              <span className="mt-5 text-xl font-semibold text-brand">
-                You've succesfully created your account!
-              </span>
-              <span className="text-gray mb-4">
-                Ready to login your account for the first time?
-              </span>
-
-              <Link href="/signin" className="z-50">
-                <Button name="Login my Account" fill />
-              </Link>
-            </div>
-          </Modal>
+          <SuccessfulModal
+            onClose={() => setSuccessfulModal(!sucessfulModal)}
+            handler={() => {
+              setSuccessfulModal(false);
+            }}>
+            <span className="mt-5 text-xl font-semibold text-brand">
+              You've succesfully exchanged you password!
+            </span>
+            <span className="text-gray mb-4">
+              Ready to login your account for the first time?
+            </span>
+          </SuccessfulModal>
         )}
         {errorModal && (
           <ErrorModal
