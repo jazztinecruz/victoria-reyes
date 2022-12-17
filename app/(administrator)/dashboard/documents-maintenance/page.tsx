@@ -1,5 +1,4 @@
 "use client";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import DeleteDocument from "../../../../components/dashboard/documents/delete-document";
 import EditDocument from "../../../../components/dashboard/documents/edit-document";
@@ -10,14 +9,12 @@ import Document from "../../../document";
 
 const DocumentsMaintenance = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
-  const [edit, setEdit] = useState(false);
   const initialValue = {
     id: 0,
     name: "",
     description: "",
   };
   const [document, setDocument] = useState(initialValue);
-  const [editedValue, setEditedValue] = useState(document);
   const [documents, setDocuments] = useState([
     {
       id: 1,
