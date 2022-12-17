@@ -3,8 +3,7 @@ import database from "../../../../library/database";
 import Table from "../../../../components/table";
 import { use } from "react";
 import Status from "../../../../components/dropdowns/status";
-import Households from "../../../../components/dropdowns/households";
-import Button from "../../../../components/elements/button/button";
+import BatchProcessingModal from "../../../../components/elements/modal/batch-processing";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
@@ -45,10 +44,7 @@ const DashboardRequestsPage = () => {
 
   return (
     <div className="space-section">
-      {/* button */}
-      <div className="mr-auto">
-        <Button name="Batch Process" fill />
-      </div>
+      <BatchProcessingModal />
       <Table.Main name="List of Requests">
         <Table.Head>
           <Table.Row heading>
