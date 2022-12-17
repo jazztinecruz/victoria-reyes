@@ -35,7 +35,7 @@ const BatchProcessingModal = () => {
               <Button
                 handler={() => setOpenModal(!openModal)}
                 fill
-                name="Continue"
+                name="Print All"
               />
             </div>
           </div>
