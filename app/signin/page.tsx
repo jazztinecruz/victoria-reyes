@@ -27,13 +27,56 @@ const UserLogin = () => {
   const router = useRouter();
 
   const handleSubmit = async () => {
-    const response = await api.signin(fields);
-    if (response.status === 200) {
-      router.push(`/${response.data.userId}/profile`);
+    let isValid = true;
+
+    // validation for email
+    if (!fields.email && fields.password) {
+      setErrorMessage({ ...errorMessage, signin: "Email cannot be blank." });
+      setErrorModal(true);
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(fields.email)) {
+      setErrorMessage({
+        ...errorMessage,
+        signin: "Please enter a valid Email Address.",
+      });
+      setErrorModal(true);
+      isValid = false;
     }
-    if (response.status !== 200) {
-      setErrorMessage({ ...errorMessage, signin: response.data.message });
-      setErrorModal(!errorModal);
+
+    // validation for password
+    if (!fields.password && fields.email) {
+      setErrorMessage({ ...errorMessage, signin: "Password cannot be blank." });
+      setErrorModal(true);
+      isValid = false;
+    } else if (fields.password.length < 5) {
+      setErrorMessage({
+        ...errorMessage,
+        signin: "Password must contain more than 5 characters.",
+      });
+      setErrorModal(true);
+      isValid = false;
+    }
+
+    // if both email and pass valdiation
+    if (!fields.password && !fields.email) {
+      setErrorMessage({
+        ...errorMessage,
+        signin: "Email and Password cannot be blank.",
+      });
+      setErrorModal(true);
+      isValid = false;
+    }
+
+    if (isValid) {
+      setErrorMessage({ ...errorMessage, signin: "" });
+      const response = await api.signin(fields);
+      if (response.status === 200) {
+        router.push(`/${response.data.userId}/profile`);
+      }
+      if (response.status !== 200) {
+        setErrorMessage({ ...errorMessage, signin: response.data.message });
+        setErrorModal(!errorModal);
+      }
     }
   };
 
@@ -43,7 +86,6 @@ const UserLogin = () => {
       <Link href="/">
         <XMarkIcon className="absolute right-10 top-4 h-6 w-6 cursor-pointer hover:animate-spin" />
       </Link>
-
       <div className="flex h-screen items-center justify-center">
         <div className="mx-auto grid h-full w-full place-items-center tablet:mx-0 tablet:w-full laptop:w-2/5 laptop:pr-20">
           <div className="flex w-full flex-col rounded-xl bg-white p-10 shadow-xl">
@@ -68,11 +110,7 @@ const UserLogin = () => {
               <div id="button" className="my-5 flex w-full flex-col">
                 <button
                   type="button"
-                  onClick={() => {
-                    if (fields.email !== "" && fields.password !== "") {
-                      handleSubmit();
-                    }
-                  }}
+                  onClick={() => handleSubmit()}
                   className="w-full rounded-md bg-brand py-4 text-green-100 transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
                   <div className="flex flex-row items-center justify-center gap-3">
                     <ArrowLeftOnRectangleIcon className="h-6 w-6 text-white" />
