@@ -27,7 +27,6 @@ const PaymentMaintenance = () => {
           handler={() => setOpenModal(!openModal)}
         />
       </div>
-
       {/* table */}
       <div className="w-full">
         <Table.Main name="Transaction History">
@@ -51,6 +50,8 @@ const PaymentMaintenance = () => {
           </Table.Body>
         </Table.Main>
       </div>
+
+      <span className="font-semibold">Total Payment: 1000.00</span>
 
       {/* modal */}
       {openModal && (
