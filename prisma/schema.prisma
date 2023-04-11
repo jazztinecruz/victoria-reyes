@@ -26,9 +26,20 @@ model User {
   voter      Boolean
   address    Address?
   households Household[]
+  requests   Request[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Request {
+  id       String   @id @default(cuid())
+  price    Int
+  status   Status   @default(PENDING)
+  document Document
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String?
 }
 
 model Household {
@@ -65,6 +76,13 @@ model Address {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
+}
+
+enum Document {
+  BARANGAY_CLEARANCE
+  BARANGAY_INDIGENCY
+  BARANGAY_ID
+  CEDULA
 }
 
 enum Gender {
