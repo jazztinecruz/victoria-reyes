@@ -302,7 +302,7 @@ const HomePage = () => {
         </p>
       </div>
 
-      {/* documents section */}
+      {/* documents section
       <div
         id="documents"
         className=" relative h-full laptop:mt-14 laptop:h-screen">
@@ -315,7 +315,7 @@ const HomePage = () => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* features */}
       <div id="features" className="mt-14 h-full w-full laptop:mt-0">
