@@ -7,10 +7,11 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   }
   const body = JSON.parse(request.body);
   try {
-    const document = await database.request.create({
+    const document = await database.document.create({
       data: {
-        userId: body.userId,
-        document: body.document,
+        title: body.title,
+        description: body.description,
+        price: body.price,
       },
     });
     return response.status(201).send(document);

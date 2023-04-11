@@ -5,7 +5,7 @@ type Props = {
   label: string;
   name: string;
   value?: any;
-  defaultValue?: string;
+  defaultValue?: string | number;
   placeholder?: string;
   valid?: boolean;
   focus?: boolean;

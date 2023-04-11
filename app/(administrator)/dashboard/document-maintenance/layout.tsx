@@ -1,4 +1,4 @@
-import Breadcrumbs from "./breadcrumbs";
+import Breadcrumbs from "../breadcrumbs";
 
 export const revalidate = 10;
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
