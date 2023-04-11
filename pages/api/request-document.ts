@@ -10,7 +10,6 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
     const document = await database.request.create({
       data: {
         userId: body.userId,
-        price: body.price,
         document: body.document,
       },
     });

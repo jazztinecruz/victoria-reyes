@@ -12,7 +12,6 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         id: body.documentId,
       },
       data: {
-        price: body.price,
         status: body.status,
       },
     });
