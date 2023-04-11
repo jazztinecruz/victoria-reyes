@@ -33,13 +33,21 @@ model User {
 }
 
 model Request {
-  id       String   @id @default(cuid())
-  price    Int
-  status   Status   @default(PENDING)
-  document Document
+  id       String    @id @default(cuid())
+  status   Status    @default(PENDING)
+  document Document? @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
-  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String?
+  user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String?
+  documentId String?
+}
+
+model Document {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  price       Int
+  requests    Request[]
 }
 
 model Household {
@@ -76,13 +84,6 @@ model Address {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
-}
-
-enum Document {
-  BARANGAY_CLEARANCE
-  BARANGAY_INDIGENCY
-  BARANGAY_ID
-  CEDULA
 }
 
 enum Gender {
