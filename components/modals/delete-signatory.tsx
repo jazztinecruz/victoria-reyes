@@ -47,7 +47,7 @@ const DeleteSignatory = ({ signatory }: Props) => {
           onClose={() => setOpenModal(false)}
           handler={() => setOpenModal(false)}>
           <span className="mt-5 text-xl font-semibold text-brand">
-            You've succesfully deleted a signatory!
+            You&apos;ve succesfully deleted a signatory!
           </span>
           <span className="text-gray">You can add more in the future.</span>
           <div className="z-50">
