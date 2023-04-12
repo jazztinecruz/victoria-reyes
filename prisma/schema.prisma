@@ -86,6 +86,13 @@ model Address {
   userId String @unique
 }
 
+model Signatory {
+  id String @id @default(cuid())
+  firstName String
+  middleName String
+  lastName String
+}
+
 enum Gender {
   MALE
   FEMALE
