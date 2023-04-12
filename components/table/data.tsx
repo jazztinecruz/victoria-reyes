@@ -1,5 +1,5 @@
 type Props = {
-  value: string | number | boolean | null;
+  value: string | number | boolean | null | React.ReactNode;
 };
 
 const Data = ({ value }: Props) => {
