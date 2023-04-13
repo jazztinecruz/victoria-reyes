@@ -87,10 +87,10 @@ model Address {
 }
 
 model Signatory {
-  id String @id @default(cuid())
-  firstName String
+  id         String @id @default(cuid())
+  firstName  String
   middleName String
-  lastName String
+  lastName   String
 }
 
 enum Gender {
