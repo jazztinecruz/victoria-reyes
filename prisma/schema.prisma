@@ -124,9 +124,4 @@ enum Relationship {
 enum Status {
   PENDING
   APPROVED
-  PAYMENT
-  PROCESSING
-  READY
-  CLOSED
-  REJECTED
 }
