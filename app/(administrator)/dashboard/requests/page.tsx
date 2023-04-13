@@ -1,7 +1,7 @@
 import database from "../../../../library/database";
 import Table from "../../../../components/table";
 import { use } from "react";
-import Status from "../../../../components/dropdowns/status";
+import Status from "../../../../components/modals/status";
 import BatchProcessingModal from "../../../../components/modals/batch-processing";
 
 const getRequests = async () => {
