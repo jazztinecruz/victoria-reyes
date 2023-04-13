@@ -10,7 +10,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
     const document = await database.request.create({
       data: {
         userId: body.userId,
-        document: body.document,
+        documentId: body.documentId,
       },
     });
     return response.status(201).send(document);
