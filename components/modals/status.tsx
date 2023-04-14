@@ -15,11 +15,7 @@ const Status = ({ requestId }: Props) => {
     });
   };
 
-  return (
-    <div className="relative">
-      <Button fill name="Approve" handler={handleApproveRequest} />
-    </div>
-  );
+  return <Button fill name="Approve" handler={handleApproveRequest} />;
 };
 
 export default Status;
