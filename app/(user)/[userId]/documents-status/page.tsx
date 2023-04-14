@@ -1,20 +1,22 @@
-import moment from "moment";
-import { use } from "react";
 import Table from "../../../../components/table";
 import database from "../../../../library/database";
 
-const getRequests = async () => {
-  const requests = await database.request.findMany({
+const getUser = async (id: string) => {
+  const user = await database.user.findUnique({
+    where: { id },
     include: {
-      user: true,
-      document: true,
+      requests: {
+        include: {
+          document: true,
+        },
+      },
     },
   });
-  return requests;
+  return user!;
 };
 
-const DocumentStatus = () => {
-  const requests = use(getRequests());
+const DocumentStatus = async ({ params }: any) => {
+  const user = await getUser(params.userId);
 
   const headers = [
     "No.",
@@ -40,16 +42,17 @@ const DocumentStatus = () => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {requests.map((request, index) => (
+          {user.requests.map((request, index) => (
             <Table.Row key={request.id}>
               <Table.Data value={index + 1} />
               <Table.Data value={request.documentId} />
               <Table.Data value={request.document?.title} />
               <Table.Data value={request.document?.price} />
               <Table.Data value={request.status} />
-              <Table.Data value={request!.user!.id} />
-              <Table.Data value={request!.user!.givenName} />
-              <Table.Data value={request!.user!.middleName} />
+              <Table.Data value={user.id} />
+              <Table.Data value={user!.givenName} />
+              <Table.Data value={user!.middleName} />
+              <Table.Data value={user!.givenName} />
               <Table.Data value="5 Working Days" />
             </Table.Row>
           ))}
