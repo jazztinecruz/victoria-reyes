@@ -19,7 +19,7 @@ const DocumentMaintenance = () => {
       <AddDocumentModal />
 
       {/* documents */}
-      <div className="grid grid-cols-1 gap-6 rounded-md tablet:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 rounded-md tablet:grid-cols-2 laptop:grid-cols-3">
         {documents.map((document) => (
           <div
             key={document.id}
