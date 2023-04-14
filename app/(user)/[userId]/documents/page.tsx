@@ -2,7 +2,7 @@ import AllDocuments from "../../../../components/documents";
 import database from "../../../../library/database";
 
 const getUser = async (id: string) => {
-  const user = await database.user.findUnique({ where: { id } });
+  const user = await database.user.findUnique({ where: { id }});
   return user!;
 };
 

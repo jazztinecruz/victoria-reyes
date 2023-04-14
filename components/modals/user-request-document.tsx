@@ -20,7 +20,6 @@ const UserRequestDocument = ({ userId, documentId }: Props) => {
         documentId: documentId,
       }),
     });
-    if(response.status === 200) setOpenConfirmationModal(true)
   };
 
   return (
@@ -35,7 +34,7 @@ const UserRequestDocument = ({ userId, documentId }: Props) => {
         <RequestDocument
           onClose={() => setOpenRequestModal(!openRequestModal)}
           backHandler={() => setOpenRequestModal(!openRequestModal)}
-          continueHandler={handleRequestDocument}
+          continueHandler={() => setOpenConfirmationModal(true)}
         />
       )}
 
@@ -43,6 +42,7 @@ const UserRequestDocument = ({ userId, documentId }: Props) => {
         <ConfirmedDocumentrequest
           onClose={() => setOpenConfirmationModal(!openConfirmationModal)}
           handler={() => {
+            handleRequestDocument();
             setOpenConfirmationModal(!openConfirmationModal);
             setOpenRequestModal(false);
           }}
