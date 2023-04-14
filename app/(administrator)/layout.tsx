@@ -6,7 +6,6 @@ import {
   DocumentDuplicateIcon,
   UserPlusIcon,
   CheckCircleIcon,
-  BellIcon,
   ArrowLeftOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 import Links from "./links";
@@ -32,11 +31,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       },
     ],
     administrator: [
-      {
-        name: "Notifications",
-        href: "/dashboard/notifications",
-        Icon: BellIcon,
-      },
       {
         name: "Registration",
         href: "/dashboard/registration",
