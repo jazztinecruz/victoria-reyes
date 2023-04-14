@@ -1,15 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import ConfirmedDocumentrequest from "./confirmed-request";
-import RequestDocument from "./request-document";
 
 interface Props {
   userId: string;
   documentId: string;
+  price: number;
 }
 
-const UserRequestDocument = ({ userId, documentId }: Props) => {
-  const [openRequestModal, setOpenRequestModal] = useState(false);
+const UserRequestDocument = ({ userId, documentId, price }: Props) => {
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
 
   const handleRequestDocument = async () => {
@@ -25,26 +24,18 @@ const UserRequestDocument = ({ userId, documentId }: Props) => {
   return (
     <>
       <button
-        onClick={() => setOpenRequestModal(!openRequestModal)}
+        onClick={() => setOpenConfirmationModal(true)}
         className="btn-primary btn border-none bg-brand hover:btn-ghost">
         Request
       </button>
 
-      {openRequestModal && (
-        <RequestDocument
-          onClose={() => setOpenRequestModal(!openRequestModal)}
-          backHandler={() => setOpenRequestModal(!openRequestModal)}
-          continueHandler={() => setOpenConfirmationModal(true)}
-        />
-      )}
-
       {openConfirmationModal && (
         <ConfirmedDocumentrequest
+          price={price}
           onClose={() => setOpenConfirmationModal(!openConfirmationModal)}
           handler={() => {
             handleRequestDocument();
-            setOpenConfirmationModal(!openConfirmationModal);
-            setOpenRequestModal(false);
+            setOpenConfirmationModal(false);
           }}
         />
       )}

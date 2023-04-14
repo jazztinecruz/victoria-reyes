@@ -27,6 +27,7 @@ const AllDocuments = ({ userId }: Props) => {
               <UserRequestDocument
                 userId={userId}
                 documentId={document.id}
+                price={document.price}
               />
             </div>
           </div>

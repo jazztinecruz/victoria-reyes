@@ -11,7 +11,7 @@ const Documents = async ({ params }: any) => {
 
   return (
     <div className="grid h-full place-items-center">
-      <AllDocuments userId={user.id} />
+      <AllDocuments userId={user.id}/>
     </div>
   );
 };
