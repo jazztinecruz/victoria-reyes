@@ -10,23 +10,23 @@ datasource db {
 }
 
 model User {
-  id         String      @id @default(cuid())
-  email      String      @unique
-  password   String      @db.Text
-  verified   Boolean     @default(false)
-  givenName  String
-  middleName String?
-  familyName String
-  gender     Gender
-  birthdate  DateTime
-  birthplace String
-  phone      String
-  occupation String
-  homeowner  Boolean
-  voter      Boolean
-  address    Address?
-  households Household[]
-  requests   Request[]
+  id          String      @id @default(cuid())
+  email       String      @unique
+  password    String      @db.Text
+  verified    Boolean     @default(false)
+  givenName   String
+  middleName  String?
+  familyName  String
+  gender      Gender
+  birthdate   DateTime
+  birthplace  String
+  phone       String
+  occupation  String
+  homeowner   Boolean
+  voter       Boolean
+  fullAddress String @default("Dasmarinas,Cavite")
+  households  Household[]
+  requests    Request[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -69,21 +69,6 @@ model Household {
   userId String
 
   @@unique([id, userId])
-}
-
-model Address {
-  id       String @id @default(cuid())
-  country  String @default("Philippines")
-  province String @default("Cavite")
-  city     String @default("Dasmariñas")
-  barangay String @default("Victoria Reyes")
-  street   String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String @unique
 }
 
 model Signatory {
