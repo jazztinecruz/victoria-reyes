@@ -2,11 +2,11 @@
 
 import { Gender, User } from "@prisma/client";
 import { useState } from "react";
-import { SignupFields } from "../../library/api";
 import EditProfile from "./edit";
 import Button from "../elements/button/button";
 import Field from "../elements/field";
 import Households from "../elements/households";
+import moment from "moment";
 
 type Props = {
   user: User;
@@ -14,26 +14,6 @@ type Props = {
 
 const Profile = ({ user }: Props) => {
   const [openEditModal, setopenEditModal] = useState(false);
-  // should be initial values
-  const [fields, setFields] = useState<SignupFields>({
-    givenName: "",
-    middleName: "",
-    familyName: "",
-    address: {
-      street: "",
-    },
-    gender: Gender.MALE,
-    birthdate: "",
-    birthplace: "",
-    phone: "",
-    email: "",
-    password: "",
-    voter: false,
-    homeowner: false,
-    occupation: "",
-    households: [],
-  });
-
   return (
     <div className="grid gap-10">
       {/* profile quick info */}
@@ -58,7 +38,7 @@ const Profile = ({ user }: Props) => {
           label="First Name"
           name="givenName"
           required={true}
-          onChange={setFields}
+          onChange={() => {}}
           defaultValue={user.givenName}
           readOnly
         />
@@ -67,36 +47,39 @@ const Profile = ({ user }: Props) => {
           label="Middle Name"
           name="middleName"
           required={true}
-          onChange={setFields}
+          onChange={() => {}}
           defaultValue={`${user.middleName ? user.middleName : null}`}
           readOnly
         />
 
         <Field.Textbox
           label="Last Name"
-          name="middleName"
+          name="familyName"
           required={true}
-          onChange={setFields}
-          defaultValue={user.givenName}
+          onChange={() => {}}
+          defaultValue={user.familyName}
           readOnly
         />
 
         <Field.Textbox
           label="Full Address"
-          name="adress"
+          name="fullAddress"
           required={true}
-          onChange={setFields}
-          defaultValue="Sample Full Address"
+          onChange={() => {}}
+          defaultValue={user.fullAddress}
           readOnly
         />
 
         <Field.Textbox
-          type="date"
           label="Birthdate"
           name="birthdate"
           required={true}
-          onChange={setFields}
-          defaultValue={`${user.birthdate ? user.birthdate : null}`}
+          onChange={() => {}}
+          defaultValue={`${
+            moment(user.birthdate).format("LL")
+              ? moment(user.birthdate).format("LL")
+              : null
+          }`}
           readOnly
         />
 
@@ -104,7 +87,7 @@ const Profile = ({ user }: Props) => {
           label="Birthplace"
           name="birthplace"
           required={true}
-          onChange={setFields}
+          onChange={() => {}}
           defaultValue={`${user.birthplace ? user.birthplace : null}`}
           readOnly
         />
@@ -113,7 +96,7 @@ const Profile = ({ user }: Props) => {
           label="Phone Number"
           name="phone"
           required={true}
-          onChange={setFields}
+          onChange={() => {}}
           defaultValue={user.phone}
           readOnly
         />
@@ -122,7 +105,7 @@ const Profile = ({ user }: Props) => {
           label="Email Address"
           name="email"
           required={true}
-          onChange={setFields}
+          onChange={() => {}}
           defaultValue={user.email}
           readOnly
         />
@@ -131,7 +114,7 @@ const Profile = ({ user }: Props) => {
           label="Occupation"
           name="occupation"
           required={true}
-          onChange={setFields}
+          onChange={() => {}}
           defaultValue={user.occupation}
           readOnly
         />
@@ -140,7 +123,7 @@ const Profile = ({ user }: Props) => {
           label="Gender"
           name="gender"
           required={true}
-          onChange={setFields}
+          onChange={() => {}}
           defaultValue={user.gender}
           readOnly
         />
@@ -149,8 +132,7 @@ const Profile = ({ user }: Props) => {
           <Field.Checkbox
             label="Voter"
             name="voter"
-            required={true}
-            onChange={setFields}
+            onChange={() => {}}
             defaultChecked={user.voter}
             disabled
           />
@@ -158,8 +140,7 @@ const Profile = ({ user }: Props) => {
           <Field.Checkbox
             label="Homeowner"
             name="homeowner"
-            required={true}
-            onChange={setFields}
+            onChange={() => {}}
             defaultChecked={user.homeowner}
             disabled
           />

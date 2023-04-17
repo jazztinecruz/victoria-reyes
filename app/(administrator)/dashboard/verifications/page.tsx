@@ -10,7 +10,6 @@ const getUsers = async () => {
       verified: false,
     },
     include: {
-      address: true,
       households: true,
     },
   });
@@ -29,7 +28,7 @@ const DashboardVerificationsPage = () => {
     "Email Address",
     "Gender",
     "Birth Date",
-    "Address",
+    "Full Address",
     "Birth Place",
     "Phone Number",
     "Occupation",
@@ -60,7 +59,7 @@ const DashboardVerificationsPage = () => {
               <Table.Data value={user.email} />
               <Table.Data value={user.gender} />
               <Table.Data value={moment(user.birthdate).format("LL")} />
-              <Table.Data value={user.address!.street} />
+              <Table.Data value={user.fullAddress} />
               <Table.Data value={user.birthplace} />
               <Table.Data value={user.phone} />
               <Table.Data value={user.occupation} />

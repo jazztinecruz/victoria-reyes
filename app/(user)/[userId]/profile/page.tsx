@@ -11,7 +11,7 @@ const UserProfile = async ({ params }: any) => {
   const user = await getUser(params.userId);
   console.log(user);
 
-  return <Profile user={user} />;
+  return <Profile user={JSON.parse(JSON.stringify(user))} />;
 };
 
 export default UserProfile;

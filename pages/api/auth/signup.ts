@@ -38,9 +38,6 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         ...body,
         password: crypto.encrypt(password),
         birthdate: new Date(body.birthdate),
-        address: {
-          create: { street: 'street one' },
-        },
         households: {
           create: body.households.map((household) => {
             return { ...household, birthdate: new Date(body.birthdate) };
