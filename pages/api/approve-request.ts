@@ -2,15 +2,17 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import database from "../../library/database";
 
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
-  if (request.method !== "POST") {
+  if (request.method !== "PUT") {
     return response.status(405).send({ message: "Invalid Method" });
   }
   const body = JSON.parse(request.body);
   try {
-    const document = await database.request.create({
+    const document = await database.request.update({
+      where: {
+        id: body.id,
+      },
       data: {
-        userId: body.userId,
-        documentId: body.documentId,
+        status: "APPROVED",
       },
     });
     return response.status(201).send(document);

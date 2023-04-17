@@ -1,23 +1,33 @@
-import moment from "moment";
 import Table from "../../../../components/table";
 import database from "../../../../library/database";
 
 const getUser = async (id: string) => {
-  const user = await database.user.findUnique({ where: { id } });
+  const user = await database.user.findUnique({
+    where: { id },
+    include: {
+      requests: {
+        include: {
+          document: true,
+        },
+      },
+    },
+  });
   return user!;
 };
 
 const DocumentStatus = async ({ params }: any) => {
   const user = await getUser(params.userId);
 
-  const fields = [
-    "Count",
+  const headers = [
+    "No.",
+    "Document ID",
+    "Document Title",
+    "Document Price",
+    "Document Status",
     "Resident ID",
-    "Full Name",
-    "Request Document",
-    "Request Date",
-    "Amount",
-    "Status",
+    "First Name",
+    "Middle Name",
+    "Last Name",
     "Processing Days",
   ];
 
@@ -26,22 +36,26 @@ const DocumentStatus = async ({ params }: any) => {
       <Table.Main name="ALL DOCUMENT STATUS">
         <Table.Head>
           <Table.Row heading>
-            {fields.map((field) => (
+            {headers.map((field) => (
               <Table.Heading key={field}>{field}</Table.Heading>
             ))}
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          <Table.Row>
-            <Table.Data value={1} />
-            <Table.Data value={user.id} />
-            <Table.Data value={user.givenName + " " + user.familyName} />
-            <Table.Data value="Barangay Clearance" />
-            <Table.Data value={moment(user.birthdate).format("LL")} />
-            <Table.Data value="50.00" />
-            <Table.Data value="PENDING" />
-            <Table.Data value="1-2 Days" />
-          </Table.Row>
+          {user.requests.map((request, index) => (
+            <Table.Row key={request.id}>
+              <Table.Data value={index + 1} />
+              <Table.Data value={request.documentId} />
+              <Table.Data value={request.document?.title} />
+              <Table.Data value={request.document?.price} />
+              <Table.Data value={request.status} />
+              <Table.Data value={user.id} />
+              <Table.Data value={user!.givenName} />
+              <Table.Data value={user!.middleName} />
+              <Table.Data value={user!.givenName} />
+              <Table.Data value="5 Working Days" />
+            </Table.Row>
+          ))}
         </Table.Body>
       </Table.Main>
     </div>

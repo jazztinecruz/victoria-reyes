@@ -1,80 +1,64 @@
-import moment from "moment";
 import database from "../../../../library/database";
 import Table from "../../../../components/table";
 import { use } from "react";
-import Status from "../../../../components/dropdowns/status";
+import Status from "../../../../components/modals/status";
 import BatchProcessingModal from "../../../../components/modals/batch-processing";
 
-const getUsers = async () => {
-  const users = await database.user.findMany({
+const getRequests = async () => {
+  const requests = await database.request.findMany({
     where: {
-      verified: true,
+      status: "PENDING",
     },
     include: {
-      address: true,
-      households: true,
+      user: true,
+      document: true,
     },
   });
-  return users;
+  return requests;
 };
 
 const DashboardRequestsPage = () => {
-  const users = use(getUsers());
+  const requests = use(getRequests());
 
-  const fields = [
-    "Resident ID",
-    "Document Name",
-    "Request Date",
+  const headers = [
+    "ACTION",
+    "No.",
+    "Document ID",
+    "Document Title",
+    "Document Price",
     "Document Status",
+    "Resident ID",
     "First Name",
     "Middle Name",
     "Last Name",
-    "Email Address",
-    "Gender",
-    "Birth Date",
-    "Address",
-    "Birth Place",
-    "Phone Number",
-    "Occupation",
-    "Households",
-    "Homeowner",
-    "Voter",
     "Account Verified",
   ];
 
   return (
     <div className="space-section">
       <BatchProcessingModal />
-      <Table.Main name="List of Requests">
+      <Table.Main name="List of Pending Requests">
         <Table.Head>
           <Table.Row heading>
-            {fields.map((field) => (
+            {headers.map((field) => (
               <Table.Heading key={field}>{field}</Table.Heading>
             ))}
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {users.map((user) => (
-            <Table.Row key={user.id}>
-              <Table.Data value={user.id} />
-              <Table.Data value="Barangay Indigency" />
-              <Table.Data value="September 22, 2022" />
-              <Status />
-              <Table.Data value={user.givenName} />
-              <Table.Data value={user.middleName} />
-              <Table.Data value={user.familyName} />
-              <Table.Data value={user.email} />
-              <Table.Data value={user.gender} />
-              <Table.Data value={moment(user.birthdate).format("LL")} />
-              <Table.Data value={user.address!.street} />
-              <Table.Data value={user.birthplace} />
-              <Table.Data value={user.phone} />
-              <Table.Data value={user.occupation} />
-              <Table.Data value={user.households.length} />
-              {/* <Households/> */}
-              <Table.Data value={user.homeowner} />
-              <Table.Data value={user.voter} />
-              <Table.Data value={user.verified} />
+          {requests.map((request, index) => (
+            <Table.Row key={request.id}>
+              <Table.Data value={<Status requestId={request.id} />} />
+              <Table.Data value={index + 1} />
+              <Table.Data value={request.documentId} />
+              <Table.Data value={request.document?.title} />
+              <Table.Data value={request.document?.price} />
+              <Table.Data value={request.status} />
+              <Table.Data value={request!.user!.id} />
+              <Table.Data value={request!.user!.givenName} />
+              <Table.Data value={request!.user!.middleName} />
+              <Table.Data value={request!.user!.familyName} />
+              <Table.Data value={request!.user!.verified} />
             </Table.Row>
           ))}
         </Table.Body>

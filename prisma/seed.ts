@@ -42,16 +42,10 @@ const generateUser = (): Prisma.UserCreateInput => {
   };
 };
 
-const generateAddress = (): Prisma.AddressCreateWithoutUserInput => {
-  return {
-    street: faker.address.streetAddress(),
-  };
-};
 
 const generate = () => {
   const data = {
     ...generateUser(),
-    address: { create: { ...generateAddress() } },
     households: { create: generateHouseHolds(10) },
   };
   return data;

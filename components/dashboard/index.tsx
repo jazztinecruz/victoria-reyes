@@ -1,14 +1,13 @@
 "use client";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Address, Household, User } from "@prisma/client";
+import { Household, User } from "@prisma/client";
 import moment from "moment";
 import { useState } from "react";
 import Table from "../table";
 
 interface Props {
   users: (User & {
-    address: Address | null;
     households: Household[];
   })[];
 }
@@ -68,7 +67,7 @@ const AdminDashboard = ({ users }: Props) => {
                 <Table.Data value={user.email} />
                 <Table.Data value={user.gender} />
                 <Table.Data value={moment(user.birthdate).format("LL")} />
-                <Table.Data value={user.address!.street} />
+                <Table.Data value={user.fullAddress} />
                 <Table.Data value={user.birthplace} />
                 <Table.Data value={user.phone} />
                 <Table.Data value={user.occupation} />
@@ -112,7 +111,7 @@ const AdminDashboard = ({ users }: Props) => {
                   <Table.Data value={user.email} />
                   <Table.Data value={user.gender} />
                   <Table.Data value={moment(user.birthdate).format("LL")} />
-                  <Table.Data value={user.address!.street} />
+                  <Table.Data value={user.fullAddress} />
                   <Table.Data value={user.birthplace} />
                   <Table.Data value={user.phone} />
                   <Table.Data value={user.occupation} />

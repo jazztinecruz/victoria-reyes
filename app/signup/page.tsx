@@ -20,9 +20,7 @@ const SignUp = () => {
     givenName: "",
     middleName: "",
     familyName: "",
-    address: {
-      street: "Sample Street",
-    },
+    fullAddress: "",
     gender: Gender.MALE,
     birthdate: "September 22, 1999",
     birthplace: "",
@@ -34,15 +32,15 @@ const SignUp = () => {
     occupation: "",
     households: [
       {
-        givenName: "Jazztine",
-        middleName: "Hernandez",
-        familyName: "Cruz",
+        givenName: "loremm",
+        middleName: "dolor",
+        familyName: "ipsum",
         gender: "FEMALE",
-        birthdate: "September 16, 2021",
+        birthdate: "September 16, 2033",
         birthplace: "Makati City",
-        phone: "+639951935710",
+        phone: "+987654321",
         occupation: "PROGRAMMER",
-        relationship: "GIRLFRIEND",
+        relationship: "SON",
       },
     ],
   });
@@ -126,8 +124,8 @@ const SignUp = () => {
 
           <Field.Textbox
             type="text"
-            label="Street Adress"
-            name="address"
+            label="Full Adress"
+            name="fullAddress"
             required
             onChange={setFields}
           />
@@ -160,31 +158,6 @@ const SignUp = () => {
             onChange={setFields}
           />
 
-          {/* gender */}
-          <div className="flex flex-col gap-4">
-            <span className="block text-sm text-gray-600 dark:text-gray-200">
-              Choose your Gender
-            </span>
-            <div className="flex items-center gap-10">
-              <div className="flex items-center gap-4">
-                <span>Male</span>
-                <input
-                  type="radio"
-                  name="gender"
-                  className="radio-success radio"
-                />
-              </div>
-              <div className="flex items-center gap-4">
-                <span>Female</span>
-                <input
-                  type="radio"
-                  name="gender"
-                  className="radio-success radio"
-                />
-              </div>
-            </div>
-          </div>
-
           <Field.File />
           <div className="flex items-center gap-10">
             <Field.Checkbox
@@ -198,10 +171,6 @@ const SignUp = () => {
               name="homeowner"
               onChange={setFields}
             />
-          </div>
-
-          <div className="col-start-1 col-end-3">
-            <Households />
           </div>
 
           <button
@@ -223,10 +192,7 @@ const SignUp = () => {
               setSuccessfulModal(false);
             }}>
             <span className="mt-5 text-xl font-semibold text-brand">
-              You've succesfully created your account!
-            </span>
-            <span className="text-gray mb-4">
-              Ready to login your account for the first time?
+              You've succesfully created an account!
             </span>
             <div className="z-50 flex cursor-pointer items-center gap-4">
               <Button

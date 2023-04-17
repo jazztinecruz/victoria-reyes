@@ -7,7 +7,6 @@ export type SigninFields = {
 };
 
 export type SignupFields = Prisma.UserCreateInput & {
-  address: Prisma.AddressCreateWithoutUserInput;
   households: Prisma.HouseholdCreateWithoutUserInput[];
 };
 

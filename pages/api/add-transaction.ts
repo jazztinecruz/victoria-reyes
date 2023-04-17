@@ -9,8 +9,9 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   try {
     const document = await database.request.create({
       data: {
-        userId: body.userId,
+        status: "APPROVED",
         documentId: body.documentId,
+        userId: body.userId,
       },
     });
     return response.status(201).send(document);

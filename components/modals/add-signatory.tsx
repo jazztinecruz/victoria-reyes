@@ -41,7 +41,7 @@ const AddSignatory = () => {
         <div className="z-50 grid gap-6">
           <div className="flex flex-col">
             <span className="text-lg font-semibold">
-              Add the newest elected Kapitan/Kapitana
+              Add a new signatory
             </span>
             <span className="text-sm font-light opacity-50">
               Provide necessary details to add new Barangay &apos;s Kapitan
