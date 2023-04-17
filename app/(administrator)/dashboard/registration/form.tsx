@@ -17,27 +17,15 @@ const Form = () => {
     familyName: "",
     fullAddress: "",
     gender: Gender.MALE,
-    birthdate: "September 22, 1999",
+    birthdate: "January 14, 1964",
     birthplace: "",
-    phone: "+639951935710",
+    phone: "",
     email: "",
     password: "",
     voter: false,
     homeowner: false,
     occupation: "",
-    households: [
-      {
-        givenName: "loremm",
-        middleName: "dolor",
-        familyName: "ipsum",
-        gender: Gender.FEMALE,
-        birthdate: "September 16, 2033",
-        birthplace: "Makati City",
-        phone: "+987654321",
-        occupation: "PROGRAMMER",
-        relationship: "SON",
-      },
-    ],
+    households: [],
   });
 
   const [sucessfulModal, setSuccessfulModal] = useState(false);
@@ -45,15 +33,47 @@ const Form = () => {
   const [errorModal, setErrorModal] = useState(false);
 
   const handleSubmit = async () => {
-    const response = await api.signup(fields);
-    if (response.status !== 200) {
-      setErrorMessage(response.data.message);
-      setErrorModal(!errorModal);
-    }
-    if (response.status === 200) setSuccessfulModal(!sucessfulModal);
-    console.log(response);
-  };
+    const phoneNumberRegex = /^\d{11}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+    const requiredFields = [
+      "givenName",
+      "middleName",
+      "familyName",
+      "fullAddress",
+      "birthplace",
+      "phone",
+      "email",
+      "password",
+      "occupation",
+    ];
+
+    //@ts-ignore
+    const missingFields = requiredFields.filter((field) => !fields[field]);
+
+    if (missingFields.length > 0) {
+      setErrorMessage(
+        `Please fill out the following required fields with exlamation mark.`
+      );
+      setErrorModal(!errorModal);
+    } else if (fields.password.length < 5) {
+      setErrorMessage("Password must contain more than 5 characters.");
+      setErrorModal(true);
+    } else if (!phoneNumberRegex.test(fields.phone)) {
+      setErrorMessage("Phone Number must contain 11 numbers.");
+      setErrorModal(true);
+    } else if (!emailRegex.test(fields.email)) {
+      setErrorMessage("Email Address must contain a valid email.");
+      setErrorModal(true);
+    } else {
+      const response = await api.signup(fields);
+      if (response.status !== 200) {
+        setErrorMessage(response.data.message);
+        setErrorModal(!errorModal);
+      }
+      if (response.status === 200) setSuccessfulModal(!sucessfulModal);
+    }
+  };
   return (
     <>
       <form className="mt-10 flex flex-col gap-6 tablet:grid tablet:grid-cols-2">
@@ -89,7 +109,6 @@ const Form = () => {
           type="date"
           label="Birthdate"
           name="birthdate"
-          required
           onChange={setFields}
         />
 
@@ -165,15 +184,10 @@ const Form = () => {
           <span className="mt-5 text-xl font-semibold text-brand">
             You've succesfully created an account!
           </span>
-          <div className="z-50 flex cursor-pointer items-center gap-4">
-            <Button
-              name="Go Back"
-              handler={() => setSuccessfulModal(!sucessfulModal)}
-            />
-            <Link href="/signin">
-              <Button name="Login my Account" fill />
-            </Link>
-          </div>
+          <Button
+            name="Proceed"
+            handler={() => setSuccessfulModal(!sucessfulModal)}
+          />
         </SuccessfulModal>
       )}
 

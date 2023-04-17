@@ -22,39 +22,60 @@ const SignUp = () => {
     familyName: "",
     fullAddress: "",
     gender: Gender.MALE,
-    birthdate: "September 22, 1999",
+    birthdate: "January 14, 1964",
     birthplace: "",
-    phone: "+639951935710",
+    phone: "",
     email: "",
     password: "",
     voter: false,
     homeowner: false,
     occupation: "",
-    households: [
-      {
-        givenName: "loremm",
-        middleName: "dolor",
-        familyName: "ipsum",
-        gender: "FEMALE",
-        birthdate: "September 16, 2033",
-        birthplace: "Makati City",
-        phone: "+987654321",
-        occupation: "PROGRAMMER",
-        relationship: "SON",
-      },
-    ],
+    households: [],
   });
 
   const [sucessfulModal, setSuccessfulModal] = useState(false);
 
   const handleSubmit = async () => {
-    const response = await api.signup(fields);
-    if (response.status !== 200) {
-      setErrorMessage(response.data.message);
+    const phoneNumberRegex = /^\d{11}$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    const requiredFields = [
+      "givenName",
+      "middleName",
+      "familyName",
+      "fullAddress",
+      "birthplace",
+      "phone",
+      "email",
+      "password",
+      "occupation",
+    ];
+
+    //@ts-ignore
+    const missingFields = requiredFields.filter((field) => !fields[field]);
+
+    if (missingFields.length > 0) {
+      setErrorMessage(
+        `Please fill out the following required fields with exlamation mark.`
+      );
       setErrorModal(!errorModal);
+    } else if (fields.password.length < 5) {
+      setErrorMessage("Password must contain more than 5 characters.");
+      setErrorModal(true);
+    } else if (!phoneNumberRegex.test(fields.phone)) {
+      setErrorMessage("Phone Number must contain 11 numbers.");
+      setErrorModal(true);
+    } else if (!emailRegex.test(fields.email)) {
+      setErrorMessage("Email Address must contain a valid email.");
+      setErrorModal(true);
+    } else {
+      const response = await api.signup(fields);
+      if (response.status !== 200) {
+        setErrorMessage(response.data.message);
+        setErrorModal(!errorModal);
+      }
+      if (response.status === 200) setSuccessfulModal(!sucessfulModal);
     }
-    if (response.status === 200) setSuccessfulModal(!sucessfulModal);
-    console.log(response);
   };
 
   return (
@@ -118,12 +139,10 @@ const SignUp = () => {
             type="date"
             label="Birthdate"
             name="birthdate"
-            required
             onChange={setFields}
           />
 
           <Field.Textbox
-            type="text"
             label="Full Adress"
             name="fullAddress"
             required

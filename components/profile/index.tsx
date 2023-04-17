@@ -37,7 +37,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="First Name"
           name="givenName"
-          required={true}
           onChange={() => {}}
           defaultValue={user.givenName}
           readOnly
@@ -46,7 +45,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Middle Name"
           name="middleName"
-          required={true}
           onChange={() => {}}
           defaultValue={`${user.middleName ? user.middleName : null}`}
           readOnly
@@ -55,7 +53,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Last Name"
           name="familyName"
-          required={true}
           onChange={() => {}}
           defaultValue={user.familyName}
           readOnly
@@ -64,7 +61,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Full Address"
           name="fullAddress"
-          required={true}
           onChange={() => {}}
           defaultValue={user.fullAddress}
           readOnly
@@ -73,7 +69,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Birthdate"
           name="birthdate"
-          required={true}
           onChange={() => {}}
           defaultValue={`${
             moment(user.birthdate).format("LL")
@@ -86,7 +81,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Birthplace"
           name="birthplace"
-          required={true}
           onChange={() => {}}
           defaultValue={`${user.birthplace ? user.birthplace : null}`}
           readOnly
@@ -95,7 +89,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Phone Number"
           name="phone"
-          required={true}
           onChange={() => {}}
           defaultValue={user.phone}
           readOnly
@@ -104,7 +97,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Email Address"
           name="email"
-          required={true}
           onChange={() => {}}
           defaultValue={user.email}
           readOnly
@@ -113,7 +105,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Occupation"
           name="occupation"
-          required={true}
           onChange={() => {}}
           defaultValue={user.occupation}
           readOnly
@@ -122,7 +113,6 @@ const Profile = ({ user }: Props) => {
         <Field.Textbox
           label="Gender"
           name="gender"
-          required={true}
           onChange={() => {}}
           defaultValue={user.gender}
           readOnly
