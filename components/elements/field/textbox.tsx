@@ -1,3 +1,4 @@
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
 import { ChangeEvent, useEffect, useId, useRef } from "react";
 
 type Props = {
@@ -47,11 +48,16 @@ const Textbox = ({
 
   return (
     <div>
-      <label
-        htmlFor={fieldId}
-        className="mb-2 block text-sm text-gray-600 dark:text-gray-200">
-        {label}
-      </label>
+      <div className="flex items-center gap-3">
+        <label
+          htmlFor={fieldId}
+          className="block text-sm text-gray-600 dark:text-gray-200">
+          {label}
+        </label>
+        {required ? (
+          <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+        ) : null}
+      </div>
       <input
         id={fieldId}
         ref={ref}
