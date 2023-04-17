@@ -30,7 +30,7 @@ const Form = () => {
         givenName: "loremm",
         middleName: "dolor",
         familyName: "ipsum",
-        gender: "FEMALE",
+        gender: Gender.FEMALE,
         birthdate: "September 16, 2033",
         birthplace: "Makati City",
         phone: "+987654321",
