@@ -184,15 +184,10 @@ const Form = () => {
           <span className="mt-5 text-xl font-semibold text-brand">
             You've succesfully created an account!
           </span>
-          <div className="z-50 flex cursor-pointer items-center gap-4">
-            <Button
-              name="Go Back"
-              handler={() => setSuccessfulModal(!sucessfulModal)}
-            />
-            <Link href="/signin">
-              <Button name="Login my Account" fill />
-            </Link>
-          </div>
+          <Button
+            name="Proceed"
+            handler={() => setSuccessfulModal(!sucessfulModal)}
+          />
         </SuccessfulModal>
       )}
 
