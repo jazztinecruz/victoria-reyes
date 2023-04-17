@@ -37,7 +37,7 @@ const UserLogin = () => {
     } else if (!/\S+@\S+\.\S+/.test(fields.email)) {
       setErrorMessage({
         ...errorMessage,
-        signin: "Please enter a valid Email Address.",
+        signin: "Email Address must contain a valid email.",
       });
       setErrorModal(true);
       isValid = false;
