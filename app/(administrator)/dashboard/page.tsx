@@ -8,7 +8,6 @@ const getUsers = async () => {
       verified: true,
     },
     include: {
-      address: true,
       households: true,
     },
   });

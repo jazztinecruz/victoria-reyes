@@ -52,7 +52,9 @@ const DocumentsLayout = ({ children, params }: Props) => {
                 className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow">
                 {links.user.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-black hover:text-brand">
+                    <Link
+                      href={link.href}
+                      className="text-black hover:text-brand">
                       {link.name}
                     </Link>
                   </li>
@@ -76,30 +78,6 @@ const DocumentsLayout = ({ children, params }: Props) => {
                   Victoria Reyes
                 </span>
               </h1>
-            </div>
-          </div>
-          <div className="navbar-end flex cursor-pointer items-center gap-6">
-            <div className="group flex items-center gap-2">
-              <BellIcon
-                onClick={() => setOpenNotification(!openNotification)}
-                className="h-5 w-5 group-hover:text-brand"
-              />
-              <span
-                onClick={() => setOpenNotification(!openNotification)}
-                className="hidden text-sm hover:text-brand laptop:block">
-                Notifications
-              </span>
-            </div>
-
-            <div className="hidden laptop:block">
-              <Link href="/">
-                <div className="group flex items-center gap-2">
-                  <UserCircleIcon className="h-5 w-5 group-hover:text-brand" />
-                  <span className="text-sm hover:text-brand">
-                    Logout my Account
-                  </span>
-                </div>
-              </Link>
             </div>
           </div>
 
