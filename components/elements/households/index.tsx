@@ -1,16 +1,23 @@
 "use client";
 
+import { Listbox } from "@headlessui/react";
 import { Gender, Household, Relationship } from "@prisma/client";
 import { useState } from "react";
+import SuccessfulModal from "../../modals/sucessful";
+import Button from "../button/button";
 import Field from "../field";
 import UniqueHousehold from "./household";
 
-const Households = () => {
+interface Props {
+  userId: string;
+  households: [];
+}
+const Households = ({ userId, households }: Props) => {
   const initialHouseholdValues = {
     givenName: "",
     middleName: "",
     familyName: "",
-    gender: Gender.MALE,
+    gender: Gender.FEMALE,
     birthdate: new Date(),
     birthplace: "",
     phone: "",
@@ -22,8 +29,56 @@ const Households = () => {
     userId: "",
   };
 
-  const [household, setHousehold] = useState<Household>(initialHouseholdValues);
-  const [households, setHouseholds] = useState<Household[]>([]);
+  const relationshipOptions = [
+    "FATHER",
+    "MOTHER",
+    "SON",
+    "DAUGHTER",
+    "HUSBAND",
+    "WIFE",
+    "BROTHER",
+    "SISTER",
+    "GRANDFATHER",
+    "GRANDMOTHER",
+    "GRANDSON",
+    "GRANDDAUGHTER",
+    "UNCLE",
+    "AUNT",
+    "NEWPHEW",
+    "NIECE",
+    "COUSIN",
+    "BOYFRIEND",
+    "GIRLFRIEND",
+    "OTHERS",
+  ];
+
+  const [fields, setFields] = useState(initialHouseholdValues);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleAddHousehold = async () => {
+    try {
+      const response = await fetch("/api/add-household", {
+        method: "POST",
+        body: JSON.stringify({
+          givenName: fields.givenName,
+          middleName: fields.middleName,
+          familyName: fields.familyName,
+          gender: fields.gender,
+          birthdate: new Date(fields.birthdate),
+          birthplace: fields.birthplace,
+          phone: fields.phone,
+          occupation: fields.occupation,
+          relationship: fields.relationship,
+          userId: userId,
+        }),
+      });
+      if (response.status === 200) {
+        setOpenModal(true);
+      }
+    } catch (error) {
+      console.error("There was an error:", error);
+    }
+  };
 
   return (
     <div className="mt-4">
@@ -33,37 +88,32 @@ const Households = () => {
           <Field.Textbox
             label="First Name"
             name="givenName"
-            onChange={setHousehold}
-            value={household.givenName}
+            onChange={setFields}
           />
 
           <Field.Textbox
             label="Middle Name"
             name="middleName"
-            onChange={setHousehold}
-            value={household.middleName}
+            onChange={setFields}
           />
 
           <Field.Textbox
             label="Last Name"
             name="familyName"
-            onChange={setHousehold}
-            value={household.familyName}
+            onChange={setFields}
           />
 
           <Field.Textbox
             label="Birthplace"
             name="birthplace"
-            onChange={setHousehold}
-            value={household.birthplace}
+            onChange={setFields}
           />
 
           <Field.Textbox
             type="date"
             label="Birthdate"
             name="birthdate"
-            onChange={setHousehold}
-            value={household.birthdate}
+            onChange={setFields}
           />
 
           {/* gender */}
@@ -77,10 +127,9 @@ const Households = () => {
                 <input
                   type="radio"
                   name="gender"
-                  value={Gender.MALE}
-                  onClick={() =>
-                    setHousehold({ ...household, gender: Gender.MALE })
-                  }
+                  className="radio-success radio"
+                  //@ts-ignore
+                  onChange={() => setFields({ ...fields, gender: Gender.MALE })}
                 />
               </div>
               <div className="flex items-center gap-4">
@@ -89,9 +138,8 @@ const Households = () => {
                   type="radio"
                   name="gender"
                   className="radio-success radio"
-                  value={Gender.MALE}
-                  onClick={() =>
-                    setHousehold({ ...household, gender: Gender.FEMALE })
+                  onChange={() =>
+                    setFields({ ...fields, gender: Gender.FEMALE })
                   }
                 />
               </div>
@@ -101,33 +149,53 @@ const Households = () => {
           <Field.Textbox
             label="Phone Number"
             name="phone"
-            onChange={setHousehold}
-            value={household.phone}
+            onChange={setFields}
           />
 
           <Field.Textbox
             label="Occupation"
             name="occupation"
-            onChange={setHousehold}
-            value={household.occupation}
+            onChange={setFields}
           />
 
-          <Field.Textbox
-            label="Relationship"
-            name="relationship"
-            required
-            onChange={setHousehold}
-            value={household.relationship}
-          />
+          <Listbox>
+            <div className="relative">
+              <Listbox.Button className="focus:shadow-outline-blue sm:text-sm relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none">
+                <span className="block truncate">{fields.relationship}</span>
+                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                  <svg
+                    className="h-5 w-5 text-gray-400"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor">
+                    <path d="M7 7l3-3 3 3m0 6l-3 3-3-3" />
+                  </svg>
+                </span>
+              </Listbox.Button>
+              <Listbox.Options className="sm:text-sm absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                {relationshipOptions.map((option) => (
+                  <Listbox.Option key={option} value={option}>
+                    <div
+                      className="cursor-pointer p-2 hover:bg-slate-100"
+                      onClick={() =>
+                        setFields({
+                          ...fields,
+                          //@ts-ignore
+                          relationship: option,
+                        })
+                      }>
+                      {option}
+                    </div>
+                  </Listbox.Option>
+                ))}
+              </Listbox.Options>
+            </div>
+          </Listbox>
         </div>
 
         <div className="ml-auto">
           <button
-            onClick={(event) => {
-              event.preventDefault();
-              setHouseholds([...households, household]);
-              setHousehold(initialHouseholdValues);
-            }}
+            onClick={handleAddHousehold}
             className="mt-10 flex w-full transform items-center justify-between gap-4 rounded-md bg-brand px-6 py-5 text-sm capitalize tracking-wide text-white transition-colors duration-300 focus:outline-none focus:ring focus:ring-brand focus:ring-opacity-50 hover:bg-brand hover:opacity-fade">
             Add Household
           </button>
@@ -136,21 +204,39 @@ const Households = () => {
 
       <div className="flex flex-col gap-4">
         <span>
-          All Households{" "}
-          <span className="font-semibold">({households.length}) </span>
+          All Households
+          <span className="text-lg font-semibold"> ({households.length})</span>
           <br />
-          <span className="text-sm text-black/50">
+          <span className="text-sm text-black/50 ">
             (Please check (✓) the head of the family)
           </span>
+          <div className="mt-3 flex flex-col gap-3">
+            {households.map((household: Household) => (
+              <UniqueHousehold
+                key={household.id}
+                household={household}
+                userId={userId}
+              />
+            ))}
+          </div>
         </span>
-        {households.map((household) => (
-          <UniqueHousehold
-            key={household.id}
-            household={household}
-            setHouseholds={setHouseholds}
-          />
-        ))}
       </div>
+
+      {openModal ? (
+        <SuccessfulModal
+          onClose={() => setOpenModal(false)}
+          handler={() => setOpenModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You&apos;ve succesfully added your household!
+          </span>
+          <span className="text-gray">
+            You can add more above and select who is the head.
+          </span>
+          <div className="z-50">
+            <Button name="Go Back" fill handler={() => setOpenModal(false)} />
+          </div>
+        </SuccessfulModal>
+      ) : null}
     </div>
   );
 };
