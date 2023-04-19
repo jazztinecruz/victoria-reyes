@@ -13,6 +13,7 @@ type Props = {
 };
 
 const Profile = ({ user }: Props) => {
+  console.log(user);
   const [openEditModal, setopenEditModal] = useState(false);
   return (
     <div className="grid gap-10">
@@ -137,7 +138,7 @@ const Profile = ({ user }: Props) => {
         </div>
       </form>
 
-      <Households />
+      <Households userId={user.id} households={user.households} />
       {openEditModal && (
         <EditProfile
           user={user}
