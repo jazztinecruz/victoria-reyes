@@ -24,7 +24,7 @@ model User {
   occupation  String
   homeowner   Boolean
   voter       Boolean
-  fullAddress String @default("Dasmarinas,Cavite")
+  fullAddress String      @default("Dasmarinas,Cavite")
   households  Household[]
   requests    Request[]
 
@@ -60,6 +60,7 @@ model Household {
   birthplace   String
   phone        String
   occupation   String
+  head         Boolean      @default(false)
   relationship Relationship
 
   createdAt DateTime @default(now())
