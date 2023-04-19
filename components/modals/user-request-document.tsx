@@ -56,7 +56,7 @@ const UserRequestDocumentButton = ({ userId, documentId, price }: Props) => {
               <br></br>
               <span className="font-semibold">Note:</span> You can only request
               a document from <span className="font-semibold">8:00 am</span> to
-              <span className="font-semibold">11:00 am</span>. All documents
+              <span className="font-semibold"> 11:00 am</span>. All documents
               that are requested after the desginated time will be process
               tomorrow.
             </span>
