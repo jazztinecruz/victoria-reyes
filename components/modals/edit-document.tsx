@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "../elements/button/button";
 import Modal from ".";
 import Field from "../elements/field";
+import SuccessfulModal from "./sucessful";
 
 interface Props {
   document: {
@@ -23,17 +24,29 @@ const EditDocument = ({ document }: Props) => {
     description: document.description,
     price: document.price,
   });
+  const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
 
-  const handleUpdateDocument = async () => {
-    const response = await fetch("/api/edit-document", {
-      method: "PUT",
-      body: JSON.stringify({
-        id: fields.id,
-        title: fields.title,
-        description: fields.description,
-        price: +fields.price,
-      }),
-    });
+  const handleUpdateDocument = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/edit-document", {
+        method: "PUT",
+        body: JSON.stringify({
+          id: fields.id,
+          title: fields.title,
+          description: fields.description,
+          price: +fields.price,
+        }),
+      });
+      if (response.status === 201) {
+        setEdit(false);
+        setOpenSuccessfulModal(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -91,6 +104,24 @@ const EditDocument = ({ document }: Props) => {
           <Button fill name="Edit Document" handler={handleUpdateDocument} />
         </form>
       </Modal>
+
+      {openSuccessfulModal ? (
+        <SuccessfulModal
+          onClose={() => setOpenSuccessfulModal(false)}
+          handler={() => setOpenSuccessfulModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You&apos;ve succesfully edited a document!
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenSuccessfulModal(false)}
+            />
+          </div>
+        </SuccessfulModal>
+      ) : null}
     </>
   );
 };
