@@ -134,16 +134,14 @@ const Profile = ({ user }: Props) => {
             label="Voter"
             name="voter"
             onChange={() => {}}
-            defaultChecked={user.voter}
-            disabled
+            checked={user.voter}
           />
 
           <Field.Checkbox
             label="Homeowner"
             name="homeowner"
             onChange={() => {}}
-            defaultChecked={user.homeowner}
-            disabled
+            checked={user.homeowner}
           />
         </div>
       </form>
