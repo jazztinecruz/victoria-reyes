@@ -3,6 +3,7 @@ import { useState } from "react";
 import Modal from ".";
 import Button from "../elements/button/button";
 import Field from "../elements/field";
+import SuccessfulModal from "./sucessful";
 
 const AddDocumentModal = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
@@ -11,16 +12,28 @@ const AddDocumentModal = () => {
     description: "",
     price: "",
   });
+  const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
 
-  const handleAddDocument = async () => {
-    const response = await fetch("/api/add-document", {
-      method: "POST",
-      body: JSON.stringify({
-        title: fields.title,
-        description: fields.description,
-        price: +fields.price,
-      }),
-    });
+  const handleAddDocument = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/add-document", {
+        method: "POST",
+        body: JSON.stringify({
+          title: fields.title,
+          description: fields.description,
+          price: +fields.price,
+        }),
+      });
+      if (response.status === 201) {
+        setOpenAddModal(false);
+        setOpenSuccessfulModal(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -84,6 +97,24 @@ const AddDocumentModal = () => {
           <Button fill name="Add Document" handler={handleAddDocument} />
         </form>
       </Modal>
+
+      {openSuccessfulModal ? (
+        <SuccessfulModal
+          onClose={() => setOpenSuccessfulModal(false)}
+          handler={() => setOpenSuccessfulModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You&apos;ve succesfully added a document!
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenSuccessfulModal(false)}
+            />
+          </div>
+        </SuccessfulModal>
+      ) : null}
     </>
   );
 };
