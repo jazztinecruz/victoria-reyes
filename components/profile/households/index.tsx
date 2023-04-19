@@ -10,7 +10,7 @@ import UniqueHousehold from "./household";
 
 interface Props {
   userId: string;
-  households: [];
+  households: Household[];
 }
 const Households = ({ userId, households }: Props) => {
   const initialHouseholdValues = {

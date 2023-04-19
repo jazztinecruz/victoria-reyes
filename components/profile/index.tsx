@@ -1,6 +1,6 @@
 "use client";
 
-import { User } from "@prisma/client";
+import { Household, User } from "@prisma/client";
 import { useState } from "react";
 import EditProfile from "./edit";
 import Button from "../elements/button/button";
@@ -10,7 +10,7 @@ import moment from "moment";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 type Props = {
-  user: User;
+  user: User & { households: Household[] };
 };
 
 const Profile = ({ user }: Props) => {
