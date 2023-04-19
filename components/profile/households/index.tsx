@@ -216,7 +216,7 @@ const Households = ({ userId, households }: Props) => {
           <span className="text-lg font-semibold"> ({households.length})</span>
           <br />
           <span className="text-sm text-black/50 ">
-            (Please check (✓) the head of the family)
+            (Please mark the circle for the head of the family)
           </span>
           <div className="mt-3 flex flex-col gap-3">
             {households.map((household: Household) => (
