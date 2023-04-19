@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import database from "../../library/database";
+import crypto from "../../library/crypto";
 
 const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   if (request.method !== "PUT") {
@@ -12,7 +13,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         email: body.email,
       },
       data: {
-        password: body.password,
+        password: crypto.encrypt(body.password),
       },
     });
     return response.status(201).send(document);

@@ -151,17 +151,7 @@ const UserLogin = () => {
         />
       )}
 
-      {forgotPasswordModal && (
-        <ForgotPassword
-          fields={fields}
-          setFields={setFields}
-          forgotPasswordModal={forgotPasswordModal}
-          setForgotPasswordModal={setForgotPasswordModal}
-          errorMessage={errorMessage}
-          setErrorMessage={setErrorMessage}
-          setSuccessfulModal={setOpenSuccessfulModal}
-        />
-      )}
+      {forgotPasswordModal && <ForgotPassword handler={() => setForgotPasswordModal(false)} />}
 
       {openSuccessfulModal && (
         <SuccessfulModal
