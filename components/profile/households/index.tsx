@@ -72,7 +72,8 @@ const Households = ({ userId, households }: Props) => {
           userId: userId,
         }),
       });
-      if (response.status === 200) {
+      if (response.status === 201) {
+        setFields(initialHouseholdValues);
         setOpenModal(true);
       }
     } catch (error) {
@@ -88,17 +89,20 @@ const Households = ({ userId, households }: Props) => {
           <Field.Textbox
             label="First Name"
             name="givenName"
+            value={fields.givenName}
             onChange={setFields}
           />
 
           <Field.Textbox
             label="Middle Name"
             name="middleName"
+            value={fields.middleName}
             onChange={setFields}
           />
 
           <Field.Textbox
             label="Last Name"
+            value={fields.familyName}
             name="familyName"
             onChange={setFields}
           />
@@ -106,6 +110,7 @@ const Households = ({ userId, households }: Props) => {
           <Field.Textbox
             label="Birthplace"
             name="birthplace"
+            value={fields.birthplace}
             onChange={setFields}
           />
 
@@ -113,6 +118,7 @@ const Households = ({ userId, households }: Props) => {
             type="date"
             label="Birthdate"
             name="birthdate"
+            value={fields.birthdate}
             onChange={setFields}
           />
 
@@ -150,15 +156,17 @@ const Households = ({ userId, households }: Props) => {
             label="Phone Number"
             name="phone"
             onChange={setFields}
+            value={fields.phone}
           />
 
           <Field.Textbox
             label="Occupation"
             name="occupation"
             onChange={setFields}
+            value={fields.occupation}
           />
 
-          <Listbox>
+          <Listbox value={fields.relationship}>
             <div className="relative">
               <Listbox.Button className="focus:shadow-outline-blue sm:text-sm relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none">
                 <span className="block truncate">{fields.relationship}</span>
