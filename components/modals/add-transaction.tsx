@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Modal from ".";
 import Button from "../elements/button/button";
 import Field from "../elements/field";
+import SuccessfulModal from "./sucessful";
 
 const AddTransaction = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
@@ -11,14 +12,27 @@ const AddTransaction = () => {
     userId: "",
   });
 
-  const handleAddTransaction = async () => {
-    const response = await fetch("/api/add-transaction", {
-      method: "POST",
-      body: JSON.stringify({
-        documentId: fields.documentId,
-        userId: fields.userId,
-      }),
-    });
+  const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
+
+  const handleAddTransaction = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/add-transaction", {
+        method: "POST",
+        body: JSON.stringify({
+          documentId: fields.documentId,
+          userId: fields.userId,
+        }),
+      });
+      if (response.status === 201) {
+        setOpenAddModal(false);
+        setOpenSuccessfulModal(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -63,11 +77,29 @@ const AddTransaction = () => {
             <Button
               name="Create New Transaction"
               fill
-              handler={handleAddTransaction}
+              handler={(event:any) => handleAddTransaction(event)}
             />
           </form>
         </div>
       </Modal>
+
+      {openSuccessfulModal ? (
+        <SuccessfulModal
+          onClose={() => setOpenSuccessfulModal(false)}
+          handler={() => setOpenSuccessfulModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You&apos;ve succesfully added a transaction manually!
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenSuccessfulModal(false)}
+            />
+          </div>
+        </SuccessfulModal>
+      ) : null}
     </>
   );
 };
