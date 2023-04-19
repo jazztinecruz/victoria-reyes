@@ -5,8 +5,8 @@ import { Household } from "@prisma/client";
 import moment from "moment";
 import { useState } from "react";
 import SuccessfulModal from "../../modals/sucessful";
-import Button from "../button/button";
-import Field from "../field";
+import Button from "../../elements/button/button";
+import Field from "../../elements/field";
 
 interface Props {
   household: Household;

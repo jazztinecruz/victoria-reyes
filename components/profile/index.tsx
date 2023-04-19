@@ -5,7 +5,7 @@ import { useState } from "react";
 import EditProfile from "./edit";
 import Button from "../elements/button/button";
 import Field from "../elements/field";
-import Households from "../elements/households";
+import Households from "./households";
 import moment from "moment";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
