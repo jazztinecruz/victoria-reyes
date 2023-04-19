@@ -1,6 +1,6 @@
 import { use } from "react";
 import database from "../../library/database";
-import UserRequestDocument from "../modals/user-request-document";
+import UserRequestDocumentButton from "../modals/user-request-document";
 
 interface Props {
   userId: string;
@@ -24,7 +24,7 @@ const AllDocuments = ({ userId }: Props) => {
             <h2 className="card-title justify-center">{document.title}</h2>
             <p>{document.description}</p>
             <div className="card-actions justify-center">
-              <UserRequestDocument
+              <UserRequestDocumentButton
                 userId={userId}
                 documentId={document.id}
                 price={document.price}
