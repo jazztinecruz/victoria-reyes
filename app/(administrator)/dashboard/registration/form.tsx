@@ -2,7 +2,6 @@
 
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Gender } from "@prisma/client";
-import Link from "next/link";
 import { useState } from "react";
 import Button from "../../../../components/elements/button/button";
 import Field from "../../../../components/elements/field";
@@ -11,7 +10,7 @@ import SuccessfulModal from "../../../../components/modals/sucessful";
 import api, { SignupFields } from "../../../../library/api";
 
 const Form = () => {
-  const [fields, setFields] = useState<SignupFields>({
+  const initialValues = {
     givenName: "",
     middleName: "",
     familyName: "",
@@ -26,7 +25,9 @@ const Form = () => {
     homeowner: false,
     occupation: "",
     households: [],
-  });
+  };
+
+  const [fields, setFields] = useState<SignupFields>(initialValues);
 
   const [sucessfulModal, setSuccessfulModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -71,7 +72,10 @@ const Form = () => {
         setErrorMessage(response.data.message);
         setErrorModal(!errorModal);
       }
-      if (response.status === 200) setSuccessfulModal(!sucessfulModal);
+      if (response.status === 200) {
+        setFields(initialValues);
+        setSuccessfulModal(true);
+      }
     }
   };
   return (
@@ -80,6 +84,7 @@ const Form = () => {
         <Field.Textbox
           label="First Name"
           name="givenName"
+          value={fields.givenName}
           required
           onChange={setFields}
         />
@@ -87,6 +92,7 @@ const Form = () => {
         <Field.Textbox
           label="Middle Name"
           name="middleName"
+          value={fields.middleName}
           required
           onChange={setFields}
         />
@@ -94,6 +100,7 @@ const Form = () => {
         <Field.Textbox
           label="Last Name"
           name="familyName"
+          value={fields.familyName}
           required
           onChange={setFields}
         />
@@ -101,6 +108,7 @@ const Form = () => {
         <Field.Textbox
           label="Birthplace"
           name="birthplace"
+          value={fields.birthplace}
           required
           onChange={setFields}
         />
@@ -109,6 +117,7 @@ const Form = () => {
           type="date"
           label="Birthdate"
           name="birthdate"
+          value={fields.birthdate}
           onChange={setFields}
         />
 
@@ -116,6 +125,7 @@ const Form = () => {
           type="text"
           label="Full Adress"
           name="fullAddress"
+          value={fields.fullAddress}
           required
           onChange={setFields}
         />
@@ -123,6 +133,7 @@ const Form = () => {
         <Field.Textbox
           label="Phone Number"
           name="phone"
+          value={fields.phone}
           required
           onChange={setFields}
         />
@@ -130,13 +141,16 @@ const Form = () => {
         <Field.Textbox
           label="Email Address"
           name="email"
+          value={fields.email}
           required
           onChange={setFields}
         />
 
         <Field.Textbox
+          type="password"
           label="Password"
           name="password"
+          value={fields.password}
           required
           onChange={setFields}
         />
@@ -144,6 +158,7 @@ const Form = () => {
         <Field.Textbox
           label="Occupation"
           name="occupation"
+          value={fields.occupation}
           required
           onChange={setFields}
         />
@@ -181,13 +196,16 @@ const Form = () => {
           handler={() => {
             setSuccessfulModal(false);
           }}>
-          <span className="mt-5 text-xl font-semibold text-brand">
-            You've succesfully created an account!
-          </span>
-          <Button
-            name="Proceed"
-            handler={() => setSuccessfulModal(!sucessfulModal)}
-          />
+          <div className="z-50 flex flex-col items-center gap-3">
+            <span className="mt-5 text-xl font-semibold text-brand">
+              You've succesfully created an account!
+            </span>
+            <Button
+              name="Proceed"
+              fill
+              handler={() => setSuccessfulModal(!sucessfulModal)}
+            />
+          </div>
         </SuccessfulModal>
       )}
 

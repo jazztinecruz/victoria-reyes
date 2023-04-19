@@ -5,6 +5,7 @@ type Props = {
   name: string;
   required?: boolean;
   defaultChecked?: boolean;
+  checked?:boolean
   disabled?: boolean;
   onChange: React.Dispatch<React.SetStateAction<any>>;
   className?: string;
@@ -15,9 +16,9 @@ const Checkbox = ({
   name,
   required,
   defaultChecked,
+  checked,
   disabled,
   onChange,
-  className,
 }: Props) => {
   const fieldId = `${name}${useId()}`;
 
@@ -33,6 +34,7 @@ const Checkbox = ({
         type="checkbox"
         required={required}
         defaultChecked={defaultChecked}
+        checked={checked}
         disabled={disabled}
         onChange={handleOnChange}
         className="checkbox checkbox-success "

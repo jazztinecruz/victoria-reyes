@@ -3,6 +3,7 @@ import { useState } from "react";
 import Modal from ".";
 import Button from "../elements/button/button";
 import Field from "../elements/field";
+import SuccessfulModal from "./sucessful";
 
 const AddSignatory = () => {
   const [openAddModal, setOpenAddModal] = useState(false);
@@ -12,15 +13,28 @@ const AddSignatory = () => {
     lastName: "",
   });
 
-  const handleAddSignatory = async () => {
-    const response = await fetch("/api/add-signatory", {
-      method: "POST",
-      body: JSON.stringify({
-        firstName: fields.firstName,
-        middleName: fields.middleName,
-        lastName: fields.lastName,
-      }),
-    });
+  const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
+
+  const handleAddSignatory = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/add-signatory", {
+        method: "POST",
+        body: JSON.stringify({
+          firstName: fields.firstName,
+          middleName: fields.middleName,
+          lastName: fields.lastName,
+        }),
+      });
+      if (response.status === 201) {
+        setOpenAddModal(false);
+        setOpenSuccessfulModal(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -40,11 +54,9 @@ const AddSignatory = () => {
         onClose={() => setOpenAddModal(false)}>
         <div className="z-50 grid gap-6">
           <div className="flex flex-col">
-            <span className="text-lg font-semibold">
-              Add a new signatory
-            </span>
+            <span className="text-lg font-semibold">Add a new signatory</span>
             <span className="text-sm font-light opacity-50">
-              Provide necessary details to add new Barangay &apos;s Kapitan
+              Provide necessary details to add new Barangay &apos;s Signatory.
             </span>
           </div>
 
@@ -78,6 +90,24 @@ const AddSignatory = () => {
           </form>
         </div>
       </Modal>
+
+      {openSuccessfulModal ? (
+        <SuccessfulModal
+          onClose={() => setOpenSuccessfulModal(false)}
+          handler={() => setOpenSuccessfulModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You&apos;ve succesfully added a signatory!
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenSuccessfulModal(false)}
+            />
+          </div>
+        </SuccessfulModal>
+      ) : null}
     </>
   );
 };

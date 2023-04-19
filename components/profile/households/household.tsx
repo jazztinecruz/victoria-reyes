@@ -1,12 +1,12 @@
 "use client";
 import { Listbox } from "@headlessui/react";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
-import { Household } from "@prisma/client";
+import { Gender, Household } from "@prisma/client";
 import moment from "moment";
 import { useState } from "react";
 import SuccessfulModal from "../../modals/sucessful";
-import Button from "../button/button";
-import Field from "../field";
+import Button from "../../elements/button/button";
+import Field from "../../elements/field";
 
 interface Props {
   household: Household;
@@ -56,7 +56,10 @@ const UniqueHousehold = ({ household, userId }: Props) => {
     "OTHERS",
   ];
 
-  const handleEditHousehold = async () => {
+  const handleEditHousehold = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
     try {
       const response = await fetch("/api/edit-household", {
         method: "PUT",
@@ -106,7 +109,7 @@ const UniqueHousehold = ({ household, userId }: Props) => {
 
   return (
     <div className="relative flex items-center gap-6">
-      <input type="checkbox" className="focus:ring-2 focus:ring-blue-500" />
+      <input type="radio" className="focus:ring-2 focus:ring-blue-500" />
       <button
         type="button"
         className="mr-auto flex justify-center rounded-md border border-gray-300 bg-brand px-6 py-5 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-gray-100"
@@ -165,13 +168,35 @@ const UniqueHousehold = ({ household, userId }: Props) => {
             defaultValue={moment(household.birthdate).format("LL")}
           />
 
-          <Field.Textbox
-            label="Gender"
-            name="gender"
-            onChange={setFields}
-            defaultValue={household.gender}
-            readOnly
-          />
+          <div className="flex flex-col gap-4">
+            <span className="block text-sm text-gray-600 dark:text-gray-200">
+              Choose your Gender
+            </span>
+            <div className="flex items-center gap-10">
+              <div className="flex items-center gap-4">
+                <span>Male</span>
+                <input
+                  type="radio"
+                  name="gender"
+                  className="radio-success radio"
+                  defaultChecked={household.gender === "MALE" ? true : false}
+                  onChange={() => setFields({ ...fields, gender: Gender.MALE })}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span>Female</span>
+                <input
+                  type="radio"
+                  name="gender"
+                  className="radio-success radio"
+                  defaultChecked={household.gender === "FEMALE" ? true : false}
+                  onChange={() =>
+                    setFields({ ...fields, gender: Gender.FEMALE })
+                  }
+                />
+              </div>
+            </div>
+          </div>
 
           <Field.Textbox
             label="Phone Number"

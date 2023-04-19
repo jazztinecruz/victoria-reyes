@@ -36,7 +36,7 @@ const DashboardRequestsPage = () => {
 
   return (
     <div className="space-section">
-      <BatchProcessingModal />
+      <BatchProcessingModal requests={requests} />
       <Table.Main name="List of Pending Requests">
         <Table.Head>
           <Table.Row heading>

@@ -1,6 +1,6 @@
 import moment from "moment";
 import { use } from "react";
-import VerifyResident from "../../../../components/modals/verify-resident";
+import VerifyResidentModal from "../../../../components/modals/verify-resident";
 import Table from "../../../../components/table";
 import database from "../../../../library/database";
 
@@ -51,7 +51,7 @@ const DashboardVerificationsPage = () => {
         <Table.Body>
           {users.reverse().map((user) => (
             <Table.Row key={user.id}>
-              <Table.Data value={<VerifyResident userId={user.id} />} />
+              <Table.Data value={<VerifyResidentModal userId={user.id} />} />
               <Table.Data value={user.id} />
               <Table.Data value={user.givenName} />
               <Table.Data value={user.middleName} />
