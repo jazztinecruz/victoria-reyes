@@ -1,20 +1,21 @@
 "use client";
 
-import { Gender, User } from "@prisma/client";
+import { User } from "@prisma/client";
 import { useState } from "react";
 import EditProfile from "./edit";
 import Button from "../elements/button/button";
 import Field from "../elements/field";
 import Households from "../elements/households";
 import moment from "moment";
+import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 type Props = {
   user: User;
 };
 
 const Profile = ({ user }: Props) => {
-  console.log(user);
   const [openEditModal, setopenEditModal] = useState(false);
+
   return (
     <div className="grid gap-10">
       {/* profile quick info */}
@@ -23,7 +24,7 @@ const Profile = ({ user }: Props) => {
           <span className="text-lg tracking-wide">
             {user.givenName} {user.familyName}
           </span>
-          {/* resident id */}
+          {/* resident email*/}
           <span className="text-sm">{user.email}</span>
         </div>
         <Button
@@ -31,6 +32,15 @@ const Profile = ({ user }: Props) => {
           handler={() => setopenEditModal(!openEditModal)}
           fill
         />
+        {/* if the user is verified */}
+        {user?.verified ? (
+          <div className="flex items-center gap-2">
+            <CheckBadgeIcon className="h-6 w-6 text-brand" />
+            <span className="text-sm font-bold text-brand">
+              Account Verified
+            </span>
+          </div>
+        ) : null}
       </div>
 
       <span className="font-semibold">Personal Information</span>
@@ -139,6 +149,8 @@ const Profile = ({ user }: Props) => {
       </form>
 
       <Households userId={user.id} households={user.households} />
+
+      {/* modal for edit enabled */}
       {openEditModal && (
         <EditProfile
           user={user}
