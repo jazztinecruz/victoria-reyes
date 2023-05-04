@@ -122,7 +122,7 @@ const UserLogin = () => {
                   <div className="absolute left-0 top-0 -mt-3 flex w-full items-center justify-center">
                     <Link href="/signup">
                       <span className="-mr-4 bg-white px-4 text-xs uppercase text-gray-400 hover:text-brand">
-                        Don't have an account yet?
+                        Don&apos;t have an account yet?
                       </span>
                     </Link>
                     <span className="bg-white px-4 text-xs uppercase text-gray-400">
@@ -161,7 +161,7 @@ const UserLogin = () => {
             setForgotPasswordModal(false);
           }}>
           <span className="mt-5 text-xl font-semibold text-brand">
-            You've succesfully exchanged you password!
+            You&apos;ve succesfully exchanged you password!
           </span>
           <span className="text-gray mb-4">
             You can now re-login your forgotPasswordFields with your new
