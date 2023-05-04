@@ -16,6 +16,9 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = {
     residents: [
