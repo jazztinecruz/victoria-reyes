@@ -7,8 +7,6 @@ import Link from "next/link";
 import { useState } from "react";
 import Button from "../../components/elements/button/button";
 import Field from "../../components/elements/field";
-import Households from "../../components/profile/households";
-import Modal from "../../components/modals";
 import ErrorModal from "../../components/modals/error";
 import SuccessfulModal from "../../components/modals/sucessful";
 import api, { SignupFields } from "../../library/api";

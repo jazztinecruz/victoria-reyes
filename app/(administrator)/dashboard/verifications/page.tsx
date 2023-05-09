@@ -8,6 +8,7 @@ const getUsers = async () => {
   const users = await database.user.findMany({
     where: {
       verified: false,
+      declined: false,
     },
     include: {
       households: true,
