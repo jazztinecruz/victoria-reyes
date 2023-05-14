@@ -209,7 +209,7 @@ const SignUp = () => {
               setSuccessfulModal(false);
             }}>
             <span className="mt-5 text-xl font-semibold text-brand">
-              You've succesfully created an account!
+              You&apos;ve succesfully created an account!
             </span>
             <div className="z-50 flex cursor-pointer items-center gap-4">
               <Button
