@@ -39,7 +39,7 @@ const AddTransaction = () => {
     <>
       <div className="mr-auto">
         <Button
-          name="Add Signatory"
+          name="Add Transaction"
           fill
           handler={() => setOpenAddModal(true)}
         />
