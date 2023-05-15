@@ -11,7 +11,6 @@ import CreateCodeModal from "../modals/create-code";
 import JoinCodeModal from "../modals/join-code";
 import CopyCodeModal from "../modals/copy-code";
 import database from "../../library/database";
-import Members from "../family";
 
 type Props = {
   user: User & { households: Household[] };
