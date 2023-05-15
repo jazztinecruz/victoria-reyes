@@ -27,7 +27,8 @@ const AdminDashboard = ({ users }: Props) => {
     "Birth Place",
     "Phone Number",
     "Occupation",
-    "Households",
+    "Head",
+    "Code",
     "Homeowner",
     "Voter",
     "Account Verified",
@@ -71,7 +72,8 @@ const AdminDashboard = ({ users }: Props) => {
                 <Table.Data value={user.birthplace} />
                 <Table.Data value={user.phone} />
                 <Table.Data value={user.occupation} />
-                <Table.Data value={user.households.length} />
+                <Table.Data value={user.head ? "true" : 'false'} />
+                <Table.Data value={user.code} />
                 <Table.Data value={user.homeowner} />
                 <Table.Data value={user.voter} />
                 <Table.Data value={user.verified} />
@@ -92,15 +94,21 @@ const AdminDashboard = ({ users }: Props) => {
             {users
               .filter(
                 (user) =>
-                  user.id.toLowerCase().includes(input) ||
-                  user.givenName.toLowerCase().includes(input) ||
-                  user.middleName?.toLowerCase().includes(input) ||
-                  user.familyName.toLowerCase().includes(input) ||
-                  user.email.toLowerCase().includes(input) ||
-                  user.gender.toLowerCase().includes(input) ||
-                  user.phone.toLowerCase().includes(input) ||
-                  user.occupation.toLowerCase().includes(input) ||
-                  user.birthplace.toLowerCase().includes(input)
+                  user.id.toLowerCase().includes(input.toLowerCase()) ||
+                  user.givenName.toLowerCase().includes(input.toLowerCase()) ||
+                  user.middleName
+                    ?.toLowerCase()
+                    .includes(input.toLowerCase()) ||
+                  user.familyName.toLowerCase().includes(input.toLowerCase()) ||
+                  user.email.toLowerCase().includes(input.toLowerCase()) ||
+                  user.gender.toLowerCase().includes(input.toLowerCase()) ||
+                  user.phone.toLowerCase().includes(input.toLowerCase()) ||
+                  user.occupation.toLowerCase().includes(input.toLowerCase()) ||
+                  user.birthplace.toLowerCase().includes(input.toLowerCase()) ||
+                  user.fullAddress
+                    .toLowerCase()
+                    .includes(input.toLowerCase()) ||
+                  user?.code?.toLowerCase().includes(input.toLowerCase())
               )
               .map((user) => (
                 <Table.Row key={user.id}>
@@ -115,7 +123,8 @@ const AdminDashboard = ({ users }: Props) => {
                   <Table.Data value={user.birthplace} />
                   <Table.Data value={user.phone} />
                   <Table.Data value={user.occupation} />
-                  <Table.Data value={user.households.length} />
+                  <Table.Data value={user.head ? "true" : 'false'} />
+                  <Table.Data value={user?.code} />
                   <Table.Data value={user.homeowner} />
                   <Table.Data value={user.voter} />
                   <Table.Data value={user.verified} />

@@ -1,13 +1,17 @@
 "use client";
 
 import { Household, User } from "@prisma/client";
-import { useState } from "react";
+import { use, useState } from "react";
 import EditProfile from "./edit";
 import Button from "../elements/button/button";
 import Field from "../elements/field";
-import Households from "./households";
 import moment from "moment";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
+import CreateCodeModal from "../modals/create-code";
+import JoinCodeModal from "../modals/join-code";
+import CopyCodeModal from "../modals/copy-code";
+import database from "../../library/database";
+import Members from "../family";
 
 type Props = {
   user: User & { households: Household[] };
@@ -26,12 +30,27 @@ const Profile = ({ user }: Props) => {
           </span>
           {/* resident email*/}
           <span className="text-sm">{user.email}</span>
+          {user.head ? (
+            <span className="text-sm font-semibold">FAMILY HEAD</span>
+          ) : (
+            <span className="text-sm font-semibold">FAMILY MEMBER</span>
+          )}
         </div>
-        <Button
-          name="Edit Profile"
-          handler={() => setopenEditModal(!openEditModal)}
-          fill
-        />
+        <div className="flex items-center gap-3">
+          <Button
+            name="Edit Profile"
+            handler={() => setopenEditModal(!openEditModal)}
+            fill
+          />
+          {!user?.head && !user.code ? (
+            <CreateCodeModal userId={user.id} />
+          ) : null}
+          {!user?.head && !user.code ? (
+            <JoinCodeModal userId={user.id} />
+          ) : null}
+          {user.code ? <CopyCodeModal code={user.code} /> : null}
+        </div>
+
         {/* if the user is verified */}
         {user?.verified ? (
           <div className="flex items-center gap-2">
@@ -146,7 +165,7 @@ const Profile = ({ user }: Props) => {
         </div>
       </form>
 
-      <Households userId={user.id} households={user.households} />
+      {/* <Households userId={user.id} households={user.households} /> */}
 
       {/* modal for edit enabled */}
       {openEditModal && (

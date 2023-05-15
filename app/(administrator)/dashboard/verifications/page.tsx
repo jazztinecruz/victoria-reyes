@@ -33,7 +33,8 @@ const DashboardVerificationsPage = () => {
     "Birth Place",
     "Phone Number",
     "Occupation",
-    "Households",
+    "Head",
+    "Code",
     "Homeowner",
     "Voter",
     "Account Verified",
@@ -64,7 +65,8 @@ const DashboardVerificationsPage = () => {
               <Table.Data value={user.birthplace} />
               <Table.Data value={user.phone} />
               <Table.Data value={user.occupation} />
-              <Table.Data value={user.households.length} />
+              <Table.Data value={user.head ? "true" : "false"} />
+              <Table.Data value={user?.code} />
               <Table.Data value={user.homeowner} />
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
