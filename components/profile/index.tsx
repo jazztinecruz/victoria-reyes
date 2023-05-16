@@ -31,9 +31,10 @@ const Profile = ({ user }: Props) => {
           <span className="text-sm">{user.email}</span>
           {user.head ? (
             <span className="text-sm font-semibold">FAMILY HEAD</span>
-          ) : (
+          ) : null}
+          {user.code && !user.head ? (
             <span className="text-sm font-semibold">FAMILY MEMBER</span>
-          )}
+          ) : null}
         </div>
         <div className="flex items-center gap-3">
           <Button
