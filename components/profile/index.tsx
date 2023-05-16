@@ -97,6 +97,14 @@ const Profile = ({ user }: Props) => {
         />
 
         <Field.Textbox
+          label="Purok"
+          name="purok"
+          onChange={() => {}}
+          defaultValue={user.purok}
+          readOnly
+        />
+
+        <Field.Textbox
           label="Birthdate"
           name="birthdate"
           onChange={() => {}}

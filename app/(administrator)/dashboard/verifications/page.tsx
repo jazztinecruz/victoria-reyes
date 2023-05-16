@@ -30,6 +30,7 @@ const DashboardVerificationsPage = () => {
     "Gender",
     "Birth Date",
     "Full Address",
+    "Purok",
     "Birth Place",
     "Phone Number",
     "Occupation",
@@ -62,6 +63,7 @@ const DashboardVerificationsPage = () => {
               <Table.Data value={user.gender} />
               <Table.Data value={moment(user.birthdate).format("LL")} />
               <Table.Data value={user.fullAddress} />
+              <Table.Data value={user.purok} />
               <Table.Data value={user.birthplace} />
               <Table.Data value={user.phone} />
               <Table.Data value={user.occupation} />

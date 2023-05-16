@@ -28,6 +28,7 @@ model User {
   code        String?
   head        Boolean     @default(false)
   fullAddress String      @default("Dasmarinas,Cavite")
+  purok       Purok       @default(PUROK_1)
   households  Household[]
   requests    Request[]
 
@@ -114,4 +115,12 @@ enum Relationship {
 enum Status {
   PENDING
   APPROVED
+}
+
+enum Purok {
+  PUROK_1
+  PUROK_2
+  PUROK_3
+  PUROK_4
+  PUROK_5
 }

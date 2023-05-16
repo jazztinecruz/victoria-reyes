@@ -23,7 +23,8 @@ const AdminDashboard = ({ users }: Props) => {
     "Email Address",
     "Gender",
     "Birth Date",
-    "Address",
+    "Full Address",
+    "Purok",
     "Birth Place",
     "Phone Number",
     "Occupation",
@@ -69,10 +70,11 @@ const AdminDashboard = ({ users }: Props) => {
                 <Table.Data value={user.gender} />
                 <Table.Data value={moment(user.birthdate).format("LL")} />
                 <Table.Data value={user.fullAddress} />
+                <Table.Data value={user.purok} />
                 <Table.Data value={user.birthplace} />
                 <Table.Data value={user.phone} />
                 <Table.Data value={user.occupation} />
-                <Table.Data value={user.head ? "true" : 'false'} />
+                <Table.Data value={user.head ? "true" : "false"} />
                 <Table.Data value={user.code} />
                 <Table.Data value={user.homeowner} />
                 <Table.Data value={user.voter} />
@@ -108,7 +110,8 @@ const AdminDashboard = ({ users }: Props) => {
                   user.fullAddress
                     .toLowerCase()
                     .includes(input.toLowerCase()) ||
-                  user?.code?.toLowerCase().includes(input.toLowerCase())
+                  user?.code?.toLowerCase().includes(input.toLowerCase()) ||
+                  user?.purok?.toLowerCase().includes(input.toLowerCase())
               )
               .map((user) => (
                 <Table.Row key={user.id}>
@@ -120,10 +123,11 @@ const AdminDashboard = ({ users }: Props) => {
                   <Table.Data value={user.gender} />
                   <Table.Data value={moment(user.birthdate).format("LL")} />
                   <Table.Data value={user.fullAddress} />
+                  <Table.Data value={user.purok} />
                   <Table.Data value={user.birthplace} />
                   <Table.Data value={user.phone} />
                   <Table.Data value={user.occupation} />
-                  <Table.Data value={user.head ? "true" : 'false'} />
+                  <Table.Data value={user.head ? "true" : "false"} />
                   <Table.Data value={user?.code} />
                   <Table.Data value={user.homeowner} />
                   <Table.Data value={user.voter} />
