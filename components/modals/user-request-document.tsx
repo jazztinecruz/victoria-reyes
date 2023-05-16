@@ -3,6 +3,7 @@ import { useState } from "react";
 import SuccessfulModal from "../modals/sucessful";
 import Button from "../elements/button/button";
 import Modal from ".";
+import Textbox from "../elements/field/textbox";
 
 interface Props {
   userId: string;
@@ -13,6 +14,10 @@ interface Props {
 const UserRequestDocumentButton = ({ userId, documentId, price }: Props) => {
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
+  const [fields, setFields] = useState({
+    purpose: "",
+  });
+  const [error, setError] = useState('');
 
   const handleRequestDocument = async () => {
     try {
@@ -21,6 +26,7 @@ const UserRequestDocumentButton = ({ userId, documentId, price }: Props) => {
         body: JSON.stringify({
           userId: userId,
           documentId: documentId,
+          purpose: fields.purpose,
         }),
       });
       if (response.status === 201) setOpenSuccessfulModal(true);
@@ -43,11 +49,26 @@ const UserRequestDocumentButton = ({ userId, documentId, price }: Props) => {
           as="div"
           open
           onClose={() => setOpenConfirmationModal(false)}>
-          <div className="flex flex-col items-center justify-center gap-5 text-center">
-            <span className="mt-5 text-xl font-semibold text-brand">
-              Are you sure you want to request this document?
+          <div className="flex flex-col gap-5">
+            <span className="text-center text-xl font-semibold text-brand">
+              Request Document
             </span>
-            <span className="text-gray mb-4 text-sm">
+
+            <div>
+              <Textbox
+                label="Purpose of Request"
+                name="purpose"
+                onChange={setFields}
+                required
+              />
+              {error ? (
+                <span className="text-xs text-red-500">
+                  {error}
+                </span>
+              ) : null}
+            </div>
+
+            <span className="text-gray text-center text-sm">
               <span>
                 Please prepare <span className="font-semibold">{price}.00</span>{" "}
                 upon claiming.
@@ -62,6 +83,11 @@ const UserRequestDocumentButton = ({ userId, documentId, price }: Props) => {
             </span>
             <Button
               handler={() => {
+                if (!fields.purpose) {
+                  setError('Purpose cannot be blank.');
+                  return;
+                }
+                if (fields.purpose.length > 40) setError('Purpose cannot exceed to 50 characters.')
                 handleRequestDocument();
                 setOpenConfirmationModal(false);
               }}

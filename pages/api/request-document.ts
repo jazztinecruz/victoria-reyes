@@ -11,6 +11,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       data: {
         userId: body.userId,
         documentId: body.documentId,
+        purpose: body.purpose
       },
     });
     return response.status(201).send(document);
