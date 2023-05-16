@@ -7,6 +7,14 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   }
   const body = JSON.parse(request.body);
   try {
+    const existingCode = await database.user.findMany({
+      where: { code: body.code },
+    });
+    if (existingCode.length)
+      return response
+        .status(404)
+        .send({ message: "Code already exists. Try Create again." });
+
     const household = await database.user.update({
       where: {
         id: body.id,

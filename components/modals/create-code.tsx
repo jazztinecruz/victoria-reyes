@@ -3,6 +3,7 @@ import { ClipboardIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Modal from ".";
 import Button from "../elements/button/button";
+import SuccessfulModal from "./sucessful";
 
 interface Props {
   userId: string;
@@ -11,6 +12,9 @@ interface Props {
 const CreateCodeModal = ({ userId }: Props) => {
   const [open, setOpen] = useState(false);
   const [generatedCode, setGeneratedCode] = useState<string>("");
+  const [openErrorModal, setOpenErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
 
   const handleGenerateCode = () => {
     const chars =
@@ -41,7 +45,12 @@ const CreateCodeModal = ({ userId }: Props) => {
         }),
       });
       if (response.status === 201) {
-        console.log("successful");
+        setOpenSuccessfulModal(true);
+      }
+      if (response.status !== 201) {
+        const errorMessage = await response.json();
+        setOpenErrorModal(true);
+        setErrorMessage(errorMessage.message);
       }
     } catch (error) {
       console.log(error);
@@ -79,6 +88,57 @@ const CreateCodeModal = ({ userId }: Props) => {
           />
         </div>
       </Modal>
+
+      {openSuccessfulModal ? (
+        <SuccessfulModal
+          onClose={() => {
+            setOpen(false);
+            setOpenSuccessfulModal(false);
+          }}
+          handler={() => {
+            setOpen(false);
+            setOpenSuccessfulModal(false);
+          }}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You&apos;ve succesfully created a family code!
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => {
+                setOpen(false);
+                setOpenSuccessfulModal(false);
+              }}
+            />
+          </div>
+        </SuccessfulModal>
+      ) : null}
+
+      {openErrorModal ? (
+        <Modal
+          open={openErrorModal === true ? true : false}
+          onClose={() => {
+            setOpen(false);
+            setOpenErrorModal(false);
+          }}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            {errorMessage}
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => {
+                setOpen(false);
+                setOpenErrorModal(false);
+              }}
+            />
+          </div>
+        </Modal>
+      ) : null}
     </>
   );
 };
