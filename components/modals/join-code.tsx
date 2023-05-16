@@ -2,7 +2,9 @@
 import { ClipboardIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Modal from ".";
+import database from "../../library/database";
 import Button from "../elements/button/button";
+import Textbox from "../elements/field/textbox";
 
 interface Props {
   userId: string;
@@ -10,18 +12,26 @@ interface Props {
 
 const JoinCodeModal = ({ userId }: Props) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [fields, setFields] = useState({
+    code: "",
+  });
+
+  const [error, setError] = useState("");
 
   const handleSubmit = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
+    if (!fields.code) {
+      setError("Code cannot be blank.");
+      return;
+    }
     try {
       const response = await fetch("/api/update-code", {
         method: "PUT",
         body: JSON.stringify({
           id: userId,
-          code: value,
+          code: fields.code,
         }),
       });
       if (response.status === 201) {
@@ -45,14 +55,11 @@ const JoinCodeModal = ({ userId }: Props) => {
           </div>
 
           {/* Paste code field */}
-          <div className="bg-snow mt-6 w-full py-3 pl-4 text-lg font-bold">
-            <input
-              className="w-full rounded border"
-              placeholder="Paste Code Here ..."
-              onChange={(event) => {
-                setValue(event.target.value);
-              }}
-            />
+          <div className="my-6">
+            <Textbox name="code" label="Paste Code" onChange={setFields} />
+            {error ? (
+              <span className="text-xs text-red-500">{error}</span>
+            ) : null}
           </div>
 
           <Button
