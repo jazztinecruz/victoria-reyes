@@ -2,9 +2,9 @@
 import { ClipboardIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Modal from ".";
-import database from "../../library/database";
 import Button from "../elements/button/button";
 import Textbox from "../elements/field/textbox";
+import SuccessfulModal from "./sucessful";
 
 interface Props {
   userId: string;
@@ -17,6 +17,9 @@ const JoinCodeModal = ({ userId }: Props) => {
   });
 
   const [error, setError] = useState("");
+  const [openErrorModal, setOpenErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
 
   const handleSubmit = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -35,7 +38,13 @@ const JoinCodeModal = ({ userId }: Props) => {
         }),
       });
       if (response.status === 201) {
-        console.log("successful");
+        setOpen(false);
+        setOpenSuccessfulModal(true);
+      }
+      if (response.status !== 201) {
+        const errorMessage = await response.json();
+        setOpenErrorModal(true);
+        setErrorMessage(errorMessage.message);
       }
     } catch (error) {
       console.log(error);
@@ -69,6 +78,42 @@ const JoinCodeModal = ({ userId }: Props) => {
           />
         </div>
       </Modal>
+
+      {openSuccessfulModal ? (
+        <SuccessfulModal
+          onClose={() => setOpenSuccessfulModal(false)}
+          handler={() => setOpenSuccessfulModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            You&apos;ve succesfully joined a family code and become a member!
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenSuccessfulModal(false)}
+            />
+          </div>
+        </SuccessfulModal>
+      ) : null}
+
+      {openErrorModal ? (
+        <Modal
+          open={openErrorModal === true ? true : false}
+          onClose={() => setOpenErrorModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            {errorMessage}
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenErrorModal(false)}
+            />
+          </div>
+        </Modal>
+      ) : null}
     </>
   );
 };

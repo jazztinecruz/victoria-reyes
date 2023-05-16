@@ -7,7 +7,12 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   }
   const body = JSON.parse(request.body);
   try {
-    const household = await database.user.update({
+    const existingCode = await database.user.findMany({
+      where: { code: body.code },
+    });
+    if (!existingCode.length)
+      return response.status(404).send({ message: "Code doesn't exists." });
+    const user = await database.user.update({
       where: {
         id: body.id,
       },
@@ -15,7 +20,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         code: body.code,
       },
     });
-    return response.status(201).send(household);
+    return response.status(201).send(user);
   } catch (error) {
     return response.status(500).send({ message: "Internal server error" });
   }
