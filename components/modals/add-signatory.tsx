@@ -14,12 +14,21 @@ const AddSignatory = () => {
   });
 
   const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
+  const [openErrorModal, setOpenErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleAddSignatory = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
     try {
+      if (!fields.firstName || !fields.middleName || !fields.lastName) {
+        setOpenErrorModal(true);
+        setErrorMessage(
+          "Please fill up the required fields with exclamation mark."
+        );
+        return;
+      }
       const response = await fetch("/api/add-signatory", {
         method: "POST",
         body: JSON.stringify({
@@ -31,6 +40,11 @@ const AddSignatory = () => {
       if (response.status === 201) {
         setOpenAddModal(false);
         setOpenSuccessfulModal(true);
+      }
+      if (response.status !== 201) {
+        const errorMessage = await response.json();
+        setOpenErrorModal(true);
+        setErrorMessage(errorMessage.message);
       }
     } catch (error) {
       console.log(error);
@@ -65,6 +79,7 @@ const AddSignatory = () => {
               type="text"
               label="First Name"
               name="firstName"
+              required
               onChange={setFields}
             />
 
@@ -72,6 +87,7 @@ const AddSignatory = () => {
               type="text"
               label="Middle Name"
               name="middleName"
+              required
               onChange={setFields}
             />
 
@@ -79,6 +95,7 @@ const AddSignatory = () => {
               type="text"
               label="Last Name"
               name="lastName"
+              required
               onChange={setFields}
             />
 
@@ -107,6 +124,24 @@ const AddSignatory = () => {
             />
           </div>
         </SuccessfulModal>
+      ) : null}
+
+      {openErrorModal ? (
+        <Modal
+          open={openErrorModal === true ? true : false}
+          onClose={() => setOpenErrorModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            {errorMessage}
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenErrorModal(false)}
+            />
+          </div>
+        </Modal>
       ) : null}
     </>
   );
