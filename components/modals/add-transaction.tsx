@@ -13,6 +13,8 @@ const AddTransaction = () => {
   });
 
   const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
+  const [openErrorModal, setOpenErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleAddTransaction = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -29,6 +31,11 @@ const AddTransaction = () => {
       if (response.status === 201) {
         setOpenAddModal(false);
         setOpenSuccessfulModal(true);
+      }
+      if (response.status !== 201) {
+        const errorMessage = await response.json();
+        setOpenErrorModal(true);
+        setErrorMessage(errorMessage.message);
       }
     } catch (error) {
       console.log(error);
@@ -77,7 +84,7 @@ const AddTransaction = () => {
             <Button
               name="Create New Transaction"
               fill
-              handler={(event:any) => handleAddTransaction(event)}
+              handler={(event: any) => handleAddTransaction(event)}
             />
           </form>
         </div>
@@ -99,6 +106,24 @@ const AddTransaction = () => {
             />
           </div>
         </SuccessfulModal>
+      ) : null}
+
+      {openErrorModal ? (
+        <Modal
+          open={openErrorModal === true ? true : false}
+          onClose={() => setOpenErrorModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            {errorMessage}
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenErrorModal(false)}
+            />
+          </div>
+        </Modal>
       ) : null}
     </>
   );
