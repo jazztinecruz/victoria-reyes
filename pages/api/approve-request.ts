@@ -13,6 +13,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       },
       data: {
         status: "APPROVED",
+        adminId: body.adminId,
       },
     });
     return response.status(201).send(document);

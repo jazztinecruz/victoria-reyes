@@ -18,7 +18,6 @@ import {
 import { Admin } from "@prisma/client";
 
 const Sidebar = ({ admin }: { admin: Admin }) => {
-  
   const links = {
     residents: [
       {
@@ -92,7 +91,10 @@ const Sidebar = ({ admin }: { admin: Admin }) => {
       </section>
 
       {/* name */}
-      <div className="font-bold uppercase">{admin.name}</div>
+      <div className="flex flex-col">
+        <div className="font-bold uppercase">{admin.name}</div>
+        <div className="text-xs">{admin.id}</div>
+      </div>
 
       {/* Navigation */}
       <nav className="space-section hidden notebook:block">

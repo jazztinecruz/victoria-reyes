@@ -1,4 +1,5 @@
 "use client";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import Modal from ".";
 import Button from "../elements/button/button";
@@ -6,6 +7,9 @@ import Field from "../elements/field";
 import SuccessfulModal from "./sucessful";
 
 const AddTransaction = () => {
+  const userId = useParams();
+  const adminId = userId;
+
   const [openAddModal, setOpenAddModal] = useState(false);
   const [fields, setFields] = useState({
     documentId: "",
@@ -26,6 +30,7 @@ const AddTransaction = () => {
         body: JSON.stringify({
           documentId: fields.documentId,
           userId: fields.userId,
+          adminId: adminId?.userId,
         }),
       });
       if (response.status === 201) {
@@ -81,6 +86,16 @@ const AddTransaction = () => {
               onChange={setFields}
             />
 
+            <div className="flex flex-col gap-1">
+              <div className="block text-sm text-gray-600 dark:text-gray-200">
+                Admin ID
+              </div>
+              <input
+                className="mt-2 block w-full rounded-md border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-brand/75 focus:outline-none focus:ring focus:ring-brand/75 focus:ring-opacity-40  dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600"
+                value={adminId?.userId}
+                readOnly
+              />
+            </div>
             <Button
               name="Create New Transaction"
               fill
