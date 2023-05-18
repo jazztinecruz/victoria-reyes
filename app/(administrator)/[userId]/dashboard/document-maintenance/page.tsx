@@ -1,9 +1,9 @@
 import { use } from "react";
-import EditDocument from "../../../../components/modals/edit-document";
-import AddDocumentModal from "../../../../components/modals/add-document";
-import database from "../../../../library/database";
-import Document from "../../../document";
-import DeleteDocument from "../../../../components/modals/delete-document";
+import EditDocument from "../../../../../components/modals/edit-document";
+import AddDocumentModal from "../../../../../components/modals/add-document";
+import database from "../../../../../library/database";
+import Document from "../../../../document";
+import DeleteDocument from "../../../../../components/modals/delete-document";
 
 const getDocuments = async () => {
   const documents = await database.document.findMany();

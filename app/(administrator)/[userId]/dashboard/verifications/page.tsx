@@ -1,8 +1,8 @@
 import moment from "moment";
 import { use } from "react";
-import VerifyResidentModal from "../../../../components/modals/verify-resident";
-import Table from "../../../../components/table";
-import database from "../../../../library/database";
+import VerifyResidentModal from "../../../../../components/modals/verify-resident";
+import Table from "../../../../../components/table";
+import database from "../../../../../library/database";
 
 const getUsers = async () => {
   const users = await database.user.findMany({

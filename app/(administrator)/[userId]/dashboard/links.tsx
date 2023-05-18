@@ -12,7 +12,7 @@ type Props = {
 const Links = ({ name, list }: Props) => {
   return (
     <div className="space-content">
-      <h2 className="font-medium hidden desktop:block">{name}</h2>
+      <h2 className="hidden font-medium desktop:block">{name}</h2>
       <ul className="space-content">
         {list.map(({ name, href, Icon }) => (
           <Link key={name} name={name} href={href} Icon={Icon} />

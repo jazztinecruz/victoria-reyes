@@ -1,8 +1,8 @@
-import database from "../../../../library/database";
-import Table from "../../../../components/table";
+import database from "../../../../../library/database";
+import Table from "../../../../../components/table";
 import { use } from "react";
-import Status from "../../../../components/modals/status";
-import BatchProcessingModal from "../../../../components/modals/batch-processing";
+import Status from "../../../../../components/modals/status";
+import BatchProcessingModal from "../../../../../components/modals/batch-processing";
 
 const getRequests = async () => {
   const requests = await database.request.findMany({

@@ -77,6 +77,13 @@ model Household {
   @@unique([id, userId])
 }
 
+model Admin {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String @db.Text
+  name     String
+}
+
 model Signatory {
   id         String @id @default(cuid())
   firstName  String

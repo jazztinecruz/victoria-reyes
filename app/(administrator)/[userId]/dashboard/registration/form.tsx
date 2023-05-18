@@ -3,11 +3,11 @@
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Gender } from "@prisma/client";
 import { useState } from "react";
-import Button from "../../../../components/elements/button/button";
-import Field from "../../../../components/elements/field";
-import ErrorModal from "../../../../components/modals/error";
-import SuccessfulModal from "../../../../components/modals/sucessful";
-import api, { SignupFields } from "../../../../library/api";
+import Button from "../../../../../components/elements/button/button";
+import Field from "../../../../../components/elements/field";
+import ErrorModal from "../../../../../components/modals/error";
+import SuccessfulModal from "../../../../../components/modals/sucessful";
+import api, { SignupFields } from "../../../../../library/api";
 
 const Form = () => {
   const initialValues = {

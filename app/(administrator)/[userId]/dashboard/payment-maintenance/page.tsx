@@ -1,7 +1,7 @@
 import { use } from "react";
-import AddTransaction from "../../../../components/modals/add-transaction";
-import Table from "../../../../components/table";
-import database from "../../../../library/database";
+import AddTransaction from "../../../../../components/modals/add-transaction";
+import Table from "../../../../../components/table";
+import database from "../../../../../library/database";
 
 const getApprovedDocuments = async () => {
   const approvedRequests = await database.request.findMany({

@@ -1,6 +1,6 @@
 import { use } from "react";
-import database from "../../../library/database";
-import AdminDashboard from "../../../components/dashboard";
+import database from "../../../../library/database";
+import AdminDashboard from "../../../../components/dashboard";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
