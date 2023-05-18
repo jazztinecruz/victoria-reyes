@@ -91,7 +91,7 @@ const AdminSignIn = () => {
 
                   <span className="mt-3  bg-white px-4 text-center text-xs uppercase text-gray-400 hover:text-brand">
                     <Link href="/admin/signup">
-                      Don't have an admin account yet?
+                      Don&apos;t have an admin account yet?
                     </Link>
                   </span>
                 </div>
