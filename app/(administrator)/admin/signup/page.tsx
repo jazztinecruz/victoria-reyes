@@ -29,34 +29,30 @@ const AdminSignUp = () => {
       );
       setErrorModal(true);
       return;
-    }
-
-    if (fields.password.length < 5) {
+    } else if (fields.password.length < 5) {
       setErrorMessage("Password must contain more than 5 characters.");
       setErrorModal(true);
-    }
-
-    if (!emailRegex.test(fields.email)) {
+    } else if (!emailRegex.test(fields.email)) {
       setErrorMessage("Email Address must contain a valid email.");
       setErrorModal(true);
-    }
-
-    const response = await fetch("/api/auth/admin/signup", {
-      method: "POST",
-      body: JSON.stringify({
-        email: fields.email,
-        name: fields.name,
-        password: fields.password,
-      }),
-    });
-    const data = await response.json();
-    if (response.status === 200) {
-      setFields(initialValues);
-      setOpenSuccessfulModal(true);
-    }
-    if (response.status !== 200) {
-      setErrorMessage(data.message);
-      setErrorModal(!errorModal);
+    } else {
+      const response = await fetch("/api/auth/admin/signup", {
+        method: "POST",
+        body: JSON.stringify({
+          email: fields.email,
+          name: fields.name,
+          password: fields.password,
+        }),
+      });
+      const data = await response.json();
+      if (response.status === 200) {
+        setFields(initialValues);
+        setOpenSuccessfulModal(true);
+      }
+      if (response.status !== 200) {
+        setErrorMessage(data.message);
+        setErrorModal(!errorModal);
+      }
     }
   };
   return (

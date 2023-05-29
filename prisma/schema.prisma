@@ -124,6 +124,7 @@ enum Relationship {
 enum Status {
   PENDING
   APPROVED
+  DECLINED
 }
 
 enum Purok {
