@@ -33,7 +33,8 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         status: "APPROVED",
         documentId: body.documentId,
         userId: body.userId,
-        adminId: body.adminId
+        adminId: body.adminId,
+        purpose: "Added by Admin",
       },
     });
     return response.status(201).send(document);
