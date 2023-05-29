@@ -226,7 +226,8 @@ const Form = () => {
           }}>
           <div className="z-50 flex flex-col items-center gap-3">
             <span className="mt-5 text-xl font-semibold text-brand">
-              You&apos;ve succesfully created an account!
+              You&apos;ve succesfully created an account! Users can edit their
+              other information in their account.
             </span>
             <Button
               name="Proceed"

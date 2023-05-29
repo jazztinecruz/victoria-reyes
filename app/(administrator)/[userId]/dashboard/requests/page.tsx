@@ -8,6 +8,9 @@ const getRequests = async () => {
   const requests = await database.request.findMany({
     where: {
       status: "PENDING",
+      user: {
+        declined: false
+      }
     },
     include: {
       user: true,

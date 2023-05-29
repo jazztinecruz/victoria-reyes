@@ -109,7 +109,7 @@ const EditProfile = ({ user, handler }: Props) => {
                   <ChevronDownIcon className="h-6 w-6" />
                 </Listbox.Button>
                 <Listbox.Options className="mt-2 flex flex-col rounded border bg-white">
-                  {puroks.map((purok) => (
+                  {Object.values(Purok).map((purok) => (
                     <Listbox.Option
                       as="button"
                       key={purok}

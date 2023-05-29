@@ -133,4 +133,7 @@ enum Purok {
   PUROK_3
   PUROK_4
   PUROK_5
+  PUROK_6
+  PUROK_7
+  PUROK_8
 }

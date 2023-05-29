@@ -4,7 +4,6 @@ import {
   Bars3Icon,
   ChevronDoubleUpIcon,
   ChevronRightIcon,
-  DocumentTextIcon,
   HomeIcon,
   PhoneIcon,
   QuestionMarkCircleIcon,
@@ -16,31 +15,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment, useRef } from "react";
 import Button from "../components/elements/button/button";
-import Document from "./document";
 import Feature from "./feature";
-
-const documents: { title: string; description: string }[] = [
-  {
-    title: "Barangay Clearance",
-    description:
-      "A Barangay Clearance one of the easiest documents you can get as a valid proof of your identity. It is a document that contains a person's name, address, thumb mark, and signature. It also contains the date it was issued and for what specific purpose.",
-  },
-  {
-    title: "Barangay Indigency",
-    description:
-      "A document that are sometimes required by the Philippine government or a private institution as proof of an individual's financial situation.",
-  },
-  {
-    title: "Barangay ID",
-    description:
-      "A Barangay Clearance one of the easiest documents you can get as a valid proof of your identity. It is a document that contains a person's name, address, thumb mark, and signature. It also contains the date it was issued and for what specific purpose.",
-  },
-  {
-    title: "Cedula",
-    description:
-      "one of the basic requirements for most government transactions. It can also serve as valid identification for individuals and corporations residing or located in the same municipality from where it's acquired",
-  },
-];
 
 const features: {
   title: string;
@@ -96,11 +71,6 @@ const links = [
     Icon: UserGroupIcon,
   },
   {
-    name: "Barangay Documents",
-    href: "#documents",
-    Icon: DocumentTextIcon,
-  },
-  {
     name: "Features",
     href: "#features",
     Icon: QuestionMarkCircleIcon,
@@ -127,6 +97,7 @@ const HomePage = () => {
       });
     }
   };
+  
   return (
     <div className="grid h-screen grid-rows-[1fr,auto] gap-20">
       {/* hero section */}
@@ -134,7 +105,6 @@ const HomePage = () => {
       <section
         ref={backToTopSection}
         className="grid h-full grid-rows-[auto,1fr]">
-
         {/* navbar */}
         <nav className="bg-white tablet:px-10 laptop:hidden">
           <div className="grid grid-cols-[1fr,auto] items-center gap-8 py-3 px-4">
@@ -234,9 +204,6 @@ const HomePage = () => {
                 <a href="#about" className="hover:text-brand">
                   About Us
                 </a>
-                <a href="#documents" className="hover:text-brand">
-                  Barangay Documents
-                </a>
                 <a href="#features" className="hover:text-brand">
                   Features
                 </a>
@@ -248,7 +215,7 @@ const HomePage = () => {
             {/* sign in button */}
             <Link href="/signin">
               <div className="hidden laptop:block">
-                <Button name="LOGIN YOUR ACCOUNT" fill/>
+                <Button name="LOGIN YOUR ACCOUNT" fill />
               </div>
             </Link>
           </div>
@@ -301,21 +268,6 @@ const HomePage = () => {
           barangay centers.
         </p>
       </div>
-
-      {/* documents section
-      <div
-        id="documents"
-        className=" relative h-full laptop:mt-14 laptop:h-screen">
-        <div className="mx-auto grid h-full max-w-5xl grid-flow-row items-start justify-center gap-16 p-4 tablet:grid-cols-2 tablet:py-10 laptop:gap-0">
-          {documents.map((document, index) => (
-            <Document
-              key={index}
-              name={document.title}
-              description={document.description}
-            />
-          ))}
-        </div>
-      </div> */}
 
       {/* features */}
       <div id="features" className="mt-14 h-full w-full laptop:mt-0">

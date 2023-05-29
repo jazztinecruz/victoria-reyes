@@ -6,6 +6,7 @@ import Button from "../../../../components/elements/button/button";
 import Textbox from "../../../../components/elements/field/textbox";
 import Modal from "../../../../components/modals";
 import { useRouter } from "next/navigation";
+import ForgotPassword from "../../../../components/modals/forgot-password-admin";
 
 const AdminSignIn = () => {
   const initialValues = {
@@ -15,6 +16,8 @@ const AdminSignIn = () => {
   const [fields, setFields] = useState(initialValues);
   const [errorMessage, setErrorMessage] = useState("");
   const [errorModal, setErrorModal] = useState(false);
+  const [forgotPasswordModal, setForgotPasswordModal] = useState(false);
+
   const router = useRouter();
 
   const handleSignInAdmin = async () => {
@@ -89,6 +92,13 @@ const AdminSignIn = () => {
                     <Link href="/admin/signup">
                       Don&apos;t have an admin account yet?
                     </Link>
+                    <button
+                      onClick={() =>
+                        setForgotPasswordModal(!forgotPasswordModal)
+                      }
+                      className="cursor-pointer bg-white px-4 text-xs uppercase text-gray-400 hover:text-brand">
+                      Forgot Password
+                    </button>
                   </span>
                 </div>
               </div>
@@ -96,6 +106,10 @@ const AdminSignIn = () => {
           </div>
         </div>
       </section>
+
+      {forgotPasswordModal && (
+        <ForgotPassword handler={() => setForgotPasswordModal(false)} />
+      )}
 
       {errorModal ? (
         <Modal
