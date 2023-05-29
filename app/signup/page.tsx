@@ -42,13 +42,6 @@ const SignUp = () => {
   });
 
   const [sucessfulModal, setSuccessfulModal] = useState(false);
-  const puroks = [
-    Purok.PUROK_1,
-    Purok.PUROK_2,
-    Purok.PUROK_3,
-    Purok.PUROK_4,
-    Purok.PUROK_5,
-  ];
 
   const handleUploadFile = (event: any) => {
     const file = event.target.files[0];
@@ -196,10 +189,10 @@ const SignUp = () => {
                 <ChevronDownIcon className="h-6 w-6" />
               </Listbox.Button>
               <Listbox.Options className="mt-2 flex flex-col rounded border bg-white">
-                {puroks.map((purok) => (
+                {Object.values(Purok).map((purok) => (
                   <Listbox.Option
-                    as="button"
                     key={purok}
+                    as="button"
                     value={purok}
                     onClick={() => setFields({ ...fields, purok: purok })}
                     className="w-full cursor-pointer py-2 px-4 text-left text-sm hover:bg-slate-200">

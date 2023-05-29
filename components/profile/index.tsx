@@ -61,6 +61,10 @@ const Profile = ({ user }: Props) => {
             </span>
           </div>
         ) : null}
+
+        {user?.declined ? (
+          <span className="text-sm font-bold text-red-500">Declined</span>
+        ) : null}
       </div>
 
       <span className="font-semibold">Personal Information</span>

@@ -120,14 +120,6 @@ const UserLogin = () => {
 
                 <div className="relative mt-10 h-px bg-gray-300">
                   <div className="absolute left-0 top-0 -mt-3 flex w-full items-center justify-center">
-                    <Link href="/admin/signin">
-                      <span className="-mr-4 bg-white px-4 text-xs uppercase text-gray-400 hover:text-brand">
-                        Are you an admin?
-                      </span>
-                    </Link>
-                    <span className="bg-white px-4 text-xs uppercase text-gray-400">
-                      OR
-                    </span>
                     <Link href="/signup">
                       <span className="-mr-4 bg-white px-4 text-xs uppercase text-gray-400 hover:text-brand">
                         Don&apos;t have an account yet?
