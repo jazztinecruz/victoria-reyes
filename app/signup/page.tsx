@@ -7,6 +7,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid";
 import { Gender, Purok } from "@prisma/client";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -17,6 +18,9 @@ import SuccessfulModal from "../../components/modals/sucessful";
 import api, { SignupFields } from "../../library/api";
 
 const SignUp = () => {
+  const presetKey = "zd1amfbw";
+  const cloudName = "djdnanzyn";
+  const [image, setImage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorModal, setErrorModal] = useState(false);
   const [fields, setFields] = useState<SignupFields>({
@@ -31,11 +35,13 @@ const SignUp = () => {
     phone: "",
     email: "",
     password: "",
+    proof: "",
     voter: false,
     homeowner: false,
     occupation: "",
     households: [],
   });
+
   const [sucessfulModal, setSuccessfulModal] = useState(false);
   const puroks = [
     Purok.PUROK_1,
@@ -44,6 +50,21 @@ const SignUp = () => {
     Purok.PUROK_4,
     Purok.PUROK_5,
   ];
+
+  const handleUploadFile = (event: any) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", presetKey);
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        formData
+      )
+      .then((response) => setImage(response.data.secure_url))
+      .catch((error) => console.log(error));
+  };
+
   const handleSubmit = async () => {
     const phoneNumberRegex = /^\d{11}$/;
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -56,6 +77,7 @@ const SignUp = () => {
       "birthplace",
       "phone",
       "email",
+      "proof",
       "password",
       "occupation",
     ];
@@ -65,7 +87,7 @@ const SignUp = () => {
 
     if (missingFields.length > 0) {
       setErrorMessage(
-        `Please fill out the following required fields with exlamation mark.`
+        "Please fill out the following required fields with exlamation mark."
       );
       setErrorModal(!errorModal);
     } else if (fields.password.length < 5) {
@@ -77,8 +99,13 @@ const SignUp = () => {
     } else if (!emailRegex.test(fields.email)) {
       setErrorMessage("Email Address must contain a valid email.");
       setErrorModal(true);
+    } else if (!fields.proof) {
+      setErrorMessage(
+        "Proof of Residency cannot be blank. Please upload your proof in image type."
+      );
+      setErrorModal(!errorModal);
     } else {
-      const response = await api.signup(fields);
+      const response = await api.signup({ ...fields, proof: image });
       if (response.status !== 200) {
         setErrorMessage(response.data.message);
         setErrorModal(!errorModal);
@@ -211,7 +238,8 @@ const SignUp = () => {
             onChange={setFields}
           />
 
-          <Field.File />
+          <Field.File onChange={handleUploadFile} image={image} />
+
           <div className="flex items-center gap-10">
             <Field.Checkbox
               label="Are you a voter?"
