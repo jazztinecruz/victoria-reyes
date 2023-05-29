@@ -38,7 +38,7 @@ const Requests = ({ requests }: Props) => {
         <MagnifyingGlassIcon className="h-6 w-6 group-hover:text-brand" />
         <input
           type="search"
-          placeholder="Search Resident"
+          placeholder="Search Request"
           className="w-96 rounded-md bg-transparent py-3 pl-3 outline-none group-hover:border-2 group-hover:border-brand"
           onChange={(event) => setInput(event?.target.value)}
         />
