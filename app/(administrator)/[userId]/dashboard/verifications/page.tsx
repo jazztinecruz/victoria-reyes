@@ -1,8 +1,11 @@
 import moment from "moment";
+import Image from "next/image";
 import { use } from "react";
+import Button from "../../../../../components/elements/button/button";
 import VerifyResidentModal from "../../../../../components/modals/verify-resident";
 import Table from "../../../../../components/table";
 import database from "../../../../../library/database";
+import Proof from "./proof";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
@@ -39,6 +42,7 @@ const DashboardVerificationsPage = () => {
     "Homeowner",
     "Voter",
     "Account Verified",
+    "Proof Of Residency",
   ];
 
   return (
@@ -72,6 +76,7 @@ const DashboardVerificationsPage = () => {
               <Table.Data value={user.homeowner} />
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
+              <Proof proof={user.proof!} />
             </Table.Row>
           ))}
         </Table.Body>

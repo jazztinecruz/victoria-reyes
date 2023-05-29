@@ -26,6 +26,7 @@ model User {
   homeowner   Boolean
   voter       Boolean
   code        String?
+  proof       String?
   head        Boolean     @default(false)
   fullAddress String      @default("Dasmarinas,Cavite")
   purok       Purok       @default(PUROK_1)
@@ -41,10 +42,10 @@ model Request {
   status   Status    @default(PENDING)
   purpose  String?
   document Document? @relation(fields: [documentId], references: [id], onDelete: Cascade)
-  
+
   user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String?
-  adminId String?
+  adminId    String?
   documentId String?
 }
 

@@ -20,7 +20,6 @@ import api, { SignupFields } from "../../library/api";
 const SignUp = () => {
   const presetKey = "zd1amfbw";
   const cloudName = "djdnanzyn";
-  const [image, setImage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [errorModal, setErrorModal] = useState(false);
   const [fields, setFields] = useState<SignupFields>({
@@ -61,7 +60,9 @@ const SignUp = () => {
         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         formData
       )
-      .then((response) => setImage(response.data.secure_url))
+      .then((response) => {
+        setFields({ ...fields, proof: response.data.secure_url });
+      })
       .catch((error) => console.log(error));
   };
 
@@ -84,7 +85,6 @@ const SignUp = () => {
 
     //@ts-ignore
     const missingFields = requiredFields.filter((field) => !fields[field]);
-
     if (missingFields.length > 0) {
       setErrorMessage(
         "Please fill out the following required fields with exlamation mark."
@@ -105,7 +105,7 @@ const SignUp = () => {
       );
       setErrorModal(!errorModal);
     } else {
-      const response = await api.signup({ ...fields, proof: image });
+      const response = await api.signup(fields);
       if (response.status !== 200) {
         setErrorMessage(response.data.message);
         setErrorModal(!errorModal);
@@ -238,7 +238,7 @@ const SignUp = () => {
             onChange={setFields}
           />
 
-          <Field.File onChange={handleUploadFile} image={image} />
+          <Field.File onChange={handleUploadFile} image={fields.proof!} />
 
           <div className="flex items-center gap-10">
             <Field.Checkbox

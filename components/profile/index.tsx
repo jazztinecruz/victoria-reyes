@@ -11,6 +11,7 @@ import CreateCodeModal from "../modals/create-code";
 import JoinCodeModal from "../modals/join-code";
 import CopyCodeModal from "../modals/copy-code";
 import database from "../../library/database";
+import Image from "next/image";
 
 type Props = {
   user: User & { households: Household[] };
@@ -155,7 +156,6 @@ const Profile = ({ user }: Props) => {
           defaultValue={user.gender}
           readOnly
         />
-
         <div className="flex items-center gap-10">
           <Field.Checkbox
             label="Voter"
@@ -171,6 +171,22 @@ const Profile = ({ user }: Props) => {
             checked={user.homeowner}
           />
         </div>
+
+        <div />
+
+        {user.proof ? (
+          <div>
+            <label className="block text-sm text-gray-600 dark:text-gray-200">
+              Proof of Residency
+            </label>
+            <Image
+              src={user.proof}
+              alt="proof of residence"
+              width={500}
+              height={500}
+            />
+          </div>
+        ) : null}
       </form>
 
       {/* <Households userId={user.id} households={user.households} /> */}

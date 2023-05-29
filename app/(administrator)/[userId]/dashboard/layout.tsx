@@ -27,7 +27,7 @@ const DashboardLayout = async ({ children, params }: Props) => {
   if (!admin) return <></>;
 
   return (
-    <div className="smooth mx-auto grid max-w-screen-television notebook:grid-cols-[auto,auto,1fr]">
+    <div className="smooth mx-auto grid notebook:grid-cols-[auto,auto,1fr]">
       <aside>
         <Sidebar admin={admin} />
       </aside>
