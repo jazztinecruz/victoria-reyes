@@ -25,7 +25,11 @@ model User {
   occupation  String
   homeowner   Boolean
   voter       Boolean
+  code        String?
+  proof       String?
+  head        Boolean     @default(false)
   fullAddress String      @default("Dasmarinas,Cavite")
+  purok       Purok       @default(PUROK_1)
   households  Household[]
   requests    Request[]
 
@@ -36,10 +40,12 @@ model User {
 model Request {
   id       String    @id @default(cuid())
   status   Status    @default(PENDING)
+  purpose  String?
   document Document? @relation(fields: [documentId], references: [id], onDelete: Cascade)
 
   user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String?
+  adminId    String?
   documentId String?
 }
 
@@ -71,6 +77,13 @@ model Household {
   userId String
 
   @@unique([id, userId])
+}
+
+model Admin {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String @db.Text
+  name     String
 }
 
 model Signatory {
@@ -111,4 +124,12 @@ enum Relationship {
 enum Status {
   PENDING
   APPROVED
+}
+
+enum Purok {
+  PUROK_1
+  PUROK_2
+  PUROK_3
+  PUROK_4
+  PUROK_5
 }

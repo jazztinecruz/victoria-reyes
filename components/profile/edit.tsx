@@ -1,10 +1,11 @@
 "use client";
 import React, { MouseEventHandler, useState } from "react";
-import { Gender, User } from "@prisma/client";
-import { ChevronRightIcon } from "@heroicons/react/24/solid";
+import { Gender, Purok, User } from "@prisma/client";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Modal from "../modals";
 import Field from "../elements/field";
 import moment from "moment";
+import { Listbox } from "@headlessui/react";
 
 type Props = {
   user: User;
@@ -17,6 +18,7 @@ const EditProfile = ({ user, handler }: Props) => {
     middleName: user.middleName,
     familyName: user.familyName,
     fullAddress: user.fullAddress,
+    purok: user.purok,
     gender: user.gender,
     birthdate: user.birthdate,
     birthplace: user.birthplace,
@@ -26,6 +28,14 @@ const EditProfile = ({ user, handler }: Props) => {
     homeowner: user.homeowner,
     occupation: user.occupation,
   });
+
+  const puroks = [
+    Purok.PUROK_1,
+    Purok.PUROK_2,
+    Purok.PUROK_3,
+    Purok.PUROK_4,
+    Purok.PUROK_5,
+  ];
 
   const handleUpdateUser = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -39,6 +49,7 @@ const EditProfile = ({ user, handler }: Props) => {
         middleName: fields.middleName,
         familyName: fields.familyName,
         fullAddress: fields.fullAddress,
+        purok: fields.purok,
         gender: fields.gender,
         birthdate: new Date(fields.birthdate),
         birthplace: fields.birthplace,
@@ -87,6 +98,30 @@ const EditProfile = ({ user, handler }: Props) => {
               onChange={setFields}
               defaultValue={fields.fullAddress}
             />
+
+            <div className="flex flex-col">
+              <label className="block text-sm text-gray-600 dark:text-gray-200">
+                Select Purok
+              </label>
+              <Listbox>
+                <Listbox.Button className="mt-2 flex w-full items-center justify-between rounded-md border border-gray-200 bg-white px-5 py-3 text-gray-700 placeholder-gray-400 focus:border-brand/75 focus:outline-none focus:ring focus:ring-brand/75 focus:ring-opacity-40  dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:placeholder-gray-600">
+                  {fields.purok}
+                  <ChevronDownIcon className="h-6 w-6" />
+                </Listbox.Button>
+                <Listbox.Options className="mt-2 flex flex-col rounded border bg-white">
+                  {puroks.map((purok) => (
+                    <Listbox.Option
+                      as="button"
+                      key={purok}
+                      value={purok}
+                      onClick={() => setFields({ ...fields, purok: purok })}
+                      className="w-full cursor-pointer py-2 px-4 text-left text-sm hover:bg-slate-200">
+                      {purok}
+                    </Listbox.Option>
+                  ))}
+                </Listbox.Options>
+              </Listbox>
+            </div>
             <Field.Textbox
               type="date"
               label="Birthdate"

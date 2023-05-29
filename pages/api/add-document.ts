@@ -7,6 +7,14 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   }
   const body = JSON.parse(request.body);
   try {
+    const existingDocument = await database.document.findMany({
+      where: {
+        title: body.title,
+      },
+    });
+    if (existingDocument.length)
+      return response.status(404).send({ message: "Document already exists." });
+
     const document = await database.document.create({
       data: {
         title: body.title,

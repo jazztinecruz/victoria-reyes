@@ -7,18 +7,26 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   }
   const body = JSON.parse(request.body);
   try {
-    const document = await database.request.update({
+    const existingCode = await database.user.findMany({
+      where: { code: body.code },
+    });
+    if (existingCode.length)
+      return response
+        .status(404)
+        .send({ message: "Code already exists. Try Create again." });
+
+    const household = await database.user.update({
       where: {
         id: body.id,
       },
       data: {
-        status: "APPROVED",
-        adminId: body.adminId,
+        code: body.code,
+        head: true,
       },
     });
-    return response.status(201).send(document);
+    return response.status(201).send(household);
   } catch (error) {
-    return response.status(505).send({ message: "Internal server error" });
+    return response.status(500).send({ message: "Internal server error" });
   }
 };
 

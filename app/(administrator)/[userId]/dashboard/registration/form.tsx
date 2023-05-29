@@ -2,14 +2,18 @@
 
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { Gender } from "@prisma/client";
+import axios from "axios";
 import { useState } from "react";
-import Button from "../../../../components/elements/button/button";
-import Field from "../../../../components/elements/field";
-import ErrorModal from "../../../../components/modals/error";
-import SuccessfulModal from "../../../../components/modals/sucessful";
-import api, { SignupFields } from "../../../../library/api";
+import Button from "../../../../../components/elements/button/button";
+import Field from "../../../../../components/elements/field";
+import ErrorModal from "../../../../../components/modals/error";
+import SuccessfulModal from "../../../../../components/modals/sucessful";
+import api, { SignupFields } from "../../../../../library/api";
 
 const Form = () => {
+  const presetKey = "zd1amfbw";
+  const cloudName = "djdnanzyn";
+
   const initialValues = {
     givenName: "",
     middleName: "",
@@ -21,6 +25,7 @@ const Form = () => {
     phone: "",
     email: "",
     password: "",
+    proof: "",
     voter: false,
     homeowner: false,
     occupation: "",
@@ -32,6 +37,22 @@ const Form = () => {
   const [sucessfulModal, setSuccessfulModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [errorModal, setErrorModal] = useState(false);
+
+  const handleUploadFile = (event: any) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", presetKey);
+    axios
+      .post(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        formData
+      )
+      .then((response) => {
+        setFields({ ...fields, proof: response.data.secure_url });
+      })
+      .catch((error) => console.log(error));
+  };
 
   const handleSubmit = async () => {
     const phoneNumberRegex = /^\d{11}$/;
@@ -66,6 +87,11 @@ const Form = () => {
     } else if (!emailRegex.test(fields.email)) {
       setErrorMessage("Email Address must contain a valid email.");
       setErrorModal(true);
+    } else if (!fields.proof) {
+      setErrorMessage(
+        "Proof of Residency cannot be blank. Please upload your proof in image type."
+      );
+      setErrorModal(!errorModal);
     } else {
       const response = await api.signup(fields);
       if (response.status !== 200) {
@@ -78,6 +104,7 @@ const Form = () => {
       }
     }
   };
+
   return (
     <>
       <form className="mt-10 flex flex-col gap-6 tablet:grid tablet:grid-cols-2">
@@ -163,7 +190,8 @@ const Form = () => {
           onChange={setFields}
         />
 
-        <Field.File />
+        <Field.File onChange={handleUploadFile} image={fields.proof!} />
+
         <div className="flex items-center gap-10">
           <Field.Checkbox
             label="Are you a voter?"

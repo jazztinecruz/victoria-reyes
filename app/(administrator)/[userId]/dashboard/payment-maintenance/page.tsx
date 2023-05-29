@@ -1,7 +1,7 @@
 import { use } from "react";
-import AddTransaction from "../../../../components/modals/add-transaction";
-import Table from "../../../../components/table";
-import database from "../../../../library/database";
+import AddTransaction from "../../../../../components/modals/add-transaction";
+import Table from "../../../../../components/table";
+import database from "../../../../../library/database";
 
 const getApprovedDocuments = async () => {
   const approvedRequests = await database.request.findMany({
@@ -26,9 +26,11 @@ const PaymentMaintenance = () => {
   const headers = [
     "No.",
     "Document ID",
+    "Admin ID",
     "Document Title",
     "Document Price",
     "Document Status",
+    "Purpose",
     "First Name",
     "Middle Name",
     "Last Name",
@@ -53,9 +55,11 @@ const PaymentMaintenance = () => {
             <Table.Row key={transaction.id}>
               <Table.Data value={index + 1} />
               <Table.Data value={transaction.documentId} />
+              <Table.Data value={transaction.adminId} />
               <Table.Data value={transaction.document?.title} />
               <Table.Data value={transaction.document?.price} />
               <Table.Data value={transaction.status} />
+              <Table.Data value={transaction.purpose} />
               <Table.Data value={transaction.user?.givenName} />
               <Table.Data value={transaction.user?.middleName} />
               <Table.Data value={transaction.user?.familyName} />

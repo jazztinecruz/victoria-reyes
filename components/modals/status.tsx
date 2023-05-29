@@ -1,4 +1,5 @@
 "use client";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import Button from "../elements/button/button";
 import SuccessfulModal from "./sucessful";
@@ -8,6 +9,9 @@ interface Props {
 }
 
 const Status = ({ requestId }: Props) => {
+  const userId = useParams();
+  const adminId = userId;
+
   const [openModal, setOpenModal] = useState(false);
 
   const handleApproveRequest = async () => {
@@ -16,6 +20,7 @@ const Status = ({ requestId }: Props) => {
         method: "PUT",
         body: JSON.stringify({
           id: requestId,
+          adminId: adminId?.userId,
         }),
       });
       if (response.status === 201) setOpenModal(true);

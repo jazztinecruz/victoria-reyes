@@ -13,12 +13,21 @@ const AddDocumentModal = () => {
     price: "",
   });
   const [openSuccessfulModal, setOpenSuccessfulModal] = useState(false);
+  const [openErrorModal, setOpenErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleAddDocument = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
     try {
+      if (!fields.title || !fields.price) {
+        setOpenErrorModal(true);
+        setErrorMessage(
+          "Please fill up the required fields with exclamation mark."
+        );
+        return;
+      }
       const response = await fetch("/api/add-document", {
         method: "POST",
         body: JSON.stringify({
@@ -30,6 +39,11 @@ const AddDocumentModal = () => {
       if (response.status === 201) {
         setOpenAddModal(false);
         setOpenSuccessfulModal(true);
+      }
+      if (response.status !== 201) {
+        const errorMessage = await response.json();
+        setOpenErrorModal(true);
+        setErrorMessage(errorMessage.message);
       }
     } catch (error) {
       console.log(error);
@@ -114,6 +128,24 @@ const AddDocumentModal = () => {
             />
           </div>
         </SuccessfulModal>
+      ) : null}
+
+      {openErrorModal ? (
+        <Modal
+          open={openErrorModal === true ? true : false}
+          onClose={() => setOpenErrorModal(false)}>
+          <span className="mt-5 text-xl font-semibold text-brand">
+            {errorMessage}
+          </span>
+
+          <div className="z-50">
+            <Button
+              name="Go Back"
+              fill
+              handler={() => setOpenErrorModal(false)}
+            />
+          </div>
+        </Modal>
       ) : null}
     </>
   );

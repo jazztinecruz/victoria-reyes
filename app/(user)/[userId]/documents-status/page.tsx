@@ -24,6 +24,7 @@ const DocumentStatus = async ({ params }: any) => {
     "Document Title",
     "Document Price",
     "Document Status",
+    "Purpose",
     "Resident ID",
     "First Name",
     "Middle Name",
@@ -49,6 +50,7 @@ const DocumentStatus = async ({ params }: any) => {
               <Table.Data value={request.document?.title} />
               <Table.Data value={request.document?.price} />
               <Table.Data value={request.status} />
+              <Table.Data value={request.purpose} />
               <Table.Data value={user.id} />
               <Table.Data value={user!.givenName} />
               <Table.Data value={user!.middleName} />

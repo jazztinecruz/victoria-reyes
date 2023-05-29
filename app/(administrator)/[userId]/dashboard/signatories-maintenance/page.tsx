@@ -1,8 +1,8 @@
 import React, { use } from "react";
-import AddSignatory from "../../../../components/modals/add-signatory";
-import DeleteSignatory from "../../../../components/modals/delete-signatory";
-import Table from "../../../../components/table";
-import database from "../../../../library/database";
+import AddSignatory from "../../../../../components/modals/add-signatory";
+import DeleteSignatory from "../../../../../components/modals/delete-signatory";
+import Table from "../../../../../components/table";
+import database from "../../../../../library/database";
 
 const getSignatories = async () => {
   const signatories = await database.signatory.findMany();

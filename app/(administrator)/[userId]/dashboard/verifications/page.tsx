@@ -1,8 +1,11 @@
 import moment from "moment";
+import Image from "next/image";
 import { use } from "react";
-import VerifyResidentModal from "../../../../components/modals/verify-resident";
-import Table from "../../../../components/table";
-import database from "../../../../library/database";
+import Button from "../../../../../components/elements/button/button";
+import VerifyResidentModal from "../../../../../components/modals/verify-resident";
+import Table from "../../../../../components/table";
+import database from "../../../../../library/database";
+import Proof from "./proof";
 
 const getUsers = async () => {
   const users = await database.user.findMany({
@@ -30,13 +33,16 @@ const DashboardVerificationsPage = () => {
     "Gender",
     "Birth Date",
     "Full Address",
+    "Purok",
     "Birth Place",
     "Phone Number",
     "Occupation",
-    "Households",
+    "Head",
+    "Code",
     "Homeowner",
     "Voter",
     "Account Verified",
+    "Proof Of Residency",
   ];
 
   return (
@@ -61,13 +67,16 @@ const DashboardVerificationsPage = () => {
               <Table.Data value={user.gender} />
               <Table.Data value={moment(user.birthdate).format("LL")} />
               <Table.Data value={user.fullAddress} />
+              <Table.Data value={user.purok} />
               <Table.Data value={user.birthplace} />
               <Table.Data value={user.phone} />
               <Table.Data value={user.occupation} />
-              <Table.Data value={user.households.length} />
+              <Table.Data value={user.head ? "true" : "false"} />
+              <Table.Data value={user?.code} />
               <Table.Data value={user.homeowner} />
               <Table.Data value={user.voter} />
               <Table.Data value={user.verified} />
+              <Proof proof={user.proof!} />
             </Table.Row>
           ))}
         </Table.Body>

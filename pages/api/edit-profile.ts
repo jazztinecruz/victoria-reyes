@@ -23,7 +23,8 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         occupation: body.occupation,
         homeowner: body.homeowner,
         voter: body.voter,
-        fullAddress: body.fullAddress
+        fullAddress: body.fullAddress,
+        purok: body.purok
       },
     });
     return response.status(201).send(user);

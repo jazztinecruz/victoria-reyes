@@ -1,8 +1,8 @@
-import database from "../../../../library/database";
-import Table from "../../../../components/table";
+import database from "../../../../../library/database";
+import Table from "../../../../../components/table";
 import { use } from "react";
-import Status from "../../../../components/modals/status";
-import BatchProcessingModal from "../../../../components/modals/batch-processing";
+import Status from "../../../../../components/modals/status";
+import BatchProcessingModal from "../../../../../components/modals/batch-processing";
 
 const getRequests = async () => {
   const requests = await database.request.findMany({
@@ -27,6 +27,7 @@ const DashboardRequestsPage = () => {
     "Document Title",
     "Document Price",
     "Document Status",
+    "Purpose",
     "Resident ID",
     "First Name",
     "Middle Name",
@@ -54,6 +55,7 @@ const DashboardRequestsPage = () => {
               <Table.Data value={request.document?.title} />
               <Table.Data value={request.document?.price} />
               <Table.Data value={request.status} />
+              <Table.Data value={request.purpose} />
               <Table.Data value={request!.user!.id} />
               <Table.Data value={request!.user!.givenName} />
               <Table.Data value={request!.user!.middleName} />

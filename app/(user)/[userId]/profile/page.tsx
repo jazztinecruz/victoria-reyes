@@ -14,7 +14,6 @@ const getUser = async (id: string) => {
 
 const UserProfile = async ({ params }: any) => {
   const user = await getUser(params.userId);
-  
   return <Profile user={JSON.parse(JSON.stringify(user))} />;
 };
 

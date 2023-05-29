@@ -7,6 +7,18 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
   }
   const body = JSON.parse(request.body);
   try {
+    const existingSignatory = await database.signatory.findMany({
+      where: {
+        firstName: body.firstName,
+        middleName: body.middleName,
+        lastName: body.lastName,
+      },
+    });
+    if (existingSignatory.length)
+      return response
+        .status(404)
+        .send({ message: "Signatory already exists." });
+
     const document = await database.signatory.create({
       data: {
         firstName: body.firstName,
