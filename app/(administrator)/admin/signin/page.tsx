@@ -83,7 +83,7 @@ const AdminSignIn = () => {
                 />
                 <div className="my-5 flex w-full flex-col">
                   <Button
-                    name="Create Admin Account"
+                    name="Login Admin Account"
                     fill
                     handler={handleSignInAdmin}
                   />
