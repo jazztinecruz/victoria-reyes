@@ -123,8 +123,11 @@ enum Relationship {
 
 enum Status {
   PENDING
+  PROCESSING
   APPROVED
   DECLINED
+  READY
+  CLAIMED
 }
 
 enum Purok {

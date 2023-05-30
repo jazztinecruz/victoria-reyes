@@ -81,7 +81,7 @@ const AddTransaction = () => {
 
             <Field.Textbox
               type="text"
-              label="User ID"
+              label="Resident ID"
               name="userId"
               onChange={setFields}
             />

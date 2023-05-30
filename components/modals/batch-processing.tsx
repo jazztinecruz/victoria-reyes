@@ -16,11 +16,11 @@ const BatchProcessingModal = ({ requests }: Props) => {
   const tableRef = useRef<HTMLTableElement>(null);
 
   const headers = [
-    "No.",
+    "Document Status",
     "Document ID",
     "Document Title",
     "Document Price",
-    "Document Status",
+    "Purpose",
     "Resident ID",
     "First Name",
     "Middle Name",
@@ -111,13 +111,13 @@ const BatchProcessingModal = ({ requests }: Props) => {
                             </Table.Row>
                           </Table.Head>
                           <Table.Body>
-                            {requests.map((request: any, index: any) => (
+                            {requests.map((request: any) => (
                               <Table.Row key={request.id}>
-                                <Table.Data value={index + 1} />
+                                <Table.Data value={request.status} />
                                 <Table.Data value={request.documentId} />
                                 <Table.Data value={request.document?.title} />
                                 <Table.Data value={request.document?.price} />
-                                <Table.Data value={request.status} />
+                                <Table.Data value={request.purpose} />
                                 <Table.Data value={request!.user!.id} />
                                 <Table.Data value={request!.user!.givenName} />
                                 <Table.Data value={request!.user!.middleName} />

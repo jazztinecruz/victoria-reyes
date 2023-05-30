@@ -12,7 +12,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
         id: body.id,
       },
       data: {
-        status: "APPROVED",
+        status: body.status,
         adminId: body.adminId,
       },
     });

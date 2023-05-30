@@ -19,11 +19,10 @@ const DocumentStatus = async ({ params }: any) => {
   const user = await getUser(params.userId);
 
   const headers = [
-    "No.",
+    "Document Status",
     "Document ID",
     "Document Title",
     "Document Price",
-    "Document Status",
     "Purpose",
     "Resident ID",
     "First Name",
@@ -43,13 +42,12 @@ const DocumentStatus = async ({ params }: any) => {
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {user.requests.map((request, index) => (
+          {user.requests.map((request) => (
             <Table.Row key={request.id}>
-              <Table.Data value={index + 1} />
+              <Table.Data value={request.status} />
               <Table.Data value={request.documentId} />
               <Table.Data value={request.document?.title} />
               <Table.Data value={request.document?.price} />
-              <Table.Data value={request.status} />
               <Table.Data value={request.purpose} />
               <Table.Data value={user.id} />
               <Table.Data value={user!.givenName} />

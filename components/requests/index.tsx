@@ -19,11 +19,9 @@ const Requests = ({ requests }: Props) => {
 
   const headers = [
     "ACTION",
-    "No.",
     "Document ID",
     "Document Title",
     "Document Price",
-    "Document Status",
     "Purpose",
     "Resident ID",
     "First Name",
@@ -58,12 +56,14 @@ const Requests = ({ requests }: Props) => {
           <Table.Body>
             {requests.map((request, index) => (
               <Table.Row key={request.id}>
-                <Table.Data value={<Status requestId={request.id} />} />
-                <Table.Data value={index + 1} />
+                <Table.Data
+                  value={
+                    <Status requestId={request.id} status={request.status} />
+                  }
+                />
                 <Table.Data value={request.documentId} />
                 <Table.Data value={request.document?.title} />
                 <Table.Data value={request.document?.price} />
-                <Table.Data value={request.status} />
                 <Table.Data value={request.purpose} />
                 <Table.Data value={request!.user!.id} />
                 <Table.Data value={request!.user!.givenName} />
@@ -113,12 +113,14 @@ const Requests = ({ requests }: Props) => {
               )
               .map((request, index) => (
                 <Table.Row key={request.id}>
-                  <Table.Data value={<Status requestId={request.id} />} />
-                  <Table.Data value={index + 1} />
+                  <Table.Data
+                    value={
+                      <Status requestId={request.id} status={request.status} />
+                    }
+                  />
                   <Table.Data value={request.documentId} />
                   <Table.Data value={request.document?.title} />
                   <Table.Data value={request.document?.price} />
-                  <Table.Data value={request.status} />
                   <Table.Data value={request.purpose} />
                   <Table.Data value={request!.user!.id} />
                   <Table.Data value={request!.user!.givenName} />

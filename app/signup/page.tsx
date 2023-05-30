@@ -233,6 +233,35 @@ const SignUp = () => {
 
           <Field.File onChange={handleUploadFile} image={fields.proof!} />
 
+          {/* gender */}
+          <div className="flex flex-col gap-4">
+            <span className="block text-sm text-gray-600 dark:text-gray-200">
+              Choose your Gender
+            </span>
+            <div className="flex items-center gap-10">
+              <div className="flex items-center gap-4">
+                <span>Male</span>
+                <input
+                  type="radio"
+                  name="gender"
+                  className="radio-success radio"
+                  defaultChecked={fields.gender === "MALE"}
+                  onChange={() => setFields({ ...fields, gender: "MALE" })}
+                />
+              </div>
+              <div className="flex items-center gap-4">
+                <span>Female</span>
+                <input
+                  type="radio"
+                  name="gender"
+                  className="radio-success radio"
+                  defaultChecked={fields.gender === "FEMALE"}
+                  onChange={() => setFields({ ...fields, gender: "FEMALE" })}
+                />
+              </div>
+            </div>
+          </div>
+          
           <div className="flex items-center gap-10">
             <Field.Checkbox
               label="Are you a voter?"

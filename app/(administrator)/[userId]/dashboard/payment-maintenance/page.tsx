@@ -6,7 +6,7 @@ import database from "../../../../../library/database";
 const getApprovedDocuments = async () => {
   const approvedRequests = await database.request.findMany({
     where: {
-      status: "APPROVED",
+      status: "CLAIMED",
     },
     include: {
       user: true,
@@ -25,11 +25,10 @@ const PaymentMaintenance = () => {
 
   const headers = [
     "No.",
-    "Document ID",
+    "Document Status",
     "Admin ID",
     "Document Title",
     "Document Price",
-    "Document Status",
     "Purpose",
     "First Name",
     "Middle Name",
@@ -53,12 +52,11 @@ const PaymentMaintenance = () => {
         <Table.Body>
           {approvedRequests.map((transaction, index) => (
             <Table.Row key={transaction.id}>
-              <Table.Data value={index + 1} />
+              <Table.Data value={transaction.status} />
               <Table.Data value={transaction.documentId} />
               <Table.Data value={transaction.adminId} />
               <Table.Data value={transaction.document?.title} />
               <Table.Data value={transaction.document?.price} />
-              <Table.Data value={transaction.status} />
               <Table.Data value={transaction.purpose} />
               <Table.Data value={transaction.user?.givenName} />
               <Table.Data value={transaction.user?.middleName} />
