@@ -5,7 +5,9 @@ import Requests from "../../../../../components/requests";
 const getRequests = async () => {
   const requests = await database.request.findMany({
     where: {
-      status: "PENDING",
+      status: {
+        not: "CLAIMED",
+      },
       user: {
         declined: false,
       },

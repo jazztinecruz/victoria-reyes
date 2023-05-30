@@ -30,7 +30,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
 
     const document = await database.request.create({
       data: {
-        status: "APPROVED",
+        status: "CLAIMED",
         documentId: body.documentId,
         userId: body.userId,
         adminId: body.adminId,
