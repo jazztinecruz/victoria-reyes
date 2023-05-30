@@ -38,9 +38,11 @@ const Status = ({ requestId, status }: Props) => {
   return (
     <>
       <Menu as="div" className="relative flex items-center">
-        <Menu.Button>{selectedStatus}</Menu.Button>
+        <Menu.Button className="cursor-pointer rounded-md bg-brand py-3 px-6 text-sm text-white transition-all duration-500 hover:scale-105 hover:bg-brand/90 ">
+          {selectedStatus}
+        </Menu.Button>
 
-        <Menu.Items className="absolute top-6 left-0 w-64 z-50 space-y-2 rounded border bg-white p-2 shadow-lg">
+        <Menu.Items className="absolute top-6 left-0 z-50 w-64 space-y-2 rounded border bg-white p-2 shadow-lg">
           {Object.values(StatusEnum).map((status) => (
             <Menu.Item key={status}>
               {({ active }) => (
@@ -50,7 +52,7 @@ const Status = ({ requestId, status }: Props) => {
                     active
                       ? "bg-slate-200 opacity-100 hover:bg-slate-200"
                       : "opacity-fade"
-                  } smooth flex gap-4 rounded p-2 text-sm w-full`}>
+                  } smooth flex w-full gap-4 rounded p-2 text-sm`}>
                   <h3>{status}</h3>
                 </button>
               )}
