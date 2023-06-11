@@ -6,6 +6,7 @@ import Table from "../table";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { Dialog, Transition } from "@headlessui/react";
+import { format } from "timeago.js";
 
 interface Props {
   requests: any;
@@ -22,6 +23,7 @@ const BatchProcessingModal = ({ requests }: Props) => {
     "Document Price",
     "Purpose",
     "Resident ID",
+    "Created",
     "First Name",
     "Middle Name",
     "Last Name",
@@ -119,6 +121,7 @@ const BatchProcessingModal = ({ requests }: Props) => {
                                 <Table.Data value={request.document?.price} />
                                 <Table.Data value={request.purpose} />
                                 <Table.Data value={request!.user!.id} />
+                                <Table.Data value={format(request!.createdAt)} />
                                 <Table.Data value={request!.user!.givenName} />
                                 <Table.Data value={request!.user!.middleName} />
                                 <Table.Data value={request!.user!.familyName} />

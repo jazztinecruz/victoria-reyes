@@ -6,7 +6,7 @@ import { useState } from "react";
 import BatchProcessingModal from "../modals/batch-processing";
 import Status from "../modals/status";
 import Table from "../table";
-
+import {format} from 'timeago.js'
 interface Props {
   requests: (Request & {
     user: User | null;
@@ -24,6 +24,7 @@ const Requests = ({ requests }: Props) => {
     "Document Price",
     "Purpose",
     "Resident ID",
+    "Created",
     "First Name",
     "Middle Name",
     "Last Name",
@@ -66,6 +67,7 @@ const Requests = ({ requests }: Props) => {
                 <Table.Data value={request.document?.price} />
                 <Table.Data value={request.purpose} />
                 <Table.Data value={request!.user!.id} />
+                <Table.Data value={format(request!.createdAt)} />
                 <Table.Data value={request!.user!.givenName} />
                 <Table.Data value={request!.user!.middleName} />
                 <Table.Data value={request!.user!.familyName} />

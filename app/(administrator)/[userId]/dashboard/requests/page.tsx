@@ -16,6 +16,9 @@ const getRequests = async () => {
       user: true,
       document: true,
     },
+    orderBy: [{ // i added createdAt and updatedAt to track the date and use it to sort as descending order
+      createdAt: 'desc'
+    }]
   });
   return requests;
 };

@@ -35,6 +35,7 @@
     "next": "^13.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "timeago.js": "^4.0.2",
     "typescript": "4.8.4"
   },
   "devDependencies": {

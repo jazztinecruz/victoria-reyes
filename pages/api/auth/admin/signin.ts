@@ -18,6 +18,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       return response.status(404).send({ message: "Can't find admin." });
     }
     const decryptedPassword = crypto.decrypt(admin.password);
+    console.log(decryptedPassword)
     if (body.password === decryptedPassword) {
       return response
         .status(200)
