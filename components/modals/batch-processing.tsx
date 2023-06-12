@@ -1,11 +1,15 @@
 "use client";
 import { Fragment, useState } from "react";
 import Button from "../elements/button/button";
-import { useRef } from "react";
 import Table from "../table";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { Dialog, Transition } from "@headlessui/react";
+import { format } from "timeago.js";
+import PdfContentToPrint from "../contentToPrint2";
+import { useRef } from "react";
+import { Button as PdfPrintButton } from "@progress/kendo-react-buttons";
+import axios from "axios";
 
 interface Props {
   requests: any;
@@ -14,6 +18,7 @@ interface Props {
 const BatchProcessingModal = ({ requests }: Props) => {
   const [openModal, setOpenModal] = useState(false);
   const tableRef = useRef<HTMLTableElement>(null);
+  const contentToPrintRef = useRef<any>(null);
 
   const headers = [
     "Document Status",
@@ -22,29 +27,48 @@ const BatchProcessingModal = ({ requests }: Props) => {
     "Document Price",
     "Purpose",
     "Resident ID",
+    "Created",
     "First Name",
     "Middle Name",
     "Last Name",
     "Account Verified",
   ];
 
-  const handleDownload = () => {
-    if (tableRef.current) {
-      const doc = new jsPDF();
-      const table = tableRef.current;
+  const approvedRequest = requests.filter(
+    (request: typeof requests[number]) => request.status === "APPROVED"
+  );
 
-      html2canvas(table).then((canvas) => {
-        const imageData = canvas.toDataURL("image/png");
-        const imgWidth = doc.internal.pageSize.getWidth(); // Use full page width
-        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Adjust height based on aspect ratio
-        doc.addImage(imageData, "PNG", 0, 0, imgWidth, imgHeight);
-        doc.save("table.pdf");
-      });
+  // const handleDownload = () => {
+  //   if (tableRef.current) {
+  //     const doc = new jsPDF();
+  //     const table = tableRef.current;
+
+  //     html2canvas(table).then((canvas) => {
+  //       const imageData = canvas.toDataURL("image/png");
+  //       const imgWidth = doc.internal.pageSize.getWidth(); // Use full page width
+  //       const imgHeight = (canvas.height * imgWidth) / canvas.width; // Adjust height based on aspect ratio
+  //       doc.addImage(imageData, "PNG", 0, 0, imgWidth, imgHeight);
+  //       doc.save("table.pdf");
+  //     });
+  //   }
+  // };
+
+  const handleUpdateReadyStatus = async () => {
+    const requestIds = approvedRequest.map((r: any) => r.id);
+    await axios.patch(`/api/update-request`, {
+      requestIds
+    });
+  }
+  const handleExportAsPdf = () => {
+    if (contentToPrintRef.current) {
+      contentToPrintRef.current?.save();
+      handleUpdateReadyStatus()
     }
   };
 
   return (
     <div>
+
       {/* button */}
       <div className="mr-auto">
         <Button
@@ -89,15 +113,17 @@ const BatchProcessingModal = ({ requests }: Props) => {
                         This will print all requested documents in one go.
                       </span>
                       <div className="my-4 flex items-center gap-4">
+
+                      <PdfContentToPrint componentRef={contentToPrintRef} requestsToPrint={approvedRequest} />
+                      
                         <Button
                           handler={() => setOpenModal(false)}
                           name="Go Back"
                         />
-                        <Button
-                          handler={handleDownload}
-                          fill
-                          name="Print Table"
-                        />
+
+                        <PdfPrintButton onClick={handleExportAsPdf}>
+                          <Button fill name="Print Table" />
+                        </PdfPrintButton>
                       </div>
                       <div className="h-96 w-full">
                         <Table.Main name="List of Pending Requests">
@@ -111,20 +137,31 @@ const BatchProcessingModal = ({ requests }: Props) => {
                             </Table.Row>
                           </Table.Head>
                           <Table.Body>
-                            {requests.map((request: any) => (
-                              <Table.Row key={request.id}>
-                                <Table.Data value={request.status} />
-                                <Table.Data value={request.documentId} />
-                                <Table.Data value={request.document?.title} />
-                                <Table.Data value={request.document?.price} />
-                                <Table.Data value={request.purpose} />
-                                <Table.Data value={request!.user!.id} />
-                                <Table.Data value={request!.user!.givenName} />
-                                <Table.Data value={request!.user!.middleName} />
-                                <Table.Data value={request!.user!.familyName} />
-                                <Table.Data value={request!.user!.verified} />
-                              </Table.Row>
-                            ))}
+                            {approvedRequest.map(
+                              (request: typeof approvedRequest[number]) => (
+                                <Table.Row key={request.id}>
+                                  <Table.Data value={request.status} />
+                                  <Table.Data value={request.documentId} />
+                                  <Table.Data value={request.document?.title} />
+                                  <Table.Data value={request.document?.price} />
+                                  <Table.Data value={request.purpose} />
+                                  <Table.Data value={request!.user!.id} />
+                                  <Table.Data
+                                    value={format(request!.createdAt)}
+                                  />
+                                  <Table.Data
+                                    value={request!.user!.givenName}
+                                  />
+                                  <Table.Data
+                                    value={request!.user!.middleName}
+                                  />
+                                  <Table.Data
+                                    value={request!.user!.familyName}
+                                  />
+                                  <Table.Data value={request!.user!.verified} />
+                                </Table.Row>
+                              )
+                            )}
                           </Table.Body>
                         </Table.Main>
                       </div>

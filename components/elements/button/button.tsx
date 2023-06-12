@@ -2,6 +2,7 @@ type Props = {
   name: string;
   handler?: any
   fill?:boolean
+  
 };
 const Button = ({ name, handler, fill }: Props) => {
   return (

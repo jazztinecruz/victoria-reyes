@@ -16,6 +16,7 @@ const api = {
       .post("/api/auth/signin", fields)
       .then((response) => response)
       .catch((error) => error.response);
+      console.log(data, status)
     return { data, status };
   },
   signup: async (fields: SignupFields) => {

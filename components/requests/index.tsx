@@ -6,17 +6,18 @@ import { useState } from "react";
 import BatchProcessingModal from "../modals/batch-processing";
 import Status from "../modals/status";
 import Table from "../table";
-
+import {format} from 'timeago.js'
 interface Props {
   requests: (Request & {
     user: User | null;
     document: Document | null;
   })[];
+  documents: Document[]
 }
 
-const Requests = ({ requests }: Props) => {
+const Requests = ({ requests, documents }: Props) => {
   const [input, setInput] = useState("");
-
+  const [documentId, setDocumentId] = useState('all');
   const headers = [
     "ACTION",
     "Document ID",
@@ -24,11 +25,13 @@ const Requests = ({ requests }: Props) => {
     "Document Price",
     "Purpose",
     "Resident ID",
+    "Created",
     "First Name",
     "Middle Name",
     "Last Name",
     "Account Verified",
   ];
+  const filteredRequest = requests.filter(request => request.documentId === documentId || documentId === 'all')
 
   return (
     <div className="space-section">
@@ -37,13 +40,25 @@ const Requests = ({ requests }: Props) => {
         <input
           type="search"
           placeholder="Search Request"
-          className="w-96 rounded-md bg-transparent py-3 pl-3 outline-none group-hover:border-2 group-hover:border-brand"
+          className="w-[100%] rounded-md bg-transparent py-3 pl-3 outline-none group-hover:border-2 group-hover:border-brand"
           onChange={(event) => setInput(event?.target.value)}
         />
       </div>
 
-      <BatchProcessingModal requests={requests} />
-
+      <div className="flex justify-between"> 
+      <BatchProcessingModal requests={filteredRequest} />
+      <select className="text-white p-3 rounded"
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setDocumentId(e.target.value)}
+      >
+       <option value={'all'}>all documents</option>
+      {
+        documents.map((document) => {
+          return <option value={document.id}>{document.title}</option>
+        })
+      }
+    </select>
+      </div>
+    
       {input === "" ? (
         <Table.Main name="List of Pending Requests">
           <Table.Head>
@@ -54,7 +69,7 @@ const Requests = ({ requests }: Props) => {
             </Table.Row>
           </Table.Head>
           <Table.Body>
-            {requests.map((request, index) => (
+            {filteredRequest.map((request, index) => (
               <Table.Row key={request.id}>
                 <Table.Data
                   value={
@@ -66,6 +81,7 @@ const Requests = ({ requests }: Props) => {
                 <Table.Data value={request.document?.price} />
                 <Table.Data value={request.purpose} />
                 <Table.Data value={request!.user!.id} />
+                <Table.Data value={format(request!.createdAt)} />
                 <Table.Data value={request!.user!.givenName} />
                 <Table.Data value={request!.user!.middleName} />
                 <Table.Data value={request!.user!.familyName} />
