@@ -1,6 +1,7 @@
 //@ts-nocheck
 //@ts-ignore
 import { zIndex } from "html2canvas/dist/types/css/property-descriptors/z-index";
+import Image from "next/image";
 import * as React from "react";
 
 export class ComponentToPrint extends React.PureComponent {
@@ -68,7 +69,7 @@ export class ComponentToPrint extends React.PureComponent {
             <tr>
               <td>Image: URL</td>
               <td>
-                <img
+                <Image
                   alt="Google logo"
                   src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
                   width="200"

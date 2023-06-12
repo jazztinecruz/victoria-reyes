@@ -1,5 +1,9 @@
+//@ts-ignore
+//@ts-nocheck
+
 import React from "react";
 import { PDFExport } from "@progress/kendo-react-pdf";
+import Image from "next/image";
 type contentProps = {
   componentRef: any;
   requestsToPrint: object[];
@@ -10,7 +14,7 @@ const content = ({ componentRef, requestsToPrint }: contentProps) => {
       <PDFExport paperSize={"A4"} ref={componentRef}>
         {requestsToPrint.map((request) => {
           return (
-            <DocumentTemplateAsBarragayCertificate requestsToPrint={request} />
+            <DocumentTemplateAsBarragayCertificate requestsToPrint={request} key={request.id} />
           );
         })}
       </PDFExport>
@@ -29,13 +33,13 @@ const DocumentTemplateAsBarragayCertificate = ({
     <div className="relative flex h-[90vh] w-[100%] flex-col items-center p-2 gap-1">
       <header className="flex flex-col w-full items-center border-b-2 border-black">
         <div className="flex justify-evenly items-center">
-          <img src="/images/logo1.png" width={'70px'} height={'70px'} alt="" />
+          <Image src="/images/logo1.png" width={'70px'} height={'70px'} alt="" />
           <span className="flex flex-col flex-1">
             <h1>Repulic of the Philippines</h1>
             <h2>Province of cavite</h2>
             <h2>City of damarinas</h2>
           </span>
-          <img src="/images/logo2.png" width={'70px'} height={'70px'} alt=""  />
+          <Image src="/images/logo2.png" width={'70px'} height={'70px'} alt=""  />
         </div>
         <h1 className="text-2xl">OFFICE OF THE SANGGUNIANG BARANGAY</h1>
       </header>
@@ -106,18 +110,18 @@ const DocumentTemplateAsBarragayCertificate = ({
         <div className="w-[65%] min-h-[100%] flex flex-col border-l-2 border-black">
             <h1 className="m-10 underline font-bold">CERTIFICATION</h1>
             
-            <span className="m-2  text-start text-xs">DATE: &nbsp;{new Date().toLocaleDateString()}</span>
+            <span className="m-2  text-start text-xs">DATE: {new Date().toLocaleDateString()}</span>
 
             <span className=" m-2  text-start text-xs">TO WHOM IT MAY CONCERN:</span>
 
             <p className=" text-xs mt-2 text-center p-2 tracking-tighter">This is to certify that <strong className="font-bold capitalize">{requestsToPrint?.user?.givenName} {requestsToPrint?.user?.middleName} {" "} {requestsToPrint?.user?.familyName}</strong>
-              isa resident of block <span>{requestsToPrint?.user?.fullAddress}</span>Lot &nbsp;<span>{requestsToPrint?.user?.purok}</span>&nbsp; Barangay victoria Reyes,
-              City of Dasmarifas, Cavite for . 1S a qualified availee of RA11261 &nbsp; or the First Time Job Seeker's Act Of 2019.
+              isa resident of block <span>{requestsToPrint?.user?.fullAddress}</span>Lot <span>{requestsToPrint?.user?.purok}</span> Barangay victoria Reyes,
+              City of Dasmarifas, Cavite for . 1S a qualified availee of RA11261  or the First Time Job Seeker`s Act Of 2019.
               <br/>
               <br />
               I further certify that the holderibearer was informed of his/her rights,
               including the duties and responsibilities accorded by RA 11261 through
-              the <strong> OATH OF UNDERTAKING </strong> &nbsp; &nbsp; &nbsp; he/she has signed and executed in the
+              the <strong> OATH OF UNDERTAKING </strong>    he/she has signed and executed in the
               presence of Barangay Official
 
               <br />
