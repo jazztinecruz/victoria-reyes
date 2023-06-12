@@ -12,11 +12,12 @@ interface Props {
     user: User | null;
     document: Document | null;
   })[];
+  documents: Document[]
 }
 
-const Requests = ({ requests }: Props) => {
+const Requests = ({ requests, documents }: Props) => {
   const [input, setInput] = useState("");
-
+  const [documentId, setDocumentId] = useState('all');
   const headers = [
     "ACTION",
     "Document ID",
@@ -30,6 +31,7 @@ const Requests = ({ requests }: Props) => {
     "Last Name",
     "Account Verified",
   ];
+  const filteredRequest = requests.filter(request => request.documentId === documentId || documentId === 'all')
 
   return (
     <div className="space-section">
@@ -38,13 +40,25 @@ const Requests = ({ requests }: Props) => {
         <input
           type="search"
           placeholder="Search Request"
-          className="w-96 rounded-md bg-transparent py-3 pl-3 outline-none group-hover:border-2 group-hover:border-brand"
+          className="w-[100%] rounded-md bg-transparent py-3 pl-3 outline-none group-hover:border-2 group-hover:border-brand"
           onChange={(event) => setInput(event?.target.value)}
         />
       </div>
 
-      <BatchProcessingModal requests={requests} />
-
+      <div className="flex justify-between"> 
+      <BatchProcessingModal requests={filteredRequest} />
+      <select className="text-white p-3 rounded"
+        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setDocumentId(e.target.value)}
+      >
+       <option value={'all'}>all documents</option>
+      {
+        documents.map((document) => {
+          return <option value={document.id}>{document.title}</option>
+        })
+      }
+    </select>
+      </div>
+    
       {input === "" ? (
         <Table.Main name="List of Pending Requests">
           <Table.Head>
@@ -55,7 +69,7 @@ const Requests = ({ requests }: Props) => {
             </Table.Row>
           </Table.Head>
           <Table.Body>
-            {requests.map((request, index) => (
+            {filteredRequest.map((request, index) => (
               <Table.Row key={request.id}>
                 <Table.Data
                   value={
