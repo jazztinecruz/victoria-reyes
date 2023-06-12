@@ -12,7 +12,6 @@ import { useRef } from "react";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import { Button as PdfPrintButton } from "@progress/kendo-react-buttons";
 
-import { useReactToPrint } from "react-to-print";
 interface Props {
   requests: any;
 }
@@ -63,8 +62,9 @@ const BatchProcessingModal = ({ requests }: Props) => {
 
   return (
     <div>
+
       {/* button */}
-      <div className="mr-auto ">
+      <div className="mr-auto">
         <Button
           name="Batch Process"
           fill
@@ -107,10 +107,7 @@ const BatchProcessingModal = ({ requests }: Props) => {
                         This will print all requested documents in one go.
                       </span>
                       <div className="my-4 flex items-center gap-4">
-                        <PdfContentToPrint
-                          componentRef={contentToPrintRef}
-                          requestsToPrint={approvedRequest}
-                        />
+                      <PdfContentToPrint componentRef={contentToPrintRef} requestsToPrint={approvedRequest} />
                         <Button
                           handler={() => setOpenModal(false)}
                           name="Go Back"
