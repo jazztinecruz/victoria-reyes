@@ -54,7 +54,7 @@ const BatchProcessingModal = ({ requests }: Props) => {
     }
   };
 
-  const handleExportAsPdf = (e: any) => {
+  const handleExportAsPdf = () => {
     if (contentToPrintRef.current) {
       contentToPrintRef.current?.save();
     }
