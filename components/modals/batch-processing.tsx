@@ -1,7 +1,6 @@
 "use client";
 import { Fragment, useState } from "react";
 import Button from "../elements/button/button";
-
 import Table from "../table";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -9,8 +8,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { format } from "timeago.js";
 import PdfContentToPrint from "../contentToPrint2";
 import { useRef } from "react";
-import { PDFExport } from "@progress/kendo-react-pdf";
 import { Button as PdfPrintButton } from "@progress/kendo-react-buttons";
+import axios from "axios";
 
 interface Props {
   requests: any;
@@ -39,24 +38,31 @@ const BatchProcessingModal = ({ requests }: Props) => {
     (request: typeof requests[number]) => request.status === "APPROVED"
   );
 
-  const handleDownload = () => {
-    if (tableRef.current) {
-      const doc = new jsPDF();
-      const table = tableRef.current;
+  // const handleDownload = () => {
+  //   if (tableRef.current) {
+  //     const doc = new jsPDF();
+  //     const table = tableRef.current;
 
-      html2canvas(table).then((canvas) => {
-        const imageData = canvas.toDataURL("image/png");
-        const imgWidth = doc.internal.pageSize.getWidth(); // Use full page width
-        const imgHeight = (canvas.height * imgWidth) / canvas.width; // Adjust height based on aspect ratio
-        doc.addImage(imageData, "PNG", 0, 0, imgWidth, imgHeight);
-        doc.save("table.pdf");
-      });
-    }
-  };
+  //     html2canvas(table).then((canvas) => {
+  //       const imageData = canvas.toDataURL("image/png");
+  //       const imgWidth = doc.internal.pageSize.getWidth(); // Use full page width
+  //       const imgHeight = (canvas.height * imgWidth) / canvas.width; // Adjust height based on aspect ratio
+  //       doc.addImage(imageData, "PNG", 0, 0, imgWidth, imgHeight);
+  //       doc.save("table.pdf");
+  //     });
+  //   }
+  // };
 
+  const handleUpdateReadyStatus = async () => {
+    const requestIds = approvedRequest.map((r: any) => r.id);
+    await axios.patch(`/api/update-request`, {
+      requestIds
+    });
+  }
   const handleExportAsPdf = () => {
     if (contentToPrintRef.current) {
       contentToPrintRef.current?.save();
+      handleUpdateReadyStatus()
     }
   };
 
@@ -107,7 +113,9 @@ const BatchProcessingModal = ({ requests }: Props) => {
                         This will print all requested documents in one go.
                       </span>
                       <div className="my-4 flex items-center gap-4">
+
                       <PdfContentToPrint componentRef={contentToPrintRef} requestsToPrint={approvedRequest} />
+                      
                         <Button
                           handler={() => setOpenModal(false)}
                           name="Go Back"

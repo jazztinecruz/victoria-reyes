@@ -42,7 +42,6 @@ model Request {
   status   Status    @default(PENDING)
   purpose  String?
   document Document? @relation(fields: [documentId], references: [id], onDelete: Cascade)
-
   user       User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String?
   adminId    String?

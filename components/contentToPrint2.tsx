@@ -42,7 +42,6 @@ const DocumentTemplateAsBarragayCertificate = ({
       <main className="flex border-t-2 border-black h-full gap-1">
         <div className="flex flex-col gap-3 w-[35%] h-[100%] border-r-2 border-black">
 
-
             <div className="flex flex-col gap-1">
               <span className="font-bold text-[10px]">HON. LEONILA C. BUCAO</span>
               <span className="text-[0.6em]">PUNONG BARANGGAY</span>
