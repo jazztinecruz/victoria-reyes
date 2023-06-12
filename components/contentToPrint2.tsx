@@ -31,13 +31,13 @@ const DocumentTemplateAsBarragayCertificate = ({
     <div className="relative flex h-[90vh] w-[100%] flex-col items-center p-2 gap-1">
       <header className="flex flex-col w-full items-center border-b-2 border-black">
         <div className="flex justify-evenly items-center">
-          <Image src="/images/logo1.png" width={70} height={70} alt="logo" />
+          <Image src="/images/logo1.png" width={70} height={70} alt="" />
           <span className="flex flex-col flex-1">
             <h1>Repulic of the Philippines</h1>
             <h2>Province of cavite</h2>
             <h2>City of damarinas</h2>
           </span>
-          <Image src="/images/logo2.png" width={70} height={70} alt="logo"  />
+          <Image src="/images/logo2.png" width={70} height={70} alt=""  />
         </div>
         <h1 className="text-2xl">OFFICE OF THE SANGGUNIANG BARANGAY</h1>
       </header>
