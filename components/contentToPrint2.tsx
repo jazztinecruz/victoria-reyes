@@ -1,3 +1,5 @@
+//@ts-ignore
+
 import React from "react";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Image from "next/image";
@@ -11,7 +13,7 @@ const content = ({ componentRef, requestsToPrint }: contentProps) => {
       <PDFExport paperSize={"A4"} ref={componentRef}>
         {requestsToPrint.map((request) => {
           return (
-            <DocumentTemplateAsBarragayCertificate requestsToPrint={request} />
+            <DocumentTemplateAsBarragayCertificate requestsToPrint={request} key={request.id} />
           );
         })}
       </PDFExport>
@@ -113,7 +115,7 @@ const DocumentTemplateAsBarragayCertificate = ({
 
             <p className=" text-xs mt-2 text-center p-2 tracking-tighter">This is to certify that <strong className="font-bold capitalize">{requestsToPrint?.user?.givenName} {requestsToPrint?.user?.middleName} {" "} {requestsToPrint?.user?.familyName}</strong>
               isa resident of block <span>{requestsToPrint?.user?.fullAddress}</span>Lot &nbsp;<span>{requestsToPrint?.user?.purok}</span>&nbsp; Barangay victoria Reyes,
-              City of Dasmarifas, Cavite for . 1S a qualified availee of RA11261 &nbsp; or the First Time Job Seeker's Act Of 2019.
+              City of Dasmarifas, Cavite for . 1S a qualified availee of RA11261 &nbsp; or the First Time Job Seeker`s Act Of 2019.
               <br/>
               <br />
               I further certify that the holderibearer was informed of his/her rights,

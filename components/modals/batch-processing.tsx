@@ -2,8 +2,8 @@
 import { Fragment, useState } from "react";
 import Button from "../elements/button/button";
 import Table from "../table";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+// import jsPDF from "jspdf";
+// import html2canvas from "html2canvas";
 import { Dialog, Transition } from "@headlessui/react";
 import { format } from "timeago.js";
 import PdfContentToPrint from "../contentToPrint2";
