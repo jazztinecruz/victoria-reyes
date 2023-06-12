@@ -1,5 +1,3 @@
-//@ts-ignore
-
 import React from "react";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Image from "next/image";
@@ -109,7 +107,7 @@ const DocumentTemplateAsBarragayCertificate = ({
         <div className="w-[65%] min-h-[100%] flex flex-col border-l-2 border-black">
             <h1 className="m-10 underline font-bold">CERTIFICATION</h1>
             
-            <span className="m-2  text-start text-xs">DATE: &nbsp;{new Date().toLocaleDateString()}</span>
+            <span className="m-2  text-start text-xs">DATE: {new Date().toLocaleDateString()}</span>
 
             <span className=" m-2  text-start text-xs">TO WHOM IT MAY CONCERN:</span>
 
@@ -120,7 +118,7 @@ const DocumentTemplateAsBarragayCertificate = ({
               <br />
               I further certify that the holderibearer was informed of his/her rights,
               including the duties and responsibilities accorded by RA 11261 through
-              the <strong> OATH OF UNDERTAKING </strong> &nbsp; &nbsp; &nbsp; he/she has signed and executed in the
+              the <strong> OATH OF UNDERTAKING </strong>    he/she has signed and executed in the
               presence of Barangay Official
 
               <br />
