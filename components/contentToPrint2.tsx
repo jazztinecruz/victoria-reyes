@@ -1,6 +1,5 @@
 //@ts-ignore
 //@ts-nocheck
-
 import React from "react";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import Image from "next/image";
