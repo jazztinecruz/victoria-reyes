@@ -53,7 +53,7 @@ const Requests = ({ requests, documents }: Props) => {
        <option value={'all'}>all documents</option>
       {
         documents.map((document) => {
-          return <option value={document.id}>{document.title}</option>
+          return <option value={document.id} key={document.id}>{document.title}</option>
         })
       }
     </select>
